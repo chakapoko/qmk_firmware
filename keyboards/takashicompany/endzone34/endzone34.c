@@ -15,11 +15,11 @@
  */
 
 #include "endzone34.h"
-
+/*
 oled_rotation_t oled_init_kb(oled_rotation_t rotation) {
     return OLED_ROTATION_270;
 }
-
+*/
 //Variable that stores the number of times the key was pressed
 static uint16_t press_count = 0;
 
