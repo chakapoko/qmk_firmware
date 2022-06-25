@@ -181,7 +181,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+---------+---------+---------+---------+---------|   |---------+---------+--------+---------+--------+--------|
      KC_LALT, TD_Z_UND, TD_X_CUT, TD_C_CPY, TD_V_PST, KC_B,         KC_N,     KC_M,     KC_COMM, KC_DOT,   JP_SLSH, JP_BSLS,
   //`--------+---------+---------+---------+---------+---------/   \---------+---------+--------+---------+--------+--------'
-                       LGUI_BS,  LOWER,    KC_SPACE, CT_TAB,        SF_ESC,   KC_ENTER, RAISE,   LALT_DEL
+                       LGUI_TAB,  LOWER,    KC_SPACE, CT_BS,        SF_DEL,   KC_ENTER, RAISE,   LALT_ESC
   //                  `----------+---------+---------+---------'   `---------+---------+--------+---------'
   ),
 
