@@ -175,11 +175,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_QWERTY] = LAYOUT( \
   //,--------+---------+---------+---------+---------+---------.   ,---------+---------+--------+---------+--------+--------.
-     KC_TAB,  KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,         KC_Y,     KC_U,     KC_I,    KC_O,     KC_P,    TD_COLN,
+     KC_TAB,  KC_Q,     KC_W,     KC_COMM,  KC_DOT,   JP_MINS,       KC_M,    KC_R,     KC_D,    KC_Y,     KC_P,    TD_COLN,
   //|--------+---------+---------+---------+---------+---------|   |---------+---------+--------+---------+--------+--------|
-     KC_LSFT, KC_A,     KC_S    , KC_D,     KC_F,     TD_G_TAB,     TD_H_ESC, KC_J,     KC_K,    KC_L,     SF_MINS, JP_AT,
+     KC_LSFT, KC_A,     KC_O    , KC_E,     KC_I,     KC_U,          KC_G,    KC_T,     KC_K,    KC_S,     KC_N,    JP_AT,
   //|--------+---------+---------+---------+---------+---------|   |---------+---------+--------+---------+--------+--------|
-     KC_LALT, TD_Z_UND, TD_X_CUT, TD_C_CPY, TD_V_PST, KC_B,         KC_N,     KC_M,     KC_COMM, KC_DOT,   JP_SLSH, JP_BSLS,
+     KC_LALT, TD_Z_UND, TD_X_CUT, TD_C_CPY, TD_V_PST, KC_F,          KC_B,    KC_H,     KC_J,    KC_L,     JP_SLSH, JP_BSLS,
   //`--------+---------+---------+---------+---------+---------/   \---------+---------+--------+---------+--------+--------'
                        LGUI_TAB,  LOWER,    KC_SPACE, CT_BS,        SF_DEL,   KC_ENTER, RAISE,   LALT_ESC
   //                  `----------+---------+---------+---------'   `---------+---------+--------+---------'
