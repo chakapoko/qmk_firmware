@@ -448,9 +448,9 @@ const PROGMEM naginata_keymap ngmap[] = {
   {.key = B_Q               , .kana = ""},
   {.key = B_V|B_SHFT        , .kana = ","},
   {.key = B_M|B_SHFT        , .kana = "."},
-  {.key = B_U               , .kana = SS_TAP(X_BSPACE)},
-  {.key = B_T               , .kana = SS_TAP(NGLT)},
-  {.key = B_Y               , .kana = SS_TAP(NGRT)},
+  {.key = B_U               , .kana = "sa"}, //SS_TAP(X_BSPACE)
+  {.key = B_T               , .kana = "."}, //SS_TAP(NGLT)
+  {.key = B_Y               , .kana = ","}, //SS_TAP(NGRT)
 
   // enter
   {.key = B_V|B_M           , .kana = SS_TAP(X_ENTER)},
