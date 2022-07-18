@@ -56,18 +56,22 @@ enum {
     TDD_C_COPY,
     TDD_V_PASTE,
     TDD_QUES_EXLM,
+    TDD_QUES_CIRC,
+    TDD_EXLM_TILD,
     TDD_QUOT_DQUO,
     TDD_LBRC_LCBR,
     TDD_RBRC_RCBR,
     TDD_LPRN_LBRC,
     TDD_RPRN_RBRC,
     TDD_CIRC_TILD,
+    TDD_CIRC_GRV,
     TDD_COLN_SCLN,
     TDD_YEN_DLR,
     TDD_PERC_GRV,
     TDD_AT_HASH,
     TDD_HASH_PERC,
     TDD_AT_GRV,
+    TDD_AT_TILD,
     TDD_MINS_UNDS,
     TDD_TAB_COM,
     TDD_SFT_DOT,
@@ -87,18 +91,22 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     [TDD_C_COPY]    = ACTION_TAP_DANCE_DOUBLE(KC_C,    LCTL(KC_C)),
     [TDD_V_PASTE]   = ACTION_TAP_DANCE_DOUBLE(KC_V,    LCTL(KC_V)),
     [TDD_QUES_EXLM] = ACTION_TAP_DANCE_DOUBLE(JP_QUES, JP_EXLM),
+    [TDD_QUES_CIRC] = ACTION_TAP_DANCE_DOUBLE(JP_QUES, JP_CIRC),
+    [TDD_EXLM_TILD] = ACTION_TAP_DANCE_DOUBLE(JP_EXLM, JP_TILD),
     [TDD_QUOT_DQUO] = ACTION_TAP_DANCE_DOUBLE(JP_QUOT, JP_DQUO),
     [TDD_LBRC_LCBR] = ACTION_TAP_DANCE_DOUBLE(JP_LBRC, JP_LCBR),
     [TDD_RBRC_RCBR] = ACTION_TAP_DANCE_DOUBLE(JP_RBRC, JP_RCBR),
     [TDD_LPRN_LBRC] = ACTION_TAP_DANCE_DOUBLE(JP_LPRN, JP_LBRC),
     [TDD_RPRN_RBRC] = ACTION_TAP_DANCE_DOUBLE(JP_RPRN, JP_RBRC),
     [TDD_CIRC_TILD] = ACTION_TAP_DANCE_DOUBLE(JP_CIRC, JP_TILD),
+    [TDD_CIRC_GRV]  = ACTION_TAP_DANCE_DOUBLE(JP_CIRC, JP_GRV),
     [TDD_COLN_SCLN] = ACTION_TAP_DANCE_DOUBLE(JP_COLN, JP_SCLN),
     [TDD_YEN_DLR]   = ACTION_TAP_DANCE_DOUBLE(JP_YEN,  JP_DLR),
     [TDD_PERC_GRV]  = ACTION_TAP_DANCE_DOUBLE(JP_PERC, JP_GRV),
     [TDD_MINS_UNDS] = ACTION_TAP_DANCE_DOUBLE(JP_MINS, JP_UNDS),
     [TDD_AT_HASH]   = ACTION_TAP_DANCE_DOUBLE(JP_AT,   JP_HASH),
     [TDD_AT_GRV]    = ACTION_TAP_DANCE_DOUBLE(JP_AT,   JP_GRV),
+    [TDD_AT_TILD]   = ACTION_TAP_DANCE_DOUBLE(JP_AT,   JP_TILD),
     [TDD_HASH_PERC] = ACTION_TAP_DANCE_DOUBLE(JP_HASH, JP_PERC),
     [TDD_TAB_COM]   = ACTION_TAP_DANCE_DOUBLE(KC_TAB,  KC_COMM),
     [TDD_SFT_DOT]   = ACTION_TAP_DANCE_DOUBLE(KC_LSFT, KC_DOT),
@@ -117,18 +125,22 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #define TD_C_CPY TD(TDD_C_COPY)
 #define TD_V_PST TD(TDD_V_PASTE)
 #define TD_QU_EX TD(TDD_QUES_EXLM)
+#define TD_QU_CI TD(TDD_QUES_CIRC)
+#define TD_EX_TL TD(TDD_EXLM_TILD)
 #define TD_QUOT  TD(TDD_QUOT_DQUO)
 #define TD_LBRC  TD(TDD_LBRC_LCBR)
 #define TD_RBRC  TD(TDD_RBRC_RCBR)
 #define TD_LPRN  TD(TDD_LPRN_LBRC)
 #define TD_RPRN  TD(TDD_RPRN_RBRC)
 #define TD_CI_TL TD(TDD_CIRC_TILD)
+#define TD_CI_GR TD(TDD_CIRC_GRV)
 #define TD_COLN  TD(TDD_COLN_SCLN)
 #define TD_YE_DL TD(TDD_YEN_DLR)
 #define TD_PE_GR TD(TDD_PERC_GRV)
 #define TD_AT_HS TD(TDD_AT_HASH)
 #define TD_HS_PE TD(TDD_HASH_PERC)
 #define TD_AT_GR TD(TDD_AT_GRV)
+#define TD_AT_TL TD(TDD_AT_TILD)
 #define TD_MI_UD TD(TDD_MINS_UNDS)
 #define TD_TBCM  TD(TDD_TAB_COM)
 #define TD_SFDT  TD(TDD_SFT_DOT)
@@ -145,6 +157,8 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #define KC_RST RESET
 
 #define CT_TAB  CTL_T(KC_TAB)
+#define SF_SPACE  SFT_T(KC_SPACE)
+#define SF_ENTER  SFT_T(KC_ENTER)
 #define SF_ESC  SFT_T(KC_ESC)
 #define CT_BS   CTL_T(KC_BSPC)
 #define SF_DEL  SFT_T(KC_DEL)
@@ -177,11 +191,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,--------+---------+---------+---------+---------+---------.   ,---------+---------+--------+---------+--------+--------.
      KC_TAB,  KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,         KC_Y,     KC_U,     KC_I,    KC_O,     KC_P,    TD_COLN,
   //|--------+---------+---------+---------+---------+---------|   |---------+---------+--------+---------+--------+--------|
-     KC_LSFT, KC_A,     KC_S    , KC_D,     KC_F,     TD_G_TAB,     TD_H_ESC, KC_J,     KC_K,    KC_L,     SF_MINS, JP_AT,
+     KC_LSFT, KC_A,     KC_S    , KC_D,     KC_F,     TD_G_TAB,     TD_H_ESC, KC_J,     KC_K,    KC_L,     TD_MI_UD,KC_RSFT,
   //|--------+---------+---------+---------+---------+---------|   |---------+---------+--------+---------+--------+--------|
      KC_LALT, TD_Z_UND, TD_X_CUT, TD_C_CPY, TD_V_PST, KC_B,         KC_N,     KC_M,     KC_COMM, KC_DOT,   JP_SLSH, JP_BSLS,
   //`--------+---------+---------+---------+---------+---------/   \---------+---------+--------+---------+--------+--------'
-                       LGUI_TAB,  LOWER,    KC_SPACE, CT_BS,        SF_DEL,   KC_ENTER, RAISE,   LALT_ESC
+                       LGUI_TAB,  LOWER,    SF_SPACE, CT_BS,        CT_DEL,   SF_ENTER, RAISE,   LALT_ESC
   //                  `----------+---------+---------+---------'   `---------+---------+--------+---------'
   ),
 
@@ -200,13 +214,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_LOWER] = LAYOUT( \
   //,--------+--------+--------+--------+--------+--------.   ,--------+--------+--------+--------+--------+--------.
-     _______, JP_PLUS, JP_ASTR, JP_SLSH, JP_MINS, JP_EQL,      JP_AMPR, JP_PIPE, TD_LBRC, TD_RBRC, TD_CI_TL,_______,
+     _______, JP_PLUS, JP_ASTR, JP_SLSH, JP_MINS, JP_EQL,      TD_QU_EX,TD_YE_DL,TD_LBRC, TD_RBRC, TD_CI_GR,_______,
   //|--------+--------+--------+--------+--------+--------|   |--------+--------+--------+--------+--------+--------|
-     _______,  KC_1   , KC_2   , KC_3   , KC_4   , KC_5   ,    TD_AT_GR,TD_COLN, TD_LPRN, TD_RPRN, TD_YE_DL,_______,
+     _______,  KC_1   , KC_2   , KC_3   , KC_4   , KC_5   ,    TD_AT_TL,TD_COLN, TD_LPRN, TD_RPRN, JP_AMPR, _______,
   //|--------+--------+--------+--------+--------+--------|   |--------+--------+--------+--------+--------+--------|
-     NG_OFF,  KC_6   , KC_7   , KC_8   , KC_9   , KC_0   ,     TD_QUOT, TD_HS_PE,JP_LABK, JP_RABK, TD_QU_EX,JP_UNDS,
+     NG_OFF,  KC_6   , KC_7   , KC_8   , KC_9   , KC_0   ,     TD_QUOT, TD_HS_PE,JP_LABK, JP_RABK, JP_PIPE, _______,
   //`--------+--------+--------+--------+--------+--------/   \--------+--------+--------+--------+--------+--------'
-                       _______, _______, _______, _______,     _______, _______,  _______, _______
+                       LGUI_TAB,  LOWER, SF_SPACE, CT_BS,      CT_DEL,   SF_ENTER, RAISE,   LALT_ESC
   //                  `--------+--------+--------+--------'   `--------+--------+--------+--------'
   ),
 
@@ -218,7 +232,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|   |--------+--------+--------+--------+--------+--------|
      _______, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,      KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_RALT,  NG_ON,
   //`--------+--------+--------+--------+--------+--------/   \--------+--------+--------+--------+--------+--------'
-                       _______, _______, _______, _______,     _______, _______, _______, _______
+                       LGUI_TAB,  LOWER, SF_SPACE, CT_BS,      CT_DEL,   SF_ENTER, RAISE,   LALT_ESC
   //                  `--------+--------+--------+--------'   `--------+--------+--------+--------'
   ),
 
