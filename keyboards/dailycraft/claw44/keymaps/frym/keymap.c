@@ -189,13 +189,13 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #define TH_J_NON MT(NG_ON,  KC_J)
 
 
-const uint16_t PROGMEM combo_lprn[]  = {KC_F, KC_G, COMBO_END};
-const uint16_t PROGMEM combo_rprn[]  = {KC_H, KC_J, COMBO_END};
-const uint16_t PROGMEM combo_lbrc[]  = {KC_R, KC_T, COMBO_END};
-const uint16_t PROGMEM combo_rbrc[]  = {KC_Y, KC_U, COMBO_END};
-const uint16_t PROGMEM combo_lcbr[]  = {KC_V, KC_B, COMBO_END};
-const uint16_t PROGMEM combo_rcbr[]  = {KC_N, KC_M, COMBO_END};
-const uint16_t PROGMEM combo_at[]    = {KC_J, KC_K, COMBO_END};
+const uint16_t PROGMEM combo_lprn[]  = {KC_I, KC_U, COMBO_END};
+const uint16_t PROGMEM combo_rprn[]  = {KC_G, KC_T, COMBO_END};
+const uint16_t PROGMEM combo_lbrc[]  = {KC_DOT, JP_MINS, COMBO_END};
+const uint16_t PROGMEM combo_rbrc[]  = {KC_M, KC_R, COMBO_END};
+const uint16_t PROGMEM combo_lcbr[]  = {KC_V, KC_F, COMBO_END};
+const uint16_t PROGMEM combo_rcbr[]  = {KC_B, KC_H, COMBO_END};
+const uint16_t PROGMEM combo_at[]    = {KC_T, KC_K, COMBO_END};
 combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo_lprn, JP_LPRN),
     COMBO(combo_rprn, JP_RPRN),
@@ -215,7 +215,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+---------+---------+---------+---------+---------|   |---------+---------+--------+---------+--------+--------|
      KC_LSFT, KC_A,     KC_O    , KC_E,     KC_I,     KC_U,          KC_G,    KC_T,     KC_K,    KC_S,     KC_N,    JP_AT,
   //|--------+---------+---------+---------+---------+---------|   |---------+---------+--------+---------+--------+--------|
-     KC_LALT, TD_Z_UND, TD_X_CUT, TD_C_CPY, TD_V_PST, KC_F,          KC_B,    KC_H,     KC_J,    KC_L,     JP_SLSH, JP_BSLS,
+     KC_LALT, KC_Z,     KC_X,     KC_C,     KC_V,     KC_F,          KC_B,    KC_H,     KC_J,    KC_L,     JP_SLSH, JP_BSLS,
   //`--------+---------+---------+---------+---------+---------/   \---------+---------+--------+---------+--------+--------'
                        LGUI_TAB,  LOWER,    SF_SPACE, CT_BS,        CT_DEL,   SF_ENTER, RAISE,   LALT_ESC
   //                  `----------+---------+---------+---------'   `---------+---------+--------+---------'
