@@ -173,7 +173,7 @@ const PROGMEM naginata_keymap ngmap[] = {
   {.key = B_H                      , .kana = "ku"      }, // く
   {.key = B_S                      , .kana = "ke"      }, // け
   {.key = B_V                      , .kana = "ko"      }, // こ
-  {.key = B_SHFT|B_U               , .kana = "sa"      }, // さ
+  {.key = B_U                      , .kana = "sa"      }, // さ
   {.key = B_R                      , .kana = "si"      }, // し
   {.key = B_O                      , .kana = "su"      }, // す
   {.key = B_SHFT|B_A               , .kana = "se"      }, // せ
@@ -448,9 +448,9 @@ const PROGMEM naginata_keymap ngmap[] = {
   {.key = B_Q               , .kana = ""},
   {.key = B_V|B_SHFT        , .kana = ","},
   {.key = B_M|B_SHFT        , .kana = "."},
-  {.key = B_U               , .kana = SS_TAP(X_BSPACE)},
-  {.key = B_T               , .kana = SS_TAP(NGLT)},
-  {.key = B_Y               , .kana = SS_TAP(NGRT)},
+  {.key = B_U|B_SHFT        , .kana = "/"}, //SS_TAP(X_BSPACE)
+  {.key = B_T               , .kana = "."}, //SS_TAP(NGLT)
+  {.key = B_Y               , .kana = ","}, //SS_TAP(NGRT)
 
   // enter
   {.key = B_V|B_M           , .kana = SS_TAP(X_ENTER)},
@@ -460,10 +460,10 @@ const PROGMEM naginata_keymap ngmap[] = {
 };
 
 const PROGMEM naginata_keymap_long ngmapl[] = {
-  {.key = B_T|B_SHFT        , .kana = SS_LSFT(SS_TAP(NGLT))},
-  {.key = B_Y|B_SHFT        , .kana = SS_LSFT(SS_TAP(NGRT))},
-  {.key = B_SHFT|B_T        , .kana = SS_LSFT(SS_TAP(NGLT))},
-  {.key = B_SHFT|B_Y        , .kana = SS_LSFT(SS_TAP(NGRT))},
+  {.key = B_T|B_SHFT        , .kana = "."}, //SS_LSFT(SS_TAP(NGLT))
+  {.key = B_Y|B_SHFT        , .kana = ","}, //SS_LSFT(SS_TAP(NGRT))
+  {.key = B_SHFT|B_T        , .kana = "."}, //SS_LSFT(SS_TAP(NGLT))
+  {.key = B_SHFT|B_Y        , .kana = ","}, //SS_LSFT(SS_TAP(NGRT))
 
 #if defined(NAGINATA_EDIT_WIN) || defined(NAGINATA_EDIT_LINUX)
 // 編集モード Win

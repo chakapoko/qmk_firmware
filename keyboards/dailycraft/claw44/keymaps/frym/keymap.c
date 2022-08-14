@@ -20,6 +20,9 @@
 NGKEYS naginata_keys;
 
 
+
+
+
 extern uint8_t is_master;
 
 // Each layer gets a name for readability, which is then used in the keymap matrix below.
@@ -56,18 +59,22 @@ enum {
     TDD_C_COPY,
     TDD_V_PASTE,
     TDD_QUES_EXLM,
+    TDD_QUES_CIRC,
+    TDD_EXLM_TILD,
     TDD_QUOT_DQUO,
     TDD_LBRC_LCBR,
     TDD_RBRC_RCBR,
     TDD_LPRN_LBRC,
     TDD_RPRN_RBRC,
     TDD_CIRC_TILD,
+    TDD_CIRC_GRV,
     TDD_COLN_SCLN,
     TDD_YEN_DLR,
     TDD_PERC_GRV,
     TDD_AT_HASH,
     TDD_HASH_PERC,
     TDD_AT_GRV,
+    TDD_AT_TILD,
     TDD_MINS_UNDS,
     TDD_TAB_COM,
     TDD_SFT_DOT,
@@ -87,18 +94,22 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     [TDD_C_COPY]    = ACTION_TAP_DANCE_DOUBLE(KC_C,    LCTL(KC_C)),
     [TDD_V_PASTE]   = ACTION_TAP_DANCE_DOUBLE(KC_V,    LCTL(KC_V)),
     [TDD_QUES_EXLM] = ACTION_TAP_DANCE_DOUBLE(JP_QUES, JP_EXLM),
+    [TDD_QUES_CIRC] = ACTION_TAP_DANCE_DOUBLE(JP_QUES, JP_CIRC),
+    [TDD_EXLM_TILD] = ACTION_TAP_DANCE_DOUBLE(JP_EXLM, JP_TILD),
     [TDD_QUOT_DQUO] = ACTION_TAP_DANCE_DOUBLE(JP_QUOT, JP_DQUO),
     [TDD_LBRC_LCBR] = ACTION_TAP_DANCE_DOUBLE(JP_LBRC, JP_LCBR),
     [TDD_RBRC_RCBR] = ACTION_TAP_DANCE_DOUBLE(JP_RBRC, JP_RCBR),
     [TDD_LPRN_LBRC] = ACTION_TAP_DANCE_DOUBLE(JP_LPRN, JP_LBRC),
     [TDD_RPRN_RBRC] = ACTION_TAP_DANCE_DOUBLE(JP_RPRN, JP_RBRC),
     [TDD_CIRC_TILD] = ACTION_TAP_DANCE_DOUBLE(JP_CIRC, JP_TILD),
+    [TDD_CIRC_GRV]  = ACTION_TAP_DANCE_DOUBLE(JP_CIRC, JP_GRV),
     [TDD_COLN_SCLN] = ACTION_TAP_DANCE_DOUBLE(JP_COLN, JP_SCLN),
     [TDD_YEN_DLR]   = ACTION_TAP_DANCE_DOUBLE(JP_YEN,  JP_DLR),
     [TDD_PERC_GRV]  = ACTION_TAP_DANCE_DOUBLE(JP_PERC, JP_GRV),
     [TDD_MINS_UNDS] = ACTION_TAP_DANCE_DOUBLE(JP_MINS, JP_UNDS),
     [TDD_AT_HASH]   = ACTION_TAP_DANCE_DOUBLE(JP_AT,   JP_HASH),
     [TDD_AT_GRV]    = ACTION_TAP_DANCE_DOUBLE(JP_AT,   JP_GRV),
+    [TDD_AT_TILD]   = ACTION_TAP_DANCE_DOUBLE(JP_AT,   JP_TILD),
     [TDD_HASH_PERC] = ACTION_TAP_DANCE_DOUBLE(JP_HASH, JP_PERC),
     [TDD_TAB_COM]   = ACTION_TAP_DANCE_DOUBLE(KC_TAB,  KC_COMM),
     [TDD_SFT_DOT]   = ACTION_TAP_DANCE_DOUBLE(KC_LSFT, KC_DOT),
@@ -117,22 +128,27 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #define TD_C_CPY TD(TDD_C_COPY)
 #define TD_V_PST TD(TDD_V_PASTE)
 #define TD_QU_EX TD(TDD_QUES_EXLM)
+#define TD_QU_CI TD(TDD_QUES_CIRC)
+#define TD_EX_TL TD(TDD_EXLM_TILD)
 #define TD_QUOT  TD(TDD_QUOT_DQUO)
 #define TD_LBRC  TD(TDD_LBRC_LCBR)
 #define TD_RBRC  TD(TDD_RBRC_RCBR)
 #define TD_LPRN  TD(TDD_LPRN_LBRC)
 #define TD_RPRN  TD(TDD_RPRN_RBRC)
 #define TD_CI_TL TD(TDD_CIRC_TILD)
+#define TD_CI_GR TD(TDD_CIRC_GRV)
 #define TD_COLN  TD(TDD_COLN_SCLN)
 #define TD_YE_DL TD(TDD_YEN_DLR)
 #define TD_PE_GR TD(TDD_PERC_GRV)
 #define TD_AT_HS TD(TDD_AT_HASH)
 #define TD_HS_PE TD(TDD_HASH_PERC)
 #define TD_AT_GR TD(TDD_AT_GRV)
+#define TD_AT_TL TD(TDD_AT_TILD)
 #define TD_MI_UD TD(TDD_MINS_UNDS)
 #define TD_TBCM  TD(TDD_TAB_COM)
 #define TD_SFDT  TD(TDD_SFT_DOT)
 #define TD_ESEN  TD(TDD_ESC_ENT)
+
 
 
 
@@ -145,6 +161,8 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #define KC_RST RESET
 
 #define CT_TAB  CTL_T(KC_TAB)
+#define SF_SPACE  LSFT_T(KC_SPACE)
+#define SF_ENTER  LSFT_T(KC_ENTER)
 #define SF_ESC  SFT_T(KC_ESC)
 #define CT_BS   CTL_T(KC_BSPC)
 #define SF_DEL  SFT_T(KC_DEL)
@@ -171,6 +189,24 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #define TH_J_NON MT(NG_ON,  KC_J)
 
 
+const uint16_t PROGMEM combo_lprn[]  = {KC_F, KC_G, COMBO_END};
+const uint16_t PROGMEM combo_rprn[]  = {KC_H, KC_J, COMBO_END};
+const uint16_t PROGMEM combo_lbrc[]  = {KC_R, KC_T, COMBO_END};
+const uint16_t PROGMEM combo_rbrc[]  = {KC_Y, KC_U, COMBO_END};
+const uint16_t PROGMEM combo_lcbr[]  = {KC_V, KC_B, COMBO_END};
+const uint16_t PROGMEM combo_rcbr[]  = {KC_N, KC_M, COMBO_END};
+const uint16_t PROGMEM combo_at[]    = {KC_J, KC_K, COMBO_END};
+combo_t key_combos[COMBO_COUNT] = {
+    COMBO(combo_lprn, JP_LPRN),
+    COMBO(combo_rprn, JP_RPRN),
+    COMBO(combo_lbrc, JP_LBRC),
+    COMBO(combo_rbrc, JP_RBRC),
+    COMBO(combo_lcbr, JP_LCBR),
+    COMBO(combo_rcbr, JP_RCBR),
+    COMBO(combo_at , JP_AT), // keycodes with modifiers are possible too!
+};
+
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_QWERTY] = LAYOUT( \
@@ -181,7 +217,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+---------+---------+---------+---------+---------|   |---------+---------+--------+---------+--------+--------|
      KC_LALT, TD_Z_UND, TD_X_CUT, TD_C_CPY, TD_V_PST, KC_F,          KC_B,    KC_H,     KC_J,    KC_L,     JP_SLSH, JP_BSLS,
   //`--------+---------+---------+---------+---------+---------/   \---------+---------+--------+---------+--------+--------'
-                       LGUI_TAB,  LOWER,    KC_SPACE, CT_BS,        SF_DEL,   KC_ENTER, RAISE,   LALT_ESC
+                       LGUI_TAB,  LOWER,    SF_SPACE, CT_BS,        CT_DEL,   SF_ENTER, RAISE,   LALT_ESC
   //                  `----------+---------+---------+---------'   `---------+---------+--------+---------'
   ),
 
@@ -200,13 +236,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_LOWER] = LAYOUT( \
   //,--------+--------+--------+--------+--------+--------.   ,--------+--------+--------+--------+--------+--------.
-     _______, JP_PLUS, JP_ASTR, JP_SLSH, JP_MINS, JP_EQL,      JP_AMPR, JP_PIPE, TD_LBRC, TD_RBRC, TD_CI_TL,_______,
+     _______, JP_PLUS, JP_ASTR, JP_SLSH, JP_MINS, JP_EQL,      JP_AMPR, JP_PIPE,TD_LBRC, TD_RBRC, TD_CI_GR,_______,
   //|--------+--------+--------+--------+--------+--------|   |--------+--------+--------+--------+--------+--------|
-     _______,  KC_1   , KC_2   , KC_3   , KC_4   , KC_5   ,    TD_AT_GR,TD_COLN, TD_LPRN, TD_RPRN, TD_YE_DL,_______,
+     _______,  KC_1   , KC_2   , KC_3   , KC_4   , KC_5   ,    TD_AT_TL,TD_COLN, TD_LPRN, TD_RPRN, TD_YE_DL, JP_UNDS,
   //|--------+--------+--------+--------+--------+--------|   |--------+--------+--------+--------+--------+--------|
-     NG_OFF,  KC_6   , KC_7   , KC_8   , KC_9   , KC_0   ,     TD_QUOT, TD_HS_PE,JP_LABK, JP_RABK, TD_QU_EX,JP_UNDS,
+     NG_OFF,  KC_6   , KC_7   , KC_8   , KC_9   , KC_0   ,     TD_QUOT, TD_HS_PE,JP_LABK, JP_RABK, TD_QU_EX,_______,
   //`--------+--------+--------+--------+--------+--------/   \--------+--------+--------+--------+--------+--------'
-                       _______, _______, _______, _______,     _______, _______,  _______, _______
+                       LGUI_TAB,  LOWER, SF_SPACE, CT_BS,      CT_DEL,  SF_ENTER, RAISE, LALT_ESC
   //                  `--------+--------+--------+--------'   `--------+--------+--------+--------'
   ),
 
@@ -218,13 +254,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|   |--------+--------+--------+--------+--------+--------|
      _______, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,      KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_RALT,  NG_ON,
   //`--------+--------+--------+--------+--------+--------/   \--------+--------+--------+--------+--------+--------'
-                       _______, _______, _______, _______,     _______, _______, _______, _______
+                       LGUI_TAB,  LOWER, SF_SPACE, CT_BS,      CT_DEL,   SF_ENTER, RAISE, LALT_ESC
   //                  `--------+--------+--------+--------'   `--------+--------+--------+--------'
   ),
 
   [_ADJUST] = LAYOUT( \
   //,--------+--------+--------+--------+--------+--------.   ,--------+--------+--------+--------+--------+--------.
-     _______, RESET,   KC_INS,  _______, MAIL_AD, LDAP_ID,     PASS_1,  PASS_2,  _______, _______, RESET,   _______,
+     _______, RESET,   KC_INS,  _______, MAIL_AD, LDAP_ID,     PASS_1,  KC_VOLD, KC_VOLU, PASS_2,  RESET,   _______,
   //|--------+--------+--------+--------+--------+--------|   |--------+--------+--------+--------+--------+--------|
      _______, KC_F1,   _______, KC_BTN2, KC_BTN1, KC_BTN3,     KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, _______, _______,
   //|--------+--------+--------+--------+--------+--------|   |--------+--------+--------+--------+--------+--------|
@@ -352,13 +388,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case KC_LSFT:
     case KC_RSFT:
-    case SF_DEL:
-    case SF_G:
-    case SF_H:
-    case SF_MHEN:
-    case SF_HENK:
-    case SF_A:
-    case SF_MINS:
+    case SF_SPACE:
+    case SF_ENTER:
         if (record->event.pressed) {
             shift_pressed = true;
         } else {
@@ -452,23 +483,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     default:
         if (shift_pressed || exceptional_shift_pressed){
             switch(keycode){
-                //Shift+セミコロンはコロンにする
-                case JP_SCLN:
-                  if(record->event.pressed) {
-                      unregister_code(KC_LSFT);
-                      register_code(JP_COLN);
-                      exceptional_shift_pressed = true;
-                  } else {
-                      unregister_code(JP_COLN);
-                      if (shift_pressed) {
-                          register_code(KC_LSFT);
-                      }
-                      exceptional_shift_pressed = false;
-                  }
-                  return false;
-                  break;
-                //Shift+/ は _ にする
-                case JP_SLSH:
+                case TD_MI_UD:
+                case JP_MINS:
                   if(record->event.pressed) {
                      register_code(KC_LSFT);
                      register_code(JP_BSLS);
