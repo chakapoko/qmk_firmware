@@ -20,6 +20,9 @@
 NGKEYS naginata_keys;
 
 
+
+
+
 extern uint8_t is_master;
 
 // Each layer gets a name for readability, which is then used in the keymap matrix below.
@@ -149,6 +152,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 
 
 
+
 /* enum macro_keycodes {
   KC_SAMPLEMACRO,
 };
@@ -157,8 +161,8 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #define KC_RST RESET
 
 #define CT_TAB  CTL_T(KC_TAB)
-#define SF_SPACE  SFT_T(KC_SPACE)
-#define SF_ENTER  SFT_T(KC_ENTER)
+#define SF_SPACE  LSFT_T(KC_SPACE)
+#define SF_ENTER  LSFT_T(KC_ENTER)
 #define SF_ESC  SFT_T(KC_ESC)
 #define CT_BS   CTL_T(KC_BSPC)
 #define SF_DEL  SFT_T(KC_DEL)
@@ -185,15 +189,33 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #define TH_J_NON MT(NG_ON,  KC_J)
 
 
+const uint16_t PROGMEM combo_lprn[]  = {KC_F, KC_G, COMBO_END};
+const uint16_t PROGMEM combo_rprn[]  = {KC_H, KC_J, COMBO_END};
+const uint16_t PROGMEM combo_lbrc[]  = {KC_R, KC_T, COMBO_END};
+const uint16_t PROGMEM combo_rbrc[]  = {KC_Y, KC_U, COMBO_END};
+const uint16_t PROGMEM combo_lcbr[]  = {KC_V, KC_B, COMBO_END};
+const uint16_t PROGMEM combo_rcbr[]  = {KC_N, KC_M, COMBO_END};
+const uint16_t PROGMEM combo_at[]    = {KC_J, KC_K, COMBO_END};
+combo_t key_combos[COMBO_COUNT] = {
+    COMBO(combo_lprn, JP_LPRN),
+    COMBO(combo_rprn, JP_RPRN),
+    COMBO(combo_lbrc, JP_LBRC),
+    COMBO(combo_rbrc, JP_RBRC),
+    COMBO(combo_lcbr, JP_LCBR),
+    COMBO(combo_rcbr, JP_RCBR),
+    COMBO(combo_at , JP_AT), // keycodes with modifiers are possible too!
+};
+
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_QWERTY] = LAYOUT( \
   //,--------+---------+---------+---------+---------+---------.   ,---------+---------+--------+---------+--------+--------.
      KC_TAB,  KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,         KC_Y,     KC_U,     KC_I,    KC_O,     KC_P,    TD_COLN,
   //|--------+---------+---------+---------+---------+---------|   |---------+---------+--------+---------+--------+--------|
-     KC_LSFT, KC_A,     KC_S    , KC_D,     KC_F,     TD_G_TAB,     TD_H_ESC, KC_J,     KC_K,    KC_L,     JP_MINS, KC_RSFT,
+     KC_LSFT, KC_A,     KC_S    , KC_D,     KC_F,     KC_G,         KC_H,     KC_J,     KC_K,    KC_L,     JP_MINS, KC_RSFT,
   //|--------+---------+---------+---------+---------+---------|   |---------+---------+--------+---------+--------+--------|
-     KC_LALT, TD_Z_UND, TD_X_CUT, TD_C_CPY, TD_V_PST, KC_B,         KC_N,     KC_M,     KC_COMM, KC_DOT,   JP_SLSH, JP_BSLS,
+     KC_LALT, KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,         KC_N,     KC_M,     KC_COMM, KC_DOT,   JP_SLSH, JP_BSLS,
   //`--------+---------+---------+---------+---------+---------/   \---------+---------+--------+---------+--------+--------'
                        LGUI_TAB,  LOWER,    SF_SPACE, CT_BS,        CT_DEL,   SF_ENTER, RAISE,   LALT_ESC
   //                  `----------+---------+---------+---------'   `---------+---------+--------+---------'
@@ -214,13 +236,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_LOWER] = LAYOUT( \
   //,--------+--------+--------+--------+--------+--------.   ,--------+--------+--------+--------+--------+--------.
-     _______, JP_PLUS, JP_ASTR, JP_SLSH, JP_MINS, JP_EQL,      TD_QU_EX,TD_YE_DL,TD_LBRC, TD_RBRC, TD_CI_GR,_______,
+     _______, JP_PLUS, JP_ASTR, JP_SLSH, JP_MINS, JP_EQL,      JP_AMPR, JP_PIPE,TD_LBRC, TD_RBRC, TD_CI_GR,_______,
   //|--------+--------+--------+--------+--------+--------|   |--------+--------+--------+--------+--------+--------|
-     _______,  KC_1   , KC_2   , KC_3   , KC_4   , KC_5   ,    TD_AT_TL,TD_COLN, TD_LPRN, TD_RPRN, JP_AMPR, JP_UNDS,
+     _______,  KC_1   , KC_2   , KC_3   , KC_4   , KC_5   ,    TD_AT_TL,TD_COLN, TD_LPRN, TD_RPRN, TD_YE_DL, JP_UNDS,
   //|--------+--------+--------+--------+--------+--------|   |--------+--------+--------+--------+--------+--------|
-     NG_OFF,  KC_6   , KC_7   , KC_8   , KC_9   , KC_0   ,     TD_QUOT, TD_HS_PE,JP_LABK, JP_RABK, JP_PIPE, _______,
+     NG_OFF,  KC_6   , KC_7   , KC_8   , KC_9   , KC_0   ,     TD_QUOT, TD_HS_PE,JP_LABK, JP_RABK, TD_QU_EX,_______,
   //`--------+--------+--------+--------+--------+--------/   \--------+--------+--------+--------+--------+--------'
-                       LGUI_TAB,  LOWER, SF_SPACE, CT_BS,      CT_DEL,   SF_ENTER, RAISE, LALT_ESC
+                       LGUI_TAB,  LOWER, SF_SPACE, CT_BS,      CT_DEL,  SF_ENTER, RAISE, LALT_ESC
   //                  `--------+--------+--------+--------'   `--------+--------+--------+--------'
   ),
 
@@ -238,7 +260,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_ADJUST] = LAYOUT( \
   //,--------+--------+--------+--------+--------+--------.   ,--------+--------+--------+--------+--------+--------.
-     _______, RESET,   KC_INS,  _______, MAIL_AD, LDAP_ID,     PASS_1,  PASS_2,  KC_VOLD, KC_VOLU, RESET,   _______,
+     _______, RESET,   KC_INS,  _______, MAIL_AD, LDAP_ID,     PASS_1,  KC_VOLD, KC_VOLU, PASS_2,  RESET,   _______,
   //|--------+--------+--------+--------+--------+--------|   |--------+--------+--------+--------+--------+--------|
      _______, KC_F1,   _______, KC_BTN2, KC_BTN1, KC_BTN3,     KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, _______, _______,
   //|--------+--------+--------+--------+--------+--------|   |--------+--------+--------+--------+--------+--------|
@@ -366,12 +388,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case KC_LSFT:
     case KC_RSFT:
-    case SF_DEL:
-    case SF_G:
-    case SF_H:
-    case SF_MHEN:
-    case SF_HENK:
-    case SF_A:
+    case SF_SPACE:
+    case SF_ENTER:
         if (record->event.pressed) {
             shift_pressed = true;
         } else {
@@ -467,7 +485,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             switch(keycode){
                 case TD_MI_UD:
                 case JP_MINS:
-                case JP_EQL:
                   if(record->event.pressed) {
                      register_code(KC_LSFT);
                      register_code(JP_BSLS);
