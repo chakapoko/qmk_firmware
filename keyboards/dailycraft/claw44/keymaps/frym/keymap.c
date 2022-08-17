@@ -211,11 +211,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_QWERTY] = LAYOUT( \
   //,--------+---------+---------+---------+---------+---------.   ,---------+---------+--------+---------+--------+--------.
-     KC_TAB,  KC_Q,     KC_W,     KC_O,     KC_COMM,  KC_DOT,       JP_SLSH,  KC_N,     KC_H,    KC_B,     KC_P,     TD_COLN,
+     KC_TAB,  KC_Q,     KC_W,     KC_O,     KC_U,     KC_COMM,       JP_SLSH, KC_N,     KC_H,    KC_B,     KC_P,     TD_COLN,
   //|--------+---------+---------+---------+---------+---------|   |---------+---------+--------+---------+--------+--------|
-     KC_LSFT, KC_Y,     KC_E    , KC_I,     KC_A,     KC_U,          KC_G,    KC_K,     KC_R,    KC_M,   JP_MINS,    KC_LSFT,
+     KC_LSFT, KC_Y,     KC_E    , KC_I,     KC_A,     KC_DOT,        KC_G,    KC_K,     KC_R,    KC_M,   JP_MINS,    KC_LSFT,
   //|--------+---------+---------+---------+---------+---------|   |---------+---------+--------+---------+--------+--------|
-     KC_LALT, KC_Z,     KC_X,     KC_C,     KC_V,     KC_F,          KC_J,     KC_S,    KC_T,    KC_D,      KC_L,  JP_BSLS,
+     KC_LALT, KC_Z,     KC_X,     KC_C,     KC_V,     KC_F,          KC_J,     KC_S,    KC_T,    KC_D,      KC_L,    KC_LALT,
   //`--------+---------+---------+---------+---------+---------/   \---------+---------+--------+---------+--------+--------'
                        LGUI_TAB,  LOWER,    SF_SPACE, CT_BS,        CT_DEL,   SF_ENTER, RAISE,   LALT_ESC
   //                  `----------+---------+---------+---------'   `---------+---------+--------+---------'
