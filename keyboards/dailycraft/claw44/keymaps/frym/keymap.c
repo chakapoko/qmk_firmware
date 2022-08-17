@@ -11,15 +11,9 @@
 #endif
 
 #define _QWERTY 0
-#define _NAGINATA 1
-#define _LOWER 2
-#define _RAISE 3
-#define _ADJUST 4
-
-#include "naginata.h"
-NGKEYS naginata_keys;
-
-
+#define _LOWER 1
+#define _RAISE 2
+#define _ADJUST 3
 
 
 
@@ -31,7 +25,7 @@ extern uint8_t is_master;
 // entirely and just use numbers.
 
 enum custom_keycodes {
-    QWERTY = NG_SAFE_RANGE,
+    QWERTY = SAFE_RANGE,
     LOWER,
     RAISE,
     ADJUST,
@@ -39,8 +33,6 @@ enum custom_keycodes {
     MAIL_AD,
     PASS_1,
     PASS_2,
-    NG_ON,
-    NG_OFF
 };
 
 
@@ -50,8 +42,6 @@ enum custom_keycodes {
 enum {
     TDD_G_TAB = 0,
     TDD_H_ESC,
-    TDD_G_NOF,
-    TDD_H_NON,
     TDD_F_MHEN,
     TDD_J_HENK,
     TDD_Z_UNDO,
@@ -84,11 +74,9 @@ enum {
 
 qk_tap_dance_action_t tap_dance_actions[] = {
     [TDD_G_TAB]     = ACTION_TAP_DANCE_DOUBLE(KC_G,    KC_TAB),
-    [TDD_G_NOF]     = ACTION_TAP_DANCE_DOUBLE(KC_G,    NG_OFF),
     [TDD_F_MHEN]    = ACTION_TAP_DANCE_DOUBLE(KC_F,    JP_MHEN),
     [TDD_J_HENK]    = ACTION_TAP_DANCE_DOUBLE(KC_J,    JP_HENK),
     [TDD_H_ESC]     = ACTION_TAP_DANCE_DOUBLE(KC_H,    KC_ESC),
-    [TDD_H_NON]     = ACTION_TAP_DANCE_DOUBLE(KC_H,    NG_ON),
     [TDD_Z_UNDO]    = ACTION_TAP_DANCE_DOUBLE(KC_Z,    LCTL(KC_Z)),
     [TDD_X_CUT]     = ACTION_TAP_DANCE_DOUBLE(KC_X,    LCTL(KC_X)),
     [TDD_C_COPY]    = ACTION_TAP_DANCE_DOUBLE(KC_C,    LCTL(KC_C)),
@@ -185,9 +173,6 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #define CTL_1 LSFT_T(LCTL(KC_1))
 #define SCOPY LGUI(S(KC_S))
 
-#define TH_F_NOF MT(NG_OFF, KC_F)
-#define TH_J_NON MT(NG_ON,  KC_J)
-
 
 const uint16_t PROGMEM combo_lprn[]  = {KC_I, KC_U, COMBO_END};
 const uint16_t PROGMEM combo_rprn[]  = {KC_G, KC_T, COMBO_END};
@@ -221,26 +206,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //                  `----------+---------+---------+---------'   `---------+---------+--------+---------'
   ),
 
-  [_NAGINATA] = LAYOUT( \
-  // 左右反転
-  //,--------+--------+---------+--------+---------+--------.   ,--------+---------+--------+---------+--------+--------.
-     _______,  NG_P   , NG_O    , NG_I   , NG_U    , NG_Y   ,     NG_T   , NG_R    , NG_E   , NG_W    , NG_Q   , _______,
-  //|--------+--------+---------+--------+---------+--------|   |--------+---------+--------+---------+--------+--------|
-     _______,  NG_SCLN, NG_L    , NG_K   , NG_J    , NG_H   ,     NG_G   , NG_F    , NG_D   , NG_S    , NG_A,    _______,
-  //|--------+--------+---------+--------+---------+--------|   |--------+---------+--------+---------+--------+--------|
-     _______,  NG_SLSH, NG_DOT  , NG_COMM, NG_M    , NG_N   ,     NG_B   , NG_V    , NG_C   , NG_X  ,  NG_Z,     _______,
-  //`--------+--------+--------+--------+----------+--------/   \---------+---------+--------+---------+--------+--------'
-                        _______,  _______, NG_SHFT,  _______,     _______, NG_SHFT2, _______, _______
-  //                 `----------+--------+---------,+--------'   `--------+---------+--------+---------'
-  ),
-
   [_LOWER] = LAYOUT( \
   //,--------+--------+--------+--------+--------+--------.   ,--------+--------+--------+--------+--------+--------.
      _______, JP_PLUS, JP_ASTR, JP_SLSH, JP_MINS, JP_EQL,      JP_AMPR, JP_PIPE,TD_LBRC, TD_RBRC, TD_CI_GR,_______,
   //|--------+--------+--------+--------+--------+--------|   |--------+--------+--------+--------+--------+--------|
      _______,  KC_1   , KC_2   , KC_3   , KC_4   , KC_5   ,    TD_AT_TL,TD_COLN, TD_LPRN, TD_RPRN, TD_YE_DL, JP_UNDS,
   //|--------+--------+--------+--------+--------+--------|   |--------+--------+--------+--------+--------+--------|
-     NG_OFF,  KC_6   , KC_7   , KC_8   , KC_9   , KC_0   ,     TD_QUOT, TD_HS_PE,JP_LABK, JP_RABK, TD_QU_EX,_______,
+     _______,  KC_6   , KC_7   , KC_8   , KC_9   , KC_0   ,    TD_QUOT, TD_HS_PE,JP_LABK, JP_RABK, TD_QU_EX,_______,
   //`--------+--------+--------+--------+--------+--------/   \--------+--------+--------+--------+--------+--------'
                        LGUI_TAB,  LOWER, SF_SPACE, CT_BS,      CT_DEL,  SF_ENTER, RAISE, LALT_ESC
   //                  `--------+--------+--------+--------'   `--------+--------+--------+--------'
@@ -252,7 +224,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|   |--------+--------+--------+--------+--------+--------|
      _______, CTL_1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,       KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_RSFT, _______,
   //|--------+--------+--------+--------+--------+--------|   |--------+--------+--------+--------+--------+--------|
-     _______, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,      KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_RALT,  NG_ON,
+     _______, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,      KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_RALT, _______,
   //`--------+--------+--------+--------+--------+--------/   \--------+--------+--------+--------+--------+--------'
                        LGUI_TAB,  LOWER, SF_SPACE, CT_BS,      CT_DEL,   SF_ENTER, RAISE, LALT_ESC
   //                  `--------+--------+--------+--------'   `--------+--------+--------+--------'
@@ -264,7 +236,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|   |--------+--------+--------+--------+--------+--------|
      _______, KC_F1,   _______, KC_BTN2, KC_BTN1, KC_BTN3,     KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, _______, _______,
   //|--------+--------+--------+--------+--------+--------|   |--------+--------+--------+--------+--------+--------|
-     _______, NG_OFF, _______, _______, _______,  JP_KANA,     KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, NG_ON,   _______,
+     _______, _______, _______, _______, _______,  JP_KANA,     KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R,_______, _______,
   //`--------+--------+--------+--------+--------+--------/   \--------+--------+--------+--------+--------+--------'
                        _______, _______, _______, _______,     _______, _______, _______, _______
   //                  `--------+--------+--------+--------'   `--------+--------+--------+--------'
@@ -298,7 +270,7 @@ void matrix_init_user(void) {
   // 薙刀式
   //uint16_t ngonkeys[]  = {KC_J, KC_K};
   //uint16_t ngoffkeys[] = {KC_D, KC_F};
-  set_naginata(_NAGINATA);
+  //set_naginata(_NAGINATA);
 }
 
 //SSD1306 OLED update loop, make sure to add #define SSD1306OLED in config.h
@@ -470,16 +442,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             SEND_STRING(SS_TAP(X_INT5) MYPASSWORD2);
         }
         break;
-    case NG_ON:
-        //if(record->event.pressed) {
-            naginata_on();
-        //}
-        break;
-    case NG_OFF:
-        //if(record->event.pressed) {
-            naginata_off();
-        //}
-        break;
     default:
         if (shift_pressed || exceptional_shift_pressed){
             switch(keycode){
@@ -501,9 +463,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
         }
 
-  }
-  if (!process_naginata(keycode, record)) {
-    return false;
   }
   return true;
 }
