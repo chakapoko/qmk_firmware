@@ -48,73 +48,73 @@ enum custom_keycodes {
 //TAP_DANCE_ENABLE = yes
 
 enum {
-    TDD_G_TAB = 0,
-    TDD_H_ESC,
-    TDD_G_NOF,
-    TDD_H_NON,
-    TDD_F_MHEN,
-    TDD_J_HENK,
-    TDD_Z_UNDO,
-    TDD_X_CUT,
-    TDD_C_COPY,
-    TDD_V_PASTE,
-    TDD_QUES_EXLM,
-    TDD_QUES_CIRC,
-    TDD_EXLM_TILD,
+    // TDD_G_TAB = 0,
+    // TDD_H_ESC,
+    // TDD_G_NOF,
+    // TDD_H_NON,
+    // TDD_F_MHEN,
+    // TDD_J_HENK,
+    // TDD_Z_UNDO,
+    // TDD_X_CUT,
+    // TDD_C_COPY,
+    // TDD_V_PASTE,
+    TDD_QUES_EXLM = 0,
+    // TDD_QUES_CIRC,
+    // TDD_EXLM_TILD,
     TDD_QUOT_DQUO,
     TDD_LBRC_LCBR,
     TDD_RBRC_RCBR,
     TDD_LPRN_LBRC,
     TDD_RPRN_RBRC,
-    TDD_CIRC_TILD,
+    // TDD_CIRC_TILD,
     TDD_CIRC_GRV,
     TDD_COLN_SCLN,
     TDD_YEN_DLR,
-    TDD_PERC_GRV,
-    TDD_AT_HASH,
+    // TDD_PERC_GRV,
+    // TDD_AT_HASH,
     TDD_HASH_PERC,
-    TDD_AT_GRV,
+    // TDD_AT_GRV,
     TDD_AT_TILD,
     TDD_MINS_UNDS,
-    TDD_TAB_COM,
-    TDD_SFT_DOT,
-    TDD_ESC_ENT,
-    TDD_YEN_UNDS,
+    // TDD_TAB_COM,
+    // TDD_SFT_DOT,
+    // TDD_ESC_ENT,
+    // TDD_YEN_UNDS,
 };
 
 qk_tap_dance_action_t tap_dance_actions[] = {
-    [TDD_G_TAB]     = ACTION_TAP_DANCE_DOUBLE(KC_G,    KC_TAB),
-    [TDD_G_NOF]     = ACTION_TAP_DANCE_DOUBLE(KC_G,    NG_OFF),
-    [TDD_F_MHEN]    = ACTION_TAP_DANCE_DOUBLE(KC_F,    JP_MHEN),
-    [TDD_J_HENK]    = ACTION_TAP_DANCE_DOUBLE(KC_J,    JP_HENK),
-    [TDD_H_ESC]     = ACTION_TAP_DANCE_DOUBLE(KC_H,    KC_ESC),
-    [TDD_H_NON]     = ACTION_TAP_DANCE_DOUBLE(KC_H,    NG_ON),
-    [TDD_Z_UNDO]    = ACTION_TAP_DANCE_DOUBLE(KC_Z,    LCTL(KC_Z)),
-    [TDD_X_CUT]     = ACTION_TAP_DANCE_DOUBLE(KC_X,    LCTL(KC_X)),
-    [TDD_C_COPY]    = ACTION_TAP_DANCE_DOUBLE(KC_C,    LCTL(KC_C)),
-    [TDD_V_PASTE]   = ACTION_TAP_DANCE_DOUBLE(KC_V,    LCTL(KC_V)),
+    // [TDD_G_TAB]     = ACTION_TAP_DANCE_DOUBLE(KC_G,    KC_TAB),
+    // [TDD_G_NOF]     = ACTION_TAP_DANCE_DOUBLE(KC_G,    NG_OFF),
+    // [TDD_F_MHEN]    = ACTION_TAP_DANCE_DOUBLE(KC_F,    JP_MHEN),
+    // [TDD_J_HENK]    = ACTION_TAP_DANCE_DOUBLE(KC_J,    JP_HENK),
+    // [TDD_H_ESC]     = ACTION_TAP_DANCE_DOUBLE(KC_H,    KC_ESC),
+    // [TDD_H_NON]     = ACTION_TAP_DANCE_DOUBLE(KC_H,    NG_ON),
+    // [TDD_Z_UNDO]    = ACTION_TAP_DANCE_DOUBLE(KC_Z,    LCTL(KC_Z)),
+    // [TDD_X_CUT]     = ACTION_TAP_DANCE_DOUBLE(KC_X,    LCTL(KC_X)),
+    // [TDD_C_COPY]    = ACTION_TAP_DANCE_DOUBLE(KC_C,    LCTL(KC_C)),
+    // [TDD_V_PASTE]   = ACTION_TAP_DANCE_DOUBLE(KC_V,    LCTL(KC_V)),
     [TDD_QUES_EXLM] = ACTION_TAP_DANCE_DOUBLE(JP_QUES, JP_EXLM),
-    [TDD_QUES_CIRC] = ACTION_TAP_DANCE_DOUBLE(JP_QUES, JP_CIRC),
-    [TDD_EXLM_TILD] = ACTION_TAP_DANCE_DOUBLE(JP_EXLM, JP_TILD),
+    //[TDD_QUES_CIRC] = ACTION_TAP_DANCE_DOUBLE(JP_QUES, JP_CIRC),
+    //[TDD_EXLM_TILD] = ACTION_TAP_DANCE_DOUBLE(JP_EXLM, JP_TILD),
     [TDD_QUOT_DQUO] = ACTION_TAP_DANCE_DOUBLE(JP_QUOT, JP_DQUO),
     [TDD_LBRC_LCBR] = ACTION_TAP_DANCE_DOUBLE(JP_LBRC, JP_LCBR),
     [TDD_RBRC_RCBR] = ACTION_TAP_DANCE_DOUBLE(JP_RBRC, JP_RCBR),
     [TDD_LPRN_LBRC] = ACTION_TAP_DANCE_DOUBLE(JP_LPRN, JP_LBRC),
     [TDD_RPRN_RBRC] = ACTION_TAP_DANCE_DOUBLE(JP_RPRN, JP_RBRC),
-    [TDD_CIRC_TILD] = ACTION_TAP_DANCE_DOUBLE(JP_CIRC, JP_TILD),
+    //[TDD_CIRC_TILD] = ACTION_TAP_DANCE_DOUBLE(JP_CIRC, JP_TILD),
     [TDD_CIRC_GRV]  = ACTION_TAP_DANCE_DOUBLE(JP_CIRC, JP_GRV),
     [TDD_COLN_SCLN] = ACTION_TAP_DANCE_DOUBLE(JP_COLN, JP_SCLN),
     [TDD_YEN_DLR]   = ACTION_TAP_DANCE_DOUBLE(JP_YEN,  JP_DLR),
-    [TDD_PERC_GRV]  = ACTION_TAP_DANCE_DOUBLE(JP_PERC, JP_GRV),
+    //[TDD_PERC_GRV]  = ACTION_TAP_DANCE_DOUBLE(JP_PERC, JP_GRV),
     [TDD_MINS_UNDS] = ACTION_TAP_DANCE_DOUBLE(JP_MINS, JP_UNDS),
-    [TDD_AT_HASH]   = ACTION_TAP_DANCE_DOUBLE(JP_AT,   JP_HASH),
-    [TDD_AT_GRV]    = ACTION_TAP_DANCE_DOUBLE(JP_AT,   JP_GRV),
+    //[TDD_AT_HASH]   = ACTION_TAP_DANCE_DOUBLE(JP_AT,   JP_HASH),
+    //[TDD_AT_GRV]    = ACTION_TAP_DANCE_DOUBLE(JP_AT,   JP_GRV),
     [TDD_AT_TILD]   = ACTION_TAP_DANCE_DOUBLE(JP_AT,   JP_TILD),
     [TDD_HASH_PERC] = ACTION_TAP_DANCE_DOUBLE(JP_HASH, JP_PERC),
-    [TDD_TAB_COM]   = ACTION_TAP_DANCE_DOUBLE(KC_TAB,  KC_COMM),
-    [TDD_SFT_DOT]   = ACTION_TAP_DANCE_DOUBLE(KC_LSFT, KC_DOT),
-    [TDD_ESC_ENT]   = ACTION_TAP_DANCE_DOUBLE(KC_ESC,  KC_ENT),
-    [TDD_YEN_UNDS]  = ACTION_TAP_DANCE_DOUBLE(JP_YEN,  JP_UNDS),
+    //[TDD_TAB_COM]   = ACTION_TAP_DANCE_DOUBLE(KC_TAB,  KC_COMM),
+    //[TDD_SFT_DOT]   = ACTION_TAP_DANCE_DOUBLE(KC_LSFT, KC_DOT),
+    //[TDD_ESC_ENT]   = ACTION_TAP_DANCE_DOUBLE(KC_ESC,  KC_ENT),
+    //[TDD_YEN_UNDS]  = ACTION_TAP_DANCE_DOUBLE(JP_YEN,  JP_UNDS),
 };
 
 
@@ -189,22 +189,57 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #define TH_J_NON MT(NG_ON,  KC_J)
 
 
+enum combo_events {
+  PRN,
+  BRC,
+  CBR,
+  MENTION,
+  COMBO_LENGTH
+};
+
+uint16_t COMBO_LEN = COMBO_LENGTH;
+
 const uint16_t PROGMEM combo_lprn[]  = {KC_F, KC_G, COMBO_END};
 const uint16_t PROGMEM combo_rprn[]  = {KC_H, KC_J, COMBO_END};
 const uint16_t PROGMEM combo_lbrc[]  = {KC_R, KC_T, COMBO_END};
 const uint16_t PROGMEM combo_rbrc[]  = {KC_Y, KC_U, COMBO_END};
 const uint16_t PROGMEM combo_lcbr[]  = {KC_V, KC_B, COMBO_END};
 const uint16_t PROGMEM combo_rcbr[]  = {KC_N, KC_M, COMBO_END};
-const uint16_t PROGMEM combo_at[]    = {KC_J, KC_K, COMBO_END};
-combo_t key_combos[COMBO_COUNT] = {
-    COMBO(combo_lprn, JP_LPRN),
-    COMBO(combo_rprn, JP_RPRN),
-    COMBO(combo_lbrc, JP_LBRC),
-    COMBO(combo_rbrc, JP_RBRC),
-    COMBO(combo_lcbr, JP_LCBR),
-    COMBO(combo_rcbr, JP_RCBR),
-    COMBO(combo_at , JP_AT), // keycodes with modifiers are possible too!
+const uint16_t PROGMEM combo_at[]    = {KC_D, KC_F, COMBO_END};
+
+combo_t key_combos[] = {
+    [PRN] = COMBO_ACTION(combo_lprn),
+    [BRC] = COMBO_ACTION(combo_lbrc),
+    [CBR] = COMBO_ACTION(combo_lcbr),
+    [MENTION] = COMBO(combo_at , JP_AT), // keycodes with modifiers are possible too!
 };
+
+void process_combo_event(uint16_t combo_index, bool pressed) {
+  switch (combo_index) {
+    case PRN:
+      if (pressed) {
+        tap_code16(JP_LPRN);
+        tap_code16(JP_RPRN);
+        tap_code16(KC_LEFT);
+      }
+      break;
+    case BRC:
+      if (pressed) {
+        tap_code16(JP_LBRC);
+        tap_code16(JP_RBRC);
+        tap_code16(KC_LEFT);
+      }
+      break;
+    case CBR:
+      if (pressed) {
+        tap_code16(JP_LCBR);
+        tap_code16(JP_RCBR);
+        tap_code16(KC_LEFT);
+      }
+      break;
+  }
+}
+
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
