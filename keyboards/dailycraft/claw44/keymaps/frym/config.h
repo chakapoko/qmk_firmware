@@ -42,12 +42,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // 薙刀式
 //#define NAGINATA_TATEGAKI
-#define NAGINATA_YOKOGAKI
+//#define NAGINATA_YOKOGAKI
 
 //#define NAGINATA_EDIT_WIN // JP106
-#define UNICODE_SELECTED_MODES UC_WINC
+//#define UNICODE_SELECTED_MODES UC_WINC
 
-#define NAGINATA_KOUCHI_SHIFT // シフトを後置でも有効にする
+//#define NAGINATA_KOUCHI_SHIFT // シフトを後置でも有効にする
 // ここまで薙刀式
 
 

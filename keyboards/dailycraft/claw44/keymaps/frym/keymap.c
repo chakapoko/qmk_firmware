@@ -11,9 +11,10 @@
 #endif
 
 #define _QWERTY 0
-#define _LOWER 1
-#define _RAISE 2
-#define _ADJUST 3
+#define _EUKTN 1
+#define _LOWER 2
+#define _RAISE 3
+#define _ADJUST 4
 
 
 
@@ -26,6 +27,7 @@ extern uint8_t is_master;
 
 enum custom_keycodes {
     QWERTY = SAFE_RANGE,
+    EUKTN,
     LOWER,
     RAISE,
     ADJUST,
@@ -174,13 +176,13 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #define SCOPY LGUI(S(KC_S))
 
 
-const uint16_t PROGMEM combo_lprn[]  = {KC_I, KC_U, COMBO_END};
-const uint16_t PROGMEM combo_rprn[]  = {KC_G, KC_T, COMBO_END};
-const uint16_t PROGMEM combo_lbrc[]  = {KC_DOT, JP_MINS, COMBO_END};
-const uint16_t PROGMEM combo_rbrc[]  = {KC_M, KC_R, COMBO_END};
-const uint16_t PROGMEM combo_lcbr[]  = {KC_V, KC_F, COMBO_END};
-const uint16_t PROGMEM combo_rcbr[]  = {KC_B, KC_H, COMBO_END};
-const uint16_t PROGMEM combo_at[]    = {KC_T, KC_K, COMBO_END};
+const uint16_t PROGMEM combo_prn1[]  = {KC_I, KC_U, COMBO_END};
+const uint16_t PROGMEM combo_prn2[]  = {KC_G, KC_T, COMBO_END};
+const uint16_t PROGMEM combo_brc1[]  = {KC_DOT, JP_MINS, COMBO_END};
+const uint16_t PROGMEM combo_brc2[]  = {KC_M, KC_R, COMBO_END};
+const uint16_t PROGMEM combo_cbr1[]  = {KC_V, KC_F, COMBO_END};
+const uint16_t PROGMEM combo_cbr2[]  = {KC_B, KC_H, COMBO_END};
+const uint16_t PROGMEM combo_at1[]    = {KC_T, KC_K, COMBO_END};
 combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo_lprn, JP_LPRN),
     COMBO(combo_rprn, JP_RPRN),
@@ -196,11 +198,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_QWERTY] = LAYOUT( \
   //,--------+---------+---------+---------+---------+---------.   ,---------+---------+--------+---------+--------+--------.
-     KC_TAB,  KC_Q,     KC_W,     KC_O,     KC_U,     KC_COMM,       JP_SLSH, KC_N,     KC_H,    KC_B,     KC_P,     TD_COLN,
+     EUKTN,   KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,          KC_Y,    KC_U,     KC_I,    KC_O,     KC_P,    QWERTY,
   //|--------+---------+---------+---------+---------+---------|   |---------+---------+--------+---------+--------+--------|
-     KC_LSFT, KC_Y,     KC_E    , KC_I,     KC_A,     KC_DOT,        KC_G,    KC_K,     KC_R,    KC_M,   JP_MINS,    KC_LSFT,
+     KC_LSFT, KC_A,     KC_S,     KC_D,     KC_F,     KC_G,          KC_H,    KC_J,     KC_K,    KC_L,     JP_MINS, KC_LSFT,
   //|--------+---------+---------+---------+---------+---------|   |---------+---------+--------+---------+--------+--------|
-     KC_LALT, KC_Z,     KC_X,     KC_C,     KC_V,     KC_F,          KC_J,     KC_S,    KC_T,    KC_D,      KC_L,    KC_LALT,
+     KC_LALT, KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,          KC_N,    KC_M,     KC_COMM, KC_DOT,   JP_SLSH, KC_LALT,
+  //`--------+---------+---------+---------+---------+---------/   \---------+---------+--------+---------+--------+--------'
+                       LGUI_TAB,  LOWER,    SF_SPACE, CT_BS,        CT_DEL,   SF_ENTER, RAISE,   LALT_ESC
+  //                  `----------+---------+---------+---------'   `---------+---------+--------+---------'
+  ),
+
+  [_EUKTN] = LAYOUT( \
+  //,--------+---------+---------+---------+---------+---------.   ,---------+---------+--------+---------+--------+--------.
+     EUKTN,   KC_Q,     KC_W,     KC_Y,     KC_COMM,  KC_DOT,        JP_SLSH,  JP_MINS,  KC_H,    KC_B,     KC_P,     QWERTY,
+  //|--------+---------+---------+---------+---------+---------|   |---------+---------+--------+---------+--------+--------|
+     KC_LSFT, KC_E,     KC_U,     KC_O,     KC_A,     KC_I,          KC_N,    KC_K,     KC_T,    KC_S,    KC_R,     KC_LSFT,
+  //|--------+---------+---------+---------+---------+---------|   |---------+---------+--------+---------+--------+--------|
+     KC_LALT, KC_Z,     KC_X,     KC_C,     KC_V,     KC_F,          KC_M,     KC_G,     KC_D,    KC_J,    KC_L,     KC_LALT,
   //`--------+---------+---------+---------+---------+---------/   \---------+---------+--------+---------+--------+--------'
                        LGUI_TAB,  LOWER,    SF_SPACE, CT_BS,        CT_DEL,   SF_ENTER, RAISE,   LALT_ESC
   //                  `----------+---------+---------+---------'   `---------+---------+--------+---------'
@@ -371,6 +385,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case QWERTY:
       if (record->event.pressed) {
         set_single_persistent_default_layer(_QWERTY);
+      }
+      return false;
+      break;
+    case EUKTN:
+      if (record->event.pressed) {
+        set_single_persistent_default_layer(_EUKTN);
       }
       return false;
       break;
