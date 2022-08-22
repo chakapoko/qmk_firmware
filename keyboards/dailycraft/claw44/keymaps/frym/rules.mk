@@ -10,5 +10,5 @@ TAP_DANCE_ENABLE = yes
 
 #薙刀式
 UNICODE_ENABLE = yes
-#SRC +=    naginata_v14.c
+SRC +=    naginata_v14.c
 EXTRAFLAGS += -flto

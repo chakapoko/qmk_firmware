@@ -194,6 +194,7 @@ enum combo_events {
   CBR2,
   MENTION1,
   MENTION2,
+  TENN,
   COMBO_LENGTH
 };
 
@@ -207,6 +208,7 @@ const uint16_t PROGMEM combo_cbr_q[]  = {KC_V, KC_B, COMBO_END};
 const uint16_t PROGMEM combo_cbr_e[]  = {KC_G, KC_M, COMBO_END};
 const uint16_t PROGMEM combo_at_q[]   = {KC_J, KC_K, COMBO_END};
 const uint16_t PROGMEM combo_at_e[]   = {KC_A, KC_O, COMBO_END};
+const uint16_t PROGMEM combo_tenn[]   = {KC_DOT, JP_SLSH, COMBO_END};
 
 combo_t key_combos[] = {
     [PRN1] = COMBO_ACTION(combo_prn_q),
@@ -217,6 +219,7 @@ combo_t key_combos[] = {
     [CBR2] = COMBO_ACTION(combo_cbr_e),
     [MENTION1] = COMBO(combo_at_q , JP_AT), 
     [MENTION2] = COMBO(combo_at_e , JP_AT), 
+    [TENN] = COMBO_ACTION(combo_tenn),
 };
 
 void process_combo_event(uint16_t combo_index, bool pressed) {
@@ -245,6 +248,14 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
         tap_code16(KC_LEFT);
       }
       break;
+    case TENN:
+      if (pressed) {
+        tap_code16(KC_T);
+        tap_code16(KC_E);
+        tap_code16(KC_N);
+        tap_code16(KC_N);
+      }
+      break;
   }
 }
 
@@ -266,34 +277,34 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
 
-/* 
    [_EUKTN] = LAYOUT( \
   //,--------+---------+---------+---------+---------+---------.   ,---------+---------+--------+---------+--------+--------.
-     EUKTN,   KC_Q,    KC_W,      KC_Y,     KC_COMM,  KC_DOT,        KC_M,    KC_G,     KC_D,    JP_MINS,  KC_P,    QWERTY,
+     EUKTN,   KC_Q,     KC_W,     KC_Y,     KC_COMM,  KC_DOT,        KC_M,    KC_G,     KC_D,    KC_L,     KC_P,    QWERTY,
   //|--------+---------+---------+---------+---------+---------|   |---------+---------+--------+---------+--------+--------|
-     KC_LSFT, KC_U,     KC_O,     KC_I,     KC_A,     KC_E,          KC_R,    KC_T,     KC_K,    KC_S,     KC_N,    KC_LSFT,
+     KC_LSFT, KC_O,     KC_U,     KC_I,     KC_A,     KC_E,          KC_K,    KC_T,     KC_N,    KC_S,     KC_R,    KC_LSFT,
   //|--------+---------+---------+---------+---------+---------|   |---------+---------+--------+---------+--------+--------|
-     KC_LALT, KC_Z,     KC_X,     KC_C,     KC_V,     KC_F,          KC_B,    KC_H,     KC_J,    KC_L,     JP_SLSH, KC_LALT,
+     KC_LALT, KC_Z,     KC_X,     KC_C,     KC_V,     KC_F,          KC_B,    KC_H,     KC_J,    JP_MINS,  JP_SLSH, KC_LALT,
   //`--------+---------+---------+---------+---------+---------/   \---------+---------+--------+---------+--------+--------'
                        LGUI_TAB,  LOWER,    SF_SPACE, CT_BS,        CT_DEL,   SF_ENTER, RAISE,   LALT_ESC
   //                  `----------+---------+---------+---------'   `---------+---------+--------+---------'
   ),
+
+/* 
+   [_EUKTN] = LAYOUT( \
+  //,--------+---------+---------+---------+---------+---------.   ,---------+---------+--------+---------+--------+--------.
+     EUKTN,   KC_H,    KC_W,      KC_Y,     KC_M,     KC_F,          KC_Q,    KC_P,     KC_D,    KC_B,     KC_L,    QWERTY,
+  //|--------+---------+---------+---------+---------+---------|   |---------+---------+--------+---------+--------+--------|
+     KC_LSFT, KC_T,     KC_R,     KC_U,     KC_O,     KC_N,          KC_E,    KC_A,     KC_I,    KC_S,     KC_K,    KC_LSFT,
+  //|--------+---------+---------+---------+---------+---------|   |---------+---------+--------+---------+--------+--------|
+     KC_LALT, KC_Z,     KC_X,     KC_C,     KC_V,     KC_COMM,       KC_DOT,  KC_G,     JP_MINS, JP_SLSH,  KC_J,    KC_LALT,
+  //`--------+---------+---------+---------+---------+---------/   \---------+---------+--------+---------+--------+--------'
+                       LGUI_TAB,  LOWER,    SF_SPACE, CT_BS,        CT_DEL,   SF_ENTER, RAISE,   LALT_ESC
+  //                  `----------+---------+---------+---------'   `---------+---------+--------+---------'
+  ),
+
  */
-
-
-   [_EUKTN] = LAYOUT( \
-  //,--------+---------+---------+---------+---------+---------.   ,---------+---------+--------+---------+--------+--------.
-     EUKTN,   KC_M,    KC_W,      KC_G,     KC_Y,     KC_D,          KC_Q,    KC_F,     KC_L,    KC_J,     KC_P,    QWERTY,
-  //|--------+---------+---------+---------+---------+---------|   |---------+---------+--------+---------+--------+--------|
-     KC_LSFT, KC_R,     KC_U,     KC_O,     KC_N,     KC_T,          KC_E,    KC_A,     KC_I,    KC_S,     KC_K,    KC_LSFT,
-  //|--------+---------+---------+---------+---------+---------|   |---------+---------+--------+---------+--------+--------|
-     KC_LALT, KC_Z,     KC_X,     KC_C,     KC_V,     KC_H,          JP_MINS, KC_COMM,  KC_DOT,  JP_SLSH,  KC_B,    KC_LALT,
-  //`--------+---------+---------+---------+---------+---------/   \---------+---------+--------+---------+--------+--------'
-                       LGUI_TAB,  LOWER,    SF_SPACE, CT_BS,        CT_DEL,   SF_ENTER, RAISE,   LALT_ESC
-  //                  `----------+---------+---------+---------'   `---------+---------+--------+---------'
-  ),
-
-/* 
+ 
+ /* 
   [_EUKTN] = LAYOUT( \
   //,--------+---------+---------+---------+---------+---------.   ,---------+---------+--------+---------+--------+--------.
      EUKTN,   KC_J,     KC_P,     KC_B,     KC_H,     KC_F,          JP_SLSH, JP_MINS,  KC_Y,    KC_Q,     KC_L,    QWERTY,
@@ -309,11 +320,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_LOWER] = LAYOUT( \
   //,--------+--------+--------+--------+--------+--------.   ,--------+--------+--------+--------+--------+--------.
-     _______, JP_SLSH, JP_MINS, JP_ASTR, JP_PLUS, JP_EQL,      JP_AMPR, JP_PIPE,TD_LBRC, TD_RBRC, TD_CI_GR,_______,
+     _______, JP_SLSH, JP_MINS, JP_ASTR, JP_PLUS, JP_EQL,      JP_AMPR, JP_PIPE, TD_LBRC, TD_RBRC, TD_CI_GR,_______,
   //|--------+--------+--------+--------+--------+--------|   |--------+--------+--------+--------+--------+--------|
      _______,  KC_1   , KC_2   , KC_3   , KC_4   , KC_5   ,    TD_AT_TL,TD_COLN, TD_LPRN, TD_RPRN, TD_YE_DL, JP_UNDS,
   //|--------+--------+--------+--------+--------+--------|   |--------+--------+--------+--------+--------+--------|
-     _______,  KC_6   , KC_7   , KC_8   , KC_9   , KC_0   ,    TD_QUOT, TD_HS_PE,JP_LABK, JP_RABK, TD_QU_EX,_______,
+     _______,  KC_6   , KC_7   , KC_8   , KC_9   , KC_0   ,    TD_HS_PE,TD_QUOT, JP_LABK, JP_RABK, TD_QU_EX,_______,
   //`--------+--------+--------+--------+--------+--------/   \--------+--------+--------+--------+--------+--------'
                        LGUI_TAB,  LOWER, SF_SPACE, CT_BS,      CT_DEL,  SF_ENTER, RAISE, LALT_ESC
   //                  `--------+--------+--------+--------'   `--------+--------+--------+--------'
