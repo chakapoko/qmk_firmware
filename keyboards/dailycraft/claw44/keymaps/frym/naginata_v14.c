@@ -271,25 +271,25 @@ const PROGMEM naginata_keymap ngmap[] = {
   {.key = B_M|B_Z|B_SHFT           , .kana = "po"      }, // ぽ(冗長)
 
   // 小書き
-  {.key = B_Q|B_H                  , .kana = "xya"     }, // ゃ
-  {.key = B_Q|B_SHFT|B_H           , .kana = "xya"     }, // ゃ
-  {.key = B_Q|B_SCLN               , .kana = "xyu"     }, // ゅ
-  {.key = B_Q|B_SHFT|B_SCLN        , .kana = "xyu"     }, // ゅ
-  {.key = B_Q|B_I                  , .kana = "xyo"     }, // ょ
-  {.key = B_Q|B_SHFT|B_I           , .kana = "xyo"     }, // ょ
-  {.key = B_Q|B_J                  , .kana = "xa"      }, // ぁ
-  {.key = B_Q|B_SHFT|B_J           , .kana = "xa"      }, // ぁ
-  {.key = B_Q|B_K                  , .kana = "xi"      }, // ぃ
-  {.key = B_Q|B_SHFT|B_K           , .kana = "xi"      }, // ぃ
-  {.key = B_Q|B_L                  , .kana = "xu"      }, // ぅ
-  {.key = B_Q|B_SHFT|B_L           , .kana = "xu"      }, // ぅ
-  {.key = B_Q|B_O                  , .kana = "xe"      }, // ぇ
-  {.key = B_Q|B_SHFT|B_O           , .kana = "xe"      }, // ぇ
-  {.key = B_Q|B_N                  , .kana = "xo"      }, // ぉ
-  {.key = B_Q|B_SHFT|B_N           , .kana = "xo"      }, // ぉ
-  {.key = B_Q|B_L                  , .kana = "xwa"     }, // ゎ
-  {.key = B_Q|B_SHFT|B_L           , .kana = "xwa"     }, // ゎ
-  {.key = B_G                      , .kana = "xtu"     }, // っ
+  {.key = B_Q|B_H                  , .kana = "lya"     }, // ゃ
+  {.key = B_Q|B_SHFT|B_H           , .kana = "lya"     }, // ゃ
+  {.key = B_Q|B_SCLN               , .kana = "lyu"     }, // ゅ
+  {.key = B_Q|B_SHFT|B_SCLN        , .kana = "lyu"     }, // ゅ
+  {.key = B_Q|B_I                  , .kana = "lyo"     }, // ょ
+  {.key = B_Q|B_SHFT|B_I           , .kana = "lyo"     }, // ょ
+  {.key = B_Q|B_J                  , .kana = "la"      }, // ぁ
+  {.key = B_Q|B_SHFT|B_J           , .kana = "la"      }, // ぁ
+  {.key = B_Q|B_K                  , .kana = "li"      }, // ぃ
+  {.key = B_Q|B_SHFT|B_K           , .kana = "li"      }, // ぃ
+  {.key = B_Q|B_L                  , .kana = "lu"      }, // ぅ
+  {.key = B_Q|B_SHFT|B_L           , .kana = "lwa"     }, // ぅ-> ゎ
+  {.key = B_Q|B_O                  , .kana = "le"      }, // ぇ
+  {.key = B_Q|B_SHFT|B_O           , .kana = "le"      }, // ぇ
+  {.key = B_Q|B_N                  , .kana = "lo"      }, // ぉ
+  {.key = B_Q|B_SHFT|B_N           , .kana = "lo"      }, // ぉ
+  //{.key = B_Q|B_L                  , .kana = "lwa"     }, // ゎ
+  //{.key = B_Q|B_SHFT|B_L           , .kana = "lwa"     }, // ゎ
+  {.key = B_G                      , .kana = "ltu"     }, // っ
 
   // 清音拗音 濁音拗音 半濁拗音
   {.key = B_R|B_H                  , .kana = "sya"     }, // しゃ
