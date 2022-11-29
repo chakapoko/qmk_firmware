@@ -110,6 +110,8 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #define SF_ENT    SFT_T(KC_ENT)
 #define CT_BS     CTL_T(KC_BSPC)
 #define SF_DEL    SFT_T(KC_DEL)
+#define SF_BS     SFT_T(KC_BSPC)
+#define CT_DEL    CTL_T(KC_DEL)
 #define CT_NOFF   CTL_T(NG_OFF)
 #define SF_NON    SFT_T(NG_ON)
 #define CT_TAB    CTL_T(KC_TAB)
@@ -138,30 +140,30 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //,---------+---------+----------+---------+---------+.                        ,---------+----------+---------+---------+---------.
            KC_Q,     KC_W,     KC_E,      KC_R,     KC_T,                               KC_Y,     KC_U,      KC_I,     KC_O,     KC_P,
         //,---------+---------+----------+---------+---------+.                        ,---------+----------+---------+---------+---------.
-           SF_A,     KC_S,     KC_D,      TD_F_MH,  TD_G_TAB,                           TD_H_ESC, TD_J_HE,   KC_K,     KC_L,     SF_MINS,
+           KC_A,     KC_S,     KC_D,      KC_F,     TD_G_TAB,                           TD_H_ESC, KC_J,      KC_K,     KC_L,     SF_MINS,
         //,---------+---------+----------+---------+---------+.                        ,---------+----------+---------+---------+---------.
            TD_Z_UND, TD_X_CUT, TD_C_CPY, TD_V_PST,  TH_B_GUI,                           TH_N_ALT, KC_M,      KC_COMM,  KC_DOT,   ALT_SLSH,
         //,---------+---------+----------+---------+---------+---------+.   ,----------+---------+----------+---------+---------+---------.
-                                                    LOWER_SPC, CT_BS,          SF_DEL,  RAISE_ENT
+                                                    LOWER_SPC, SF_BS,         CT_DEL,  RAISE_ENT
         //                                         ,---------+---------+.   ,----------+----------.
         //
     ),
 
    [_NAGINATA] = LAYOUT( \
         //,---------+---------+----------+---------+---------+.                        ,---------+----------+---------+---------+---------.
-           NG_P,     NG_O,     NG_I,      NG_U,     NG_Y,                               NG_T,     NG_R,      NG_E,     NG_W,     NG_Q,
+           NG_Q,     NG_W,     NG_E,      NG_R,     NG_T,                               NG_Y,     NG_U,      NG_I,     NG_O,     NG_P,
         //,---------+---------+----------+---------+---------+.                        ,---------+----------+---------+---------+---------.
-           NG_SCLN,  NG_L,     NG_K,      NG_J,     NG_H,                               NG_G,     NG_F,      NG_D,     NG_S,     NG_A,
+           NG_A,     NG_S,     NG_D,      NG_F,     NG_G,                               NG_H,     NG_J,      NG_K,     NG_L,     NG_SCLN,
         //,---------+---------+----------+---------+---------+.                        ,---------+----------+---------+---------+---------.
-           NG_SLSH,  NG_DOT,   NG_COMM,   NG_M,     NG_N,                               NG_B,     NG_V,      NG_C,     NG_X,     NG_Z,
+           NG_Z,     NG_X,     NG_C,      NG_V,     NG_B,                               NG_N,     NG_M,      NG_COMM,  NG_DOT,   NG_SLSH,
         //,---------+---------+----------+---------+---------+---------+.   ,----------+---------+----------+---------+---------+---------.
-                                                    _______,  NG_SHFT,        NG_SHFT2, _______
+                                                    _______,  _______,        _______,  _______
         //                                         ,---------+---------+.   ,----------+----------.
     ),
 
    [_LOWER] =  LAYOUT( \
         //,---------+---------+----------+---------+---------+.                        ,---------+----------+---------+---------+---------.
-           JP_ASTR,  JP_PLUS,  JP_SLSH,   JP_MINS,  JP_EQL,                             JP_AMPR,  JP_PIPE,   TD_LBRC,  TD_RBRC,  TD_CI_TL,
+           JP_ASTR,  JP_PLUS,  TD_SL_UN,   JP_MINS,  JP_EQL,                             JP_AMPR,  JP_PIPE,   TD_LBRC,  TD_RBRC,  TD_CI_TL,
         //,---------+---------+----------+---------+---------+.                        ,---------+----------+---------+---------+---------.
            KC_1,     KC_2,     KC_3,      KC_4,     KC_5,                               TD_AT_GR, TD_COLN,   JP_LPRN,  JP_RPRN,  TD_YE_DL,
         //,---------+---------+----------+---------+---------+.                        ,---------+----------+---------+---------+---------.
@@ -189,7 +191,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //,---------+---------+----------+---------+---------+.                        ,---------+----------+---------+---------+---------.
            KC_F1,    _______,  KC_BTN2,   KC_BTN1,  KC_BTN3,                            KC_MS_L,  KC_MS_D,   KC_MS_U,  KC_MS_R,  _______,
         //,---------+---------+----------+---------+---------+.                        ,---------+----------+---------+---------+---------.
-           _______,  _______,  _______,   _______,  JP_KANA,                            KC_WH_L,  KC_WH_D,   KC_WH_U,  KC_WH_R,  _______,
+           NG_OFF,  _______,  _______,   _______,  JP_KANA,                            KC_WH_L,  KC_WH_D,   KC_WH_U,  KC_WH_R,  NG_ON,
         //,---------+---------+----------+---------+---------+---------+.    ,---------+---------+----------+---------+---------+---------.
                                                     _______,  _______,        _______,  _______
         //                                         ,---------+---------+.    ,---------+----------.
@@ -204,6 +206,7 @@ void matrix_init_user(void) {
   uint16_t ngonkeys[] = {KC_H, KC_J};
   uint16_t ngoffkeys[] = {KC_F, KC_G};
   set_naginata(_NAGINATA, ngonkeys, ngoffkeys);
+   // set_naginata(_NAGINATA);
   // 薙刀式
 }
 
@@ -227,11 +230,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
          }
          break;
       case NG_ON:
+      case JP_HENK:
         if(record->event.pressed) {
             naginata_on();
         }
         break;
       case NG_OFF:
+      case JP_MHEN:
         if(record->event.pressed) {
             naginata_off();
         }

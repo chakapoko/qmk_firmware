@@ -14,11 +14,10 @@
   #include "ssd1306.h"
 
 #define _QWERTY 0
-#define _EUKTN 1
-#define _NAGINATA 2
-#define _LOWER 3
-#define _RAISE 4
-#define _ADJUST 5
+#define _NAGINATA 1
+#define _LOWER 2
+#define _RAISE 3
+#define _ADJUST 4
 
 
 
@@ -31,7 +30,6 @@ extern uint8_t is_master;
 
 enum custom_keycodes {
     QWERTY = NG_SAFE_RANGE,
-    EUKTN,
     LOWER,
     RAISE,
     ADJUST,
@@ -185,8 +183,8 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #define CTL_1 LSFT_T(LCTL(KC_1))
 #define SCOPY LGUI(S(KC_S))
 
-#define TH_F_NOF MT(NG_OFF, KC_F)
-#define TH_J_NON MT(NG_ON,  KC_J)
+//#define TH_F_NOF MT(NG_OFF, KC_F)
+//#define TH_J_NON MT(NG_ON,  KC_J)
 
 enum combo_events {
   PRN,
@@ -195,62 +193,18 @@ enum combo_events {
   QUOT,
   DQUOT,
   MENTION,
-  //HENK,
-  //MHEN,
-  GA_HA,
-  NO_TO,
-  YO_KO,
-  RU_TU,
-  CU_KU,
-  KI_NI,
-  KA_NA,
-  SI_RI,
-  TE_RE,
   COMBO_LENGTH
 };
 
 uint16_t COMBO_LEN = COMBO_LENGTH;
 
-/* 
-const uint16_t PROGMEM combo_prn_q[]  = {KC_K, KC_L, COMBO_END};
-const uint16_t PROGMEM combo_brc_q[]  = {KC_I, KC_O, COMBO_END};
-const uint16_t PROGMEM combo_cbr_q[]  = {KC_COMM, KC_DOT, COMBO_END};
-const uint16_t PROGMEM combo_at_q[]   = {KC_H, KC_J, COMBO_END};
-const uint16_t PROGMEM combo_quot_q[]   = {KC_Y, KC_U, COMBO_END};
-const uint16_t PROGMEM combo_dquot_q[]   = {KC_M, KC_COMM, COMBO_END};
-const uint16_t PROGMEM combo_henk_q[]   = {KC_J, KC_K, COMBO_END};
-const uint16_t PROGMEM combo_mhen_q[]   = {KC_D, KC_F, COMBO_END};
- */
 
-const uint16_t PROGMEM combo_prn[]   = {KC_O, KC_U, COMBO_END};
-const uint16_t PROGMEM combo_brc[]   = {KC_R, KC_L, COMBO_END};
+const uint16_t PROGMEM combo_prn[]   = {KC_K, KC_L, COMBO_END};
+const uint16_t PROGMEM combo_brc[]   = {KC_I, KC_O, COMBO_END};
 const uint16_t PROGMEM combo_cbr[]   = {KC_COMM, KC_DOT, COMBO_END};
-const uint16_t PROGMEM combo_at[]    = {KC_M, KC_N, COMBO_END};
-const uint16_t PROGMEM combo_quot[]  = {KC_W, KC_R, COMBO_END};
-const uint16_t PROGMEM combo_dquot[] = {KC_Y, KC_COMM, COMBO_END};
-//const uint16_t PROGMEM combo_henk[]  = {KC_N, KC_O, COMBO_END};
-//const uint16_t PROGMEM combo_mhen[]  = {KC_K, KC_A, COMBO_END};
-const uint16_t PROGMEM combo_gaha[]  = {KC_G, KC_A, COMBO_END};
-const uint16_t PROGMEM combo_noto[]  = {KC_N, KC_O, COMBO_END};
-const uint16_t PROGMEM combo_yoko[]  = {KC_Y, KC_O, COMBO_END};
-const uint16_t PROGMEM combo_rutu[]  = {KC_R, KC_U, COMBO_END};
-const uint16_t PROGMEM combo_cuku[]  = {KC_COMM, KC_U, COMBO_END};
-const uint16_t PROGMEM combo_kini[]  = {KC_K, KC_I, COMBO_END};
-const uint16_t PROGMEM combo_kana[]  = {KC_K, KC_A, COMBO_END};
-const uint16_t PROGMEM combo_siri[]  = {KC_S, KC_I, COMBO_END};
-const uint16_t PROGMEM combo_tere[]  = {KC_T, KC_E, COMBO_END};
-
-
-/*
-const uint16_t PROGMEM combo_prn_e[]  = {KC_O, KC_Y, COMBO_END};
-const uint16_t PROGMEM combo_brc_e[]  = {KC_H, KC_L, COMBO_END};
-const uint16_t PROGMEM combo_cbr_e[]  = {KC_R, KC_J, COMBO_END};
-const uint16_t PROGMEM combo_at_e[]   = {KC_M, KC_U, COMBO_END};
-const uint16_t PROGMEM combo_quot_e[]   = {KC_F, KC_W, COMBO_END};
-const uint16_t PROGMEM combo_dquot_e[]  = {KC_COMM, KC_N, COMBO_END};
-const uint16_t PROGMEM combo_henk_e[]   = {KC_U, KC_O, COMBO_END};
-const uint16_t PROGMEM combo_mhen_e[]   = {KC_K, KC_A, COMBO_END};
-*/
+const uint16_t PROGMEM combo_at[]    = {KC_H, KC_J, COMBO_END};
+const uint16_t PROGMEM combo_quot[]  = {KC_U, KC_I, COMBO_END};
+const uint16_t PROGMEM combo_dquot[] = {KC_M, KC_COMM, COMBO_END};
 
 combo_t key_combos[] = {
     [PRN]     = COMBO_ACTION(combo_prn),
@@ -259,75 +213,10 @@ combo_t key_combos[] = {
     [QUOT]    = COMBO_ACTION(combo_quot),
     [DQUOT]   = COMBO_ACTION(combo_dquot),
     [MENTION] = COMBO(combo_at , JP_AT), 
-//    [HENK]    = COMBO(combo_henk , JP_HENK), 
-//    [MHEN]    = COMBO(combo_mhen , JP_MHEN), 
-    [GA_HA]   = COMBO_ACTION(combo_gaha),
-    [NO_TO]   = COMBO_ACTION(combo_noto),
-    [YO_KO]   = COMBO_ACTION(combo_yoko),
-    [RU_TU]   = COMBO_ACTION(combo_rutu),
-    [CU_KU]   = COMBO_ACTION(combo_cuku),
-    [KI_NI]   = COMBO_ACTION(combo_kini),
-    [KA_NA]   = COMBO_ACTION(combo_kana),
-    [SI_RI]   = COMBO_ACTION(combo_siri),
-    [TE_RE]   = COMBO_ACTION(combo_tere),
 };
 
 void process_combo_event(uint16_t combo_index, bool pressed) {
   switch (combo_index) {
-    case GA_HA:
-      if (pressed) {
-        tap_code16(KC_H);
-        tap_code16(KC_A);
-      }
-      break;
-    case NO_TO:
-      if (pressed) {
-        tap_code16(KC_T);
-        tap_code16(KC_O);
-      }
-      break;
-    case YO_KO:
-      if (pressed) {
-        tap_code16(KC_K);
-        tap_code16(KC_O);
-      }
-      break;
-    case RU_TU:
-      if (pressed) {
-        tap_code16(KC_T);
-        tap_code16(KC_U);
-      }
-      break;
-    case CU_KU:
-      if (pressed) {
-        tap_code16(KC_K);
-        tap_code16(KC_U);
-      }
-      break;
-    case KI_NI:
-      if (pressed) {
-        tap_code16(KC_N);
-        tap_code16(KC_I);
-      }
-      break;
-    case KA_NA:
-      if (pressed) {
-        tap_code16(KC_N);
-        tap_code16(KC_A);
-      }
-      break;
-    case SI_RI:
-      if (pressed) {
-        tap_code16(KC_R);
-        tap_code16(KC_I);
-      }
-      break;
-    case TE_RE:
-      if (pressed) {
-        tap_code16(KC_R);
-        tap_code16(KC_E);
-      }
-      break;
     case PRN:
       if (pressed) {
         tap_code16(JP_LPRN);
@@ -375,9 +264,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,--------+---------+---------+---------+---------+---------.   ,---------+---------+--------+---------+--------+--------.
      _______,  KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,         KC_Y,     KC_U,     KC_I,    KC_O,     KC_P,   _______,
   //|--------+---------+---------+---------+---------+---------|   |---------+---------+--------+---------+--------+--------|
-     KC_LSFT,  KC_A,     KC_S    , KC_D,     KC_F,     KC_G,         KC_H,     KC_J,     KC_K,    KC_L,     JP_MINS, KC_LSFT, 
+     KC_Q,     KC_A,     KC_S    , KC_D,     KC_F,     KC_G,         KC_H,     KC_J,     KC_K,    KC_L,     JP_MINS, KC_P, 
   //|--------+---------+---------+---------+---------+---------|   |---------+---------+--------+---------+--------+--------|
-     EUKTN,    KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,         KC_N,     KC_M,     KC_COMM, KC_DOT,   JP_SLSH, QWERTY,
+     _______,  KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,         KC_N,     KC_M,     KC_COMM, KC_DOT,   JP_SLSH, _______,
   //`--------+---------+---------+---------+---------+---------/   \---------+---------+--------+---------+--------+--------'
                        LGUI_TAB,  LOWER,    SF_SPACE, CT_BS,        CT_DEL,   SF_ENTER, RAISE,   LALT_ESC
   //                  `----------+---------+---------+---------'   `---------+---------+--------+---------'
@@ -385,51 +274,52 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
  /* [_EUKTN] = LAYOUT( \
   //,--------+---------+---------+---------+---------+---------.   ,---------+---------+--------+---------+--------+--------.
-     _______, KC_Q,     KC_X,     KC_E,     KC_T,     KC_F,          KC_J,    KC_W,     KC_R,    KC_L,     KC_P,    _______,
-  //|--------+---------+---------+---------+---------+---------|   |---------+---------+--------+---------+--------+--------|
-     KC_LSFT, KC_B,     KC_I,     KC_A,     KC_K,     KC_D,          KC_M,    KC_N,     KC_O,    KC_U,     JP_MINS, KC_LSFT,
-  //|--------+---------+---------+---------+---------+---------|   |---------+---------+--------+---------+--------+--------|
-     EUKTN,   KC_Z,     KC_C,     KC_V,     KC_S,     KC_G,          KC_H,    KC_Y,     KC_COMM, KC_DOT,   JP_SLSH, QWERTY,
-  //`--------+---------+---------+---------+---------+---------/   \---------+---------+--------+---------+--------+--------'
-                       LGUI_TAB,  LOWER,    SF_SPACE, CT_BS,        CT_DEL,   SF_ENTER, RAISE,   LALT_ESC
-  //                  `----------+---------+---------+---------'   `---------+---------+--------+---------'
-  ), */
-
- [_EUKTN] = LAYOUT( \
-  //,--------+---------+---------+---------+---------+---------.   ,---------+---------+--------+---------+--------+--------.
      _______, KC_Q,     KC_D,     KC_T,     KC_E,     KC_F,          KC_J,    KC_W,     KC_R,    KC_L,     KC_P,    _______,
   //|--------+---------+---------+---------+---------+---------|   |---------+---------+--------+---------+--------+--------|
-     KC_LSFT, KC_S,     KC_I,     KC_K,     KC_A,     KC_B,          KC_M,    KC_N,     KC_O,    KC_U,     JP_MINS, KC_LSFT,
+     KC_Q,    KC_S,     KC_I,     KC_K,     KC_A,     KC_B,          KC_M,    KC_N,     KC_O,    KC_U,     JP_MINS, KC_P,
   //|--------+---------+---------+---------+---------+---------|   |---------+---------+--------+---------+--------+--------|
      EUKTN,   KC_Z,     KC_X,     KC_G,     KC_C,     KC_V,          KC_H,    KC_Y,     KC_COMM, KC_DOT,   JP_SLSH, QWERTY,
   //`--------+---------+---------+---------+---------+---------/   \---------+---------+--------+---------+--------+--------'
                        LGUI_TAB,  LOWER,    SF_SPACE, CT_BS,        CT_DEL,   SF_ENTER, RAISE,   LALT_ESC
   //                  `----------+---------+---------+---------'   `---------+---------+--------+---------'
-  ),
+  ), */
 
-
-  [_NAGINATA] = LAYOUT( \
+  /* [_NAGINATA] = LAYOUT( \
   // 左右反転
   //,--------+--------+---------+--------+---------+--------.   ,--------+---------+--------+---------+--------+--------.
      _______,  NG_P   , NG_O    , NG_I   , NG_U    , NG_Y   ,     NG_T   , NG_R    , NG_E   , NG_W    , NG_Q   , _______,
   //|--------+--------+---------+--------+---------+--------|   |--------+---------+--------+---------+--------+--------|
-     _______,  NG_SCLN, NG_L    , NG_K   , NG_J    , NG_H   ,     NG_G   , NG_F    , NG_D   , NG_S    , NG_A,    _______,
+     NG_P,     NG_SCLN, NG_L    , NG_K   , NG_J    , NG_H   ,     NG_G   , NG_F    , NG_D   , NG_S    , NG_A,    NG_Q,
   //|--------+--------+---------+--------+---------+--------|   |--------+---------+--------+---------+--------+--------|
      _______,  NG_SLSH, NG_DOT  , NG_COMM, NG_M    , NG_N   ,     NG_B   , NG_V    , NG_C   , NG_X  ,  NG_Z,     _______,
   //`--------+--------+--------+--------+----------+--------/   \---------+---------+--------+---------+--------+--------'
                         _______,  _______, NG_SHFT,  _______,     _______, NG_SHFT2, _______, _______
   //                 `----------+--------+---------,+--------'   `--------+---------+--------+---------'
+  ), */
+
+[_NAGINATA] = LAYOUT( \
+  // 
+  //,--------+--------+---------+--------+---------+--------.   ,--------+---------+--------+---------+--------+--------.
+     _______,  NG_Q   , NG_W    , NG_E   , NG_R    , NG_T   ,     NG_Y   , NG_U    , NG_I   , NG_O    , NG_P   , _______,
+  //|--------+--------+---------+---S-----+---------+--------|   |--------+---------+--------+---------+--------+--------|
+     NG_Q,     NG_A   , NG_S    , NG_D   , NG_F    , NG_G   ,     NG_H   , NG_J    , NG_K   , NG_L    , NG_SCLN,  NG_P,
+  //|--------+--------+---------+--------+---------+--------|   |--------+---------+--------+---------+--------+--------|
+     _______,  NG_Z,    NG_X    , NG_C   , NG_V    , NG_B   ,     NG_N   , NG_M    , NG_COMM, NG_DOT  , NG_SLSH, _______,
+  //`--------+--------+--------+--------+----------+--------/   \---------+---------+--------+---------+--------+--------'
+                        _______,  _______, _______,  _______,     _______, _______,  _______, _______
+                        // _______,  _______, NG_SHFT,  _______,     _______, NG_SHFT2, _______, _______
+  //                 `----------+--------+---------,+--------'   `--------+---------+--------+---------'
   ),
- 
+
   [_LOWER] = LAYOUT( \
   //,--------+--------+--------+--------+--------+--------.   ,--------+--------+--------+--------+--------+--------.
      _______, JP_SLSH, JP_MINS, JP_ASTR, JP_PLUS, JP_EQL,      JP_AMPR, JP_PIPE, TD_LBRC, TD_RBRC, TD_CI_GR,_______,
   //|--------+--------+--------+--------+--------+--------|   |--------+--------+--------+--------+--------+--------|
-     _______,  KC_1   , KC_2   , KC_3   , KC_4   , KC_5   ,    TD_AT_TL,TD_COLN, TD_LPRN, TD_RPRN, TD_YE_DL, JP_UNDS,
+     _______,  KC_1   , KC_2   , KC_3   , KC_4   , KC_5   ,    TD_AT_TL,TD_COLN, TD_LPRN, TD_RPRN, TD_YE_DL,JP_UNDS ,
   //|--------+--------+--------+--------+--------+--------|   |--------+--------+--------+--------+--------+--------|
-     NG_OFF,  KC_6   , KC_7   , KC_8   , KC_9   , KC_0   ,    TD_HS_PE,TD_QUOT, JP_LABK, JP_RABK, TD_QU_EX,_______,
+     NG_OFF,  KC_6   , KC_7   , KC_8   , KC_9   , KC_0   ,    TD_HS_PE,TD_QUOT, JP_LABK, JP_RABK, TD_QU_EX, TD_CI_GR,
   //`--------+--------+--------+--------+--------+--------/   \--------+--------+--------+--------+--------+--------'
-                       LGUI_TAB,  LOWER, SF_SPACE, CT_BS,      CT_DEL,  SF_ENTER, RAISE, LALT_ESC
+                       LGUI_TAB,  LOWER, SF_SPACE, CT_BS,      SF_DEL,  SF_ENTER, RAISE, LALT_ESC
   //                  `--------+--------+--------+--------'   `--------+--------+--------+--------'
   ),
 
@@ -441,7 +331,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|   |--------+--------+--------+--------+--------+--------|
      _______, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,      KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_RALT, NG_ON,
   //`--------+--------+--------+--------+--------+--------/   \--------+--------+--------+--------+--------+--------'
-                       LGUI_TAB,  LOWER, SF_SPACE, CT_BS,      CT_DEL,   SF_ENTER, RAISE, LALT_ESC
+                       LGUI_TAB,  LOWER, SF_SPACE, CT_BS,      SF_DEL,   SF_ENTER, RAISE, LALT_ESC
   //                  `--------+--------+--------+--------'   `--------+--------+--------+--------'
   ),
 
@@ -583,15 +473,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             shift_pressed = false;
         }
         break;
-  /*     case KC_LCTL:
-      case CT_BS:
-      case CT_DEL:
-          if (record->event.pressed) {
-          } else {
-          }
-          break;
- */
-    case QWERTY:
+    /* case QWERTY:
       if (record->event.pressed) {
         set_single_persistent_default_layer(_QWERTY);
       }
@@ -602,7 +484,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         set_single_persistent_default_layer(_EUKTN);
       }
       return false;
-      break;
+      break; */
     case LOWER:
       if (record->event.pressed) {
         lower_pressed = true;
@@ -615,9 +497,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
         //一瞬だけ押したとき
         if (lower_pressed && (TIMER_DIFF_16(record->event.time, lower_pressed_time) < TAPPING_TERM)) {
-          uint8_t code_for_tap = JP_MHEN; //keycode == LOWER ? KC_SPC : JP_HENK;
-          register_code(code_for_tap);
-          unregister_code(code_for_tap);
+          //uint8_t code_for_tap = JP_MHEN; //keycode == LOWER ? KC_SPC : JP_HENK;
+          //register_code(code_for_tap);
+          //unregister_code(code_for_tap);
+          naginata_off();
         }
 
       }
@@ -635,9 +518,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
         //一瞬押すなら変換（_SはBS）
         if (raise_pressed && (TIMER_DIFF_16(record->event.time, raise_pressed_time) < TAPPING_TERM)) {
-          uint8_t code_for_tap = JP_HENK; //keycode == RAISE ? KC_ENT : JP_MHEN;
-          register_code(code_for_tap);
-          unregister_code(code_for_tap);
+          //uint8_t code_for_tap = JP_HENK; //keycode == RAISE ? KC_ENT : JP_MHEN;
+          //register_code(code_for_tap);
+          //unregister_code(code_for_tap);
+          naginata_on();
         }
 
       }
