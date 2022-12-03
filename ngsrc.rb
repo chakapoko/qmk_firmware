@@ -1,47 +1,19 @@
+require 'victor'
+
 #あいえ-うお
-
-
-
 LAYOUT = [
     [
-        "へけてか★★するれ…",
+        "へけては★★するれ…",
         "せうのし、あいな。ー",
-        "そもとこはくったり・",
+        "そもとかこくったり・",
     ], [
-        "ぬらよわ★★えさひ小",
-        "ゆまんをにちむんふつ",
-        "やほめみねろきお★★",
-    ]
-    
-        
-]
-
-
-LAYOUT = [
-    [
-        "へけてか★★するれ…",
-        "せうのし、あいな。ー",
-        "そもとこはくったり・",
-    ], [
-        "ぬらよわ★★えさひ小",
-        "ゆまんをにちむんほつ",
-        "★やめみねろきおふ★",
+        "ぬむよめ★★えさひ小",
+        "ゆまんをにちろんふつ",
+        "やわらみね★きおほ？",
     ]    
 ]
 
 
-LAYOUT = [
-    [
-        "へけてか★★するれ…",
-        "そうのし、あいな。ー",
-        "せもとこはくったり・",
-    ], [
-        "ぬらよめ★★えさひ小",
-        "ゆまんをにちろんふつ",
-        "やむわみね★きおほ★",
-    ]
-    
-]
 
 INACTIVE = [
     # "ふゅ", "つぉ"
@@ -54,23 +26,16 @@ SHIFT_KEYS = ["B_D", "B_K"]
 #修飾キー
 def mod_key(chr,w,side)
     mod_keys = {
-        # "濁音"  => {:left=>"B_K", :right=>"B_D"},
-        #"shift"   => {:left=>"B_J", :right=>"B_F"},
         "shift"  => {:left=>"B_K", :right=>"B_D"},
         "濁音"   => {:left=>"B_J", :right=>"B_F"},
-        # "濁音" => {:left=>"B_H", :right=>"B_G"},
-        # "半濁音" => {:left=>"B_N", :right=>"B_B"},
         "半濁音" => {:left=>"B_M", :right=>"B_V"},
-        # "う" => {"濁音"=>"B_F", "半濁音"=>"B_V"},
-        "う" => {"濁音"=>"B_G", "半濁音"=>"B_B"},    #うが右側
+        "う" => {"濁音"=>"B_F", "半濁音"=>"B_V"},  
         "て" => {"濁音"=>"B_V", "半濁音"=>"B_G"},
     }
     if chr=~/ゔ.?/
         mod_keys["う"]["濁音"]
     elsif chr=~/う./
         mod_keys["う"]["半濁音"]
-    # elsif chr=~/(ぜ|づ|ざ)/
-    #     mod_keys["半濁音"][side]
     elsif chr=~/で./
         mod_keys["て"]["濁音"]
     elsif chr=~/て./
@@ -149,37 +114,46 @@ def eval_map(fingers_map)
     updown = Hash.new{|h,k|h[k]=0}
     same = Hash.new{|h,k|h[k]=0}
     arpegio = Hash.new{|h,k|h[k]=0}
+    arp_fingers = Hash.new{|h,k|h[k]=0}
     long_seq = Hash.new{|h,k|h[k]=0}
     long_buf = []
     cnt = 0
     sentences(fingers_map).each{|sentence|
         last_keys=nil
+        last_fingers=nil
         sentence.each{|kana|
             keys = fingers_map[kana][:keys]
-            has_reap = false
-            has_same = false
-            has_arp  = false
-            has_updown = false
+            has_reap = false #同じ指、２段跳び
+            has_same = false #同じキー連続
+            has_arp  = false #別の指、連接
+            has_updown = false #同じ指、上下隣接
             if last_keys
                 chars = last_keys[:kana]+kana
-                keys.each{|k|
-                    last_keys[:key].each{|lk|
+                keys.each_index{|i|
+                    k=keys[i]
+                    last_keys[:key].each_index{|li|
+                        lk=last_keys[:key][li]
                         if lk[:side]==k[:side]
                             row_d = (lk[:row]-k[:row]).abs
                             col_d = (lk[:finger]-k[:finger]).abs
-                            has_reap = true if row_d == 2 && col_d == 0
-                            has_same = true if row_d == 0 && col_d == 0
-                            has_updown = true if row_d == 1 && col_d == 0
-                            has_arp  = true if col_d ==1 && row_d < 2
+                            has_reap = true if row_d == 2 && col_d < 1.0
+                            has_same = true if row_d == 0 && col_d == 0 && i==0 && li==0
+                            if 0 < col_d && col_d < 2.0 && row_d < 2
+                                has_arp  = true 
+                            end
+                            arp_fingers[[k[:side], [lk[:col],lk[:row]] ,[k[:col],k[:row]]]]+=1
+                            has_updown = true if row_d == 1 && col_d < 1.0
                         end
                     }
-                    key_count[k[:code]]+=1
                 }
                 reap[chars] += 1    if has_reap
                 same[chars] += 1    if has_same
                 updown[chars] += 1  if has_updown
                 arpegio[chars] += 1 if has_arp
             end
+            keys.each{|k|
+                key_count[k[:code]]+=1
+            }
             if long_buf.size==0 || has_arp || has_same
                 long_buf.push(kana)
             else
@@ -194,16 +168,17 @@ def eval_map(fingers_map)
     }
     r=CUT_RATE
     puts "■計 #{cnt}回"
-    puts "■同指跳躍 #{reap.keys.size}種 #{reap.values.sum}回"
+    puts "■同指段飛び #{reap.keys.size}種 #{reap.values.sum}回 (#{reap.values.sum * 100 / cnt}%)"
     puts cut(reap,r)
-    puts "■同指連接 #{updown.keys.size}種 #{updown.values.sum}回"
+    puts "■同指上下 #{updown.keys.size}種 #{updown.values.sum}回 (#{updown.values.sum * 100 / cnt}%)"
     puts cut(updown,r)
-    puts "■同鍵連続 #{same.keys.size}種 #{same.values.sum}回"
+    puts "■同鍵連続 #{same.keys.size}種 #{same.values.sum}回 (#{same.values.sum * 100 / cnt}%)"
     puts cut(same,r)
-    puts "■アルペジオ #{arpegio.keys.size}種 #{arpegio.values.sum}回"
+    puts "■アルペジオ #{arpegio.keys.size}種 #{arpegio.values.sum}回 (#{arpegio.values.sum * 100 / cnt}%)"
     puts cut(arpegio,r)
     puts "■アルペジオ(3音以上) #{long_seq.keys.size}種 #{long_seq.values.sum}回"
     puts cut(long_seq,r/5.0)
+    # puts long_seq.keys.sort{|a,b|b.size<=>a.size}.map{|x|x.size}.uniq.join(", ")
     puts "■打鍵数 #{key_count.values.sum}回"
     # puts key_count
     # puts LAYOUT.map{|board|
@@ -218,6 +193,7 @@ def eval_map(fingers_map)
     ].map{|row|
         row.split(",").map{|col| key_count["B_"+col] || 0 }.join("\t")
     }.join("\n")
+    draw_svg(arp_fingers)
 end
 
 def cut(h,rate)
@@ -229,6 +205,59 @@ def cut(h,rate)
         sum += h[k]
     }
     res
+end
+
+#連接の画像
+def draw_svg(moves)
+
+    size = 100
+    line_width = 20
+    margin = 20
+    w = size * 11 + margin * 2
+    h = size * 3 + margin * 2
+
+    svg = Victor::SVG.new width: w, height: h, style: { background: '#f0f0f0' }
+    svg.build do
+        marker id:"arrow", viewBox:"-5 -10 10 20", orient:"auto" ,markerUnits:"strokeWidth", markerWidth:"1.5", markerHeight:"1.5" do
+            polygon points:"0,-10 5,0 0,10", stroke:"none", style:{fill:"#f00000", fill_opacity:"0.6"}
+        end
+        2.times do |side|
+            5.times do |col|
+                x=size*(side*6+col) + margin
+                3.times do |row|
+                    y=size*row + margin
+                    g do
+                        rect x: x, y:y, width:size, height:size, style:{stroke: '#808080', fill:'#f0f0f0'}
+                        g style:{stroke:'#404040', fill:'#404040'} do 
+                            text LAYOUT[0][row][col+side*5], x:x+10, y:y+30, font_size:20
+                            text LAYOUT[1][row][col+side*5], x:x+30, y:y+40, font_size:16
+                        end
+                    end
+                end
+            end
+        end
+        
+        g style:{stroke: '#f00000'}, marker_end:"url(#arrow)" do
+            moves.keys.filter{|k|moves[k]>0}.each {|k|
+                w = [moves[k].to_f / 1000, 0.5].max
+                op = [moves[k].to_f / 100000, 0.05].max
+                # op = 0.15
+                side=k[0]
+                from=k[1]
+                to=k[2]
+                y_base = margin  + size/2
+                x_base = y_base  + (side == :right ? 6 : 0)*size
+                x1 = x_base + from[0]*size
+                x2 = x_base + to[0]*size 
+                y1 = y_base + from[1]*size 
+                y2 = y_base + to[1]*size 
+                if x1 != x2 || y1 != y2
+                    line x1:x1, y1:y1, x2:x2, y2:y2, style:{stroke_opacity: op, stroke_width: w}
+                end
+            }
+        end
+    end
+    svg.save 'finger-moves'
 end
 
 
@@ -260,12 +289,12 @@ kbd_map=[
 
 #キーコードから指の位置を返す
 pos_map = {}
-finger_index = [5,4,3,2,2,2,2,3,4,5]
+finger_index = [5.0,4.0,3.0,2.0,1.5,1.5,2.0,3.0,4.0,5.0]
 kbd_map.each_index{|r|
     row = kbd_map[r]
     row.each_index{|c|
         code=row[c]
-        side = c < 5 ? "left" : "right"
+        side = c < 5 ? :left : :right
         finger = finger_index[c]
         extra = c==4 || c==5
         pos_map[code]={
@@ -274,6 +303,7 @@ kbd_map.each_index{|r|
             :finger=>finger, 
             :extra=>extra,
             :row=>r,
+            :col=>c<5 ? c : c-5
         }
     }
 }
@@ -473,6 +503,7 @@ tso	つぉ		半濁音
 ,	、		
 .	。		
 tenn	…		
+?	？		
 /	・		
 EOS
 #/
@@ -584,5 +615,7 @@ if ARGV[0]== "test"
 elsif ARGV[0]== "update"
     update_src(codes)
 elsif ARGV[0]== "eval"
+    #puts fingers
     eval_map(fingers)
 end
+
