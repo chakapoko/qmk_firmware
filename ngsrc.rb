@@ -1,36 +1,73 @@
 require 'victor'
 
-#あいえ-うお
+#シフトは親指か？
+THUMB = false
+
+#中指シフト20230502版
 LAYOUT = [
     [
-        "へけては★★するれ…",
+        "へまては★★するれ…",
         "せうのし、あいな。ー",
         "そもとかこくったり・",
     ], [
-        "ぬむよめ★★えさひ小",
-        "ゆまんをにちろんふつ",
-        "やわらみね★きおほ？",
-    ]    
+        "ぬむよね★★えさひ小",
+        "ゆけんをにちろんふつ",
+        "やわらめみ★きおほ？",
+    ]        
 ]
+
+#親指シフト20230505版
+# LAYOUT = [
+#     [
+#         "へまては★★するれ…",
+#         "せうんし、あいな。ー",
+#         "そけとかこくったり・",
+#     ], [
+#         "ぬむよね★★えさひ小",
+#         "ゆめのをにちろつふ★",
+#         "やわらもみ★きおほ？",
+#     ]
+# ]
+
+
+#薙刀式
+# LAYOUT = [
+# [
+#     "小きてし★★★るすへ",
+#     "ろけとかっくあいうー",
+#     "ほひはこそたなんられ",
+# ], [
+#     "★むりぬ★★さよえゆ",
+#     "せめにまちやのもわつ",
+#     "★★を、みお。ねふ★",
+# ]
+# ]
+
+
+
+
 
 
 
 INACTIVE = [
-    # "ふゅ", "つぉ"
+    "ふゅ"
 ]
 
 CUT_RATE=0.5
 
-SHIFT_KEYS = ["B_D", "B_K"]
+SHIFT_KEYS = THUMB ? ["B_SHFT"] : ["B_D", "B_K"]
+
 
 #修飾キー
 def mod_key(chr,w,side)
     mod_keys = {
-        "shift"  => {:left=>"B_K", :right=>"B_D"},
-        "濁音"   => {:left=>"B_J", :right=>"B_F"},
-        "半濁音" => {:left=>"B_M", :right=>"B_V"},
+        "shift"  => THUMB ? {:left=>"B_SHFT", :right=>"B_SHFT"} : {:left=>"B_K", :right=>"B_D"},
+        "濁音"   => {:left=>"B_J", :right=>"B_F"} ,
+        "半濁音" => {:left=>"B_M", :right=>"B_V"} ,
         "う" => {"濁音"=>"B_F", "半濁音"=>"B_V"},  
-        "て" => {"濁音"=>"B_V", "半濁音"=>"B_G"},
+        "て" => {"濁音"=>"B_G", "半濁音"=>"B_V"},
+        "しぇ" => {"濁音"=>"B_G", "半濁音"=>"B_B"},
+        "ちぇ" => {"濁音"=>nil, "半濁音"=>nil},
     }
     if chr=~/ゔ.?/
         mod_keys["う"]["濁音"]
@@ -40,6 +77,10 @@ def mod_key(chr,w,side)
         mod_keys["て"]["濁音"]
     elsif chr=~/て./
         mod_keys["て"]["半濁音"] 
+    elsif chr=~/じぇ/
+        mod_keys["しぇ"]["濁音"] 
+    elsif chr=~/しぇ/
+        mod_keys["しぇ"]["半濁音"] 
     else
         mod_keys[w][side]
     end
@@ -108,15 +149,16 @@ end
 
 #評価
 def eval_map(fingers_map)
-    #評価
     key_count = Hash.new{|h,k|h[k]=0}
     reap = Hash.new{|h,k|h[k]=0}
     updown = Hash.new{|h,k|h[k]=0}
     same = Hash.new{|h,k|h[k]=0}
     arpegio = Hash.new{|h,k|h[k]=0}
+    triple = Hash.new{|h,k|h[k]=0}
     arp_fingers = Hash.new{|h,k|h[k]=0}
     long_seq = Hash.new{|h,k|h[k]=0}
     long_buf = []
+    triple_seq = Hash.new{|h,k|h[k]=0}
     cnt = 0
     sentences(fingers_map).each{|sentence|
         last_keys=nil
@@ -131,8 +173,10 @@ def eval_map(fingers_map)
                 chars = last_keys[:kana]+kana
                 keys.each_index{|i|
                     k=keys[i]
+                    # puts k
                     last_keys[:key].each_index{|li|
                         lk=last_keys[:key][li]
+                        # puts lk
                         if lk[:side]==k[:side]
                             row_d = (lk[:row]-k[:row]).abs
                             col_d = (lk[:finger]-k[:finger]).abs
@@ -157,13 +201,25 @@ def eval_map(fingers_map)
             if long_buf.size==0 || has_arp || has_same
                 long_buf.push(kana)
             else
-                long_seq[long_buf.join("")]+=1 if long_buf.size>2
+                if long_buf.size>2
+                    seqs=long_buf.join("")
+                    long_seq[seqs]+=1
+                    (0..seqs.size-3).each do |n|
+                        triple_seq[seqs.slice(n,3)]+=1
+                    end
+                end
                 long_buf = []
             end
             last_keys= {:kana=>kana, :key=>keys}
             cnt+=1
         }
-        long_seq[long_buf.join("")]+=1 if long_buf.size>2
+        if long_buf.size>2
+            seqs=long_buf.join("")
+            long_seq[seqs]+=1
+            (0..seqs.size-3).each do |n|
+                triple_seq[seqs.slice(n,3)]+=1
+            end
+        end
         long_buf = []
     }
     r=CUT_RATE
@@ -176,9 +232,12 @@ def eval_map(fingers_map)
     puts cut(same,r)
     puts "■アルペジオ #{arpegio.keys.size}種 #{arpegio.values.sum}回 (#{arpegio.values.sum * 100 / cnt}%)"
     puts cut(arpegio,r)
+    puts "■3連 #{triple_seq.keys.size}種 #{triple_seq.values.sum}回 (#{triple_seq.values.sum * 100 / cnt}%)"
+    puts cut(triple_seq,r,1000)
     puts "■アルペジオ(3音以上) #{long_seq.keys.size}種 #{long_seq.values.sum}回"
     puts cut(long_seq,r/5.0)
-    # puts long_seq.keys.sort{|a,b|b.size<=>a.size}.map{|x|x.size}.uniq.join(", ")
+    puts long_seq.keys.sort{|a,b|b.size<=>a.size}.map{|x|x.size}.uniq.join(", ")
+    puts long_seq.keys.sort{|a,b|b.size<=>a.size}.slice(0,10).join("\n")
     puts "■打鍵数 #{key_count.values.sum}回"
     # puts key_count
     # puts LAYOUT.map{|board|
@@ -196,12 +255,12 @@ def eval_map(fingers_map)
     draw_svg(arp_fingers)
 end
 
-def cut(h,rate)
+def cut(h,rate,border=0)
     max = h.values.sum * rate
     sum = 0
     res = {}
     h.keys.sort{|a,b|h[b]<=>h[a]}.each {|k|
-        res[k]=h[k] if sum < max
+        res[k]=h[k] if sum < max && h[k]>=border
         sum += h[k]
     }
     res
@@ -218,7 +277,7 @@ def draw_svg(moves)
 
     svg = Victor::SVG.new width: w, height: h, style: { background: '#f0f0f0' }
     svg.build do
-        marker id:"arrow", viewBox:"-5 -10 10 20", orient:"auto" ,markerUnits:"strokeWidth", markerWidth:"1.5", markerHeight:"1.5" do
+        marker id:"arrow", viewBox:"-5 -10 10 20", orient:"auto" ,markerUnits:"strokeWidth", markerWidth:"1.8", markerHeight:"1.8" do
             polygon points:"0,-10 5,0 0,10", stroke:"none", style:{fill:"#f00000", fill_opacity:"0.6"}
         end
         2.times do |side|
@@ -239,8 +298,8 @@ def draw_svg(moves)
         
         g style:{stroke: '#f00000'}, marker_end:"url(#arrow)" do
             moves.keys.filter{|k|moves[k]>0}.each {|k|
-                w = [moves[k].to_f / 1000, 0.5].max
-                op = [moves[k].to_f / 100000, 0.05].max
+                w = [moves[k].to_f / 1000, 0.08].max
+                op = [moves[k].to_f / 100000, 0.025].max
                 # op = 0.15
                 side=k[0]
                 from=k[1]
@@ -307,6 +366,15 @@ kbd_map.each_index{|r|
         }
     }
 }
+pos_map["B_SHFT"]={
+    :code=>"B_SHFT",
+    :side=>:both, 
+    :finger=>1.0, 
+    :extra=>false,
+    :row=>3,
+    :col=>0
+}
+
 
 def build_layout(board)
     shift=false
@@ -469,7 +537,7 @@ dhu	でゅ		濁音
 toxu	とぅ		半濁音
 doxu	どぅ		濁音
 sye	しぇ		半濁音
-tye	ちぇ		半濁音
+tye	ちぇ		
 zye	じぇ		濁音
 dye	ぢぇ		濁音
 fa	ふぁ		
@@ -554,6 +622,7 @@ rklist.each {|chr|
     shift_type = :none
     shift_type = mod==nil ? :must : :verbose if first_pos[:shift]
     shift_type = :verbose if shift_type == :none && first_pos[:other] == nil
+    shift_type = :verbose if mod == "濁音" || mod == "半濁音"
     #words.push("shift") if first_pos[:shift] && mod==nil
     cols=Hash.new{|h,k|h[k]=0} #同列チェック
     # puts [words, shift_type].join(",")
@@ -582,7 +651,7 @@ rklist.each {|chr|
         verbose_comments = SHIFT_KEYS
         .map{|s| shift==s ? "" : " (予備)"}
         .map{|s| (shift_type == :verbose ? "(冗長)" : "")+ s }
-        m = chr=="ん" ? 0 : 1
+        m = THUMB ? 0 : (chr=="ん" ? 0 : 1)
         (0..m).each do |n|
            codes.push("#{comment}  {.key = #{[words,SHIFT_KEYS[n]].join("|")}, .kana = \"#{info[:keys]}\"}, //#{chr}#{verbose_comments[n]}")
         end
