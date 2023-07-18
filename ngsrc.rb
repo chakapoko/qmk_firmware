@@ -16,6 +16,20 @@ LAYOUT = [
     ]        
 ]
 
+
+_LAYOUT =  [
+    [
+    "小きてし★★するふへ",
+    "ろのんかっあいう。ー",
+    "そひとはこくたなられ",
+], [
+    "ぬむりね★★えさ★★",
+    "せけにまちゆわもほつ",
+    "★めを、みおよや★・",
+]
+
+]
+
 #親指シフト20230505版
 # LAYOUT = [
 #     [
@@ -50,7 +64,7 @@ LAYOUT = [
 
 
 INACTIVE = [
-    "ふゅ"
+    # "ふゅ"
 ]
 
 CUT_RATE=0.5
@@ -64,6 +78,7 @@ def mod_key(chr,w,side)
         "shift"  => THUMB ? {:left=>"B_SHFT", :right=>"B_SHFT"} : {:left=>"B_K", :right=>"B_D"},
         "濁音"   => {:left=>"B_J", :right=>"B_F"} ,
         "半濁音" => {:left=>"B_M", :right=>"B_V"} ,
+        # "半濁音" => {:left=>"B_COMM", :right=>"B_C"} ,
         "う" => {"濁音"=>"B_F", "半濁音"=>"B_V"},  
         "て" => {"濁音"=>"B_G", "半濁音"=>"B_V"},
         "しぇ" => {"濁音"=>"B_G", "半濁音"=>"B_B"},
@@ -620,12 +635,12 @@ rklist.each {|chr|
     words.push(mod) if mod
     words.pop if words.size == 3 && mod == "小"
     shift_type = :none
-    shift_type = mod==nil ? :must : :verbose if first_pos[:shift]
-    shift_type = :verbose if shift_type == :none && first_pos[:other] == nil
-    shift_type = :verbose if mod == "濁音" || mod == "半濁音"
+    shift_type = mod==nil ? :must : :verbose if first_pos[:shift] #シフト面の清音ならシフト必須
+    shift_type = :verbose if shift_type == :none && first_pos[:other] == nil #シフト面が空ならシフトしてもよい
+    shift_type = :verbose if mod == "濁音" || mod == "半濁音" #濁音・半濁音はシフトしてもよい
     #words.push("shift") if first_pos[:shift] && mod==nil
     cols=Hash.new{|h,k|h[k]=0} #同列チェック
-    # puts [words, shift_type].join(",")
+    # puts [words, shift_type,side].inspect
     # puts mod_key(chr,'shift',side) if shift_type != :none
     words.map! {|w|
         p=LAYOUT_MAP[w] 
@@ -649,11 +664,13 @@ rklist.each {|chr|
     if shift_type == :must || shift_type == :verbose
         shift = mod_key(chr,'shift',side)
         verbose_comments = SHIFT_KEYS
-        .map{|s| shift==s ? "" : " (予備)"}
+        .map{|s| shift==s ? "" : " (予備:同手)"}
         .map{|s| (shift_type == :verbose ? "(冗長)" : "")+ s }
         m = THUMB ? 0 : (chr=="ん" ? 0 : 1)
         (0..m).each do |n|
-           codes.push("#{comment}  {.key = #{[words,SHIFT_KEYS[n]].join("|")}, .kana = \"#{info[:keys]}\"}, //#{chr}#{verbose_comments[n]}")
+            # unless verbose_comments[n].include?("同手")
+                codes.push("#{comment}  {.key = #{[words,SHIFT_KEYS[n]].join("|")}, .kana = \"#{info[:keys]}\"}, //#{chr}#{verbose_comments[n]}")
+            # end
         end
         words.push(shift) if shift_type == :must
     end

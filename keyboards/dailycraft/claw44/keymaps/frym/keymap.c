@@ -424,14 +424,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         layer_off(_LOWER);
         update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
 
-/*         //一瞬だけ押したとき:IMEオフ
+        //一瞬だけ押したとき:IMEオフ
         if (lower_pressed && (TIMER_DIFF_16(record->event.time, lower_pressed_time) < TAPPING_TERM)) {
           uint8_t code_for_tap = JP_MHEN;
           register_code(code_for_tap);
           unregister_code(code_for_tap);
           naginata_off();
         }
-*/
       }
       return false;
       break;
@@ -446,13 +445,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
 
         //一瞬押すなら変換
-/*         if (raise_pressed && (TIMER_DIFF_16(record->event.time, raise_pressed_time) < TAPPING_TERM)) {
+        if (raise_pressed && (TIMER_DIFF_16(record->event.time, raise_pressed_time) < TAPPING_TERM)) {
           uint8_t code_for_tap = JP_HENK; //keycode == RAISE ? KC_ENT : JP_MHEN;
           register_code(code_for_tap);
           unregister_code(code_for_tap);
           naginata_on();
-        } */
-
+        }
       }
       return false;
       break;
