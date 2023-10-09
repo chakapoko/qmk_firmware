@@ -1,47 +1,33 @@
 require 'victor'
 
 #シフトは親指か？
-THUMB = false
+THUMB = true
 
-#中指シフト20230502版
+#中指シフト20230817版
 LAYOUT = [
     [
-        "へまては★★するれ…",
+        "へまては小…するれ★",
         "せうのし、あいな。ー",
         "そもとかこくったり・",
     ], [
-        "ぬむよね★★えさひ小",
+        "ぬやよね★★えさひ★",
         "ゆけんをにちろんふつ",
-        "やわらめみ★きおほ？",
-    ]        
+        "むわらめみ★きおほ？",
+    ]
 ]
 
-
-_LAYOUT =  [
-    [
-    "小きてし★★するふへ",
-    "ろのんかっあいう。ー",
-    "そひとはこくたなられ",
+#シフト20230817版
+LAYOUT = [
+[
+    "へまては小…するれ★",
+    "せうんし、あいな。ー",
+    "そけとかこくったり・",
 ], [
-    "ぬむりね★★えさ★★",
-    "せけにまちゆわもほつ",
-    "★めを、みおよや★・",
+    "ぬむよね★★えさひ★",
+    "ゆめのもにちらきふ★",
+    "ろわやをみ★つおほ？",
 ]
-
 ]
-
-#親指シフト20230505版
-# LAYOUT = [
-#     [
-#         "へまては★★するれ…",
-#         "せうんし、あいな。ー",
-#         "そけとかこくったり・",
-#     ], [
-#         "ぬむよね★★えさひ小",
-#         "ゆめのをにちろつふ★",
-#         "やわらもみ★きおほ？",
-#     ]
-# ]
 
 
 #薙刀式
@@ -70,6 +56,7 @@ INACTIVE = [
 CUT_RATE=0.5
 
 SHIFT_KEYS = THUMB ? ["B_SHFT"] : ["B_D", "B_K"]
+# SHIFT_KEYS = THUMB ? ["B_SHFT"] : ["B_F", "B_J"]
 
 
 #修飾キー
@@ -78,10 +65,12 @@ def mod_key(chr,w,side)
         "shift"  => THUMB ? {:left=>"B_SHFT", :right=>"B_SHFT"} : {:left=>"B_K", :right=>"B_D"},
         "濁音"   => {:left=>"B_J", :right=>"B_F"} ,
         "半濁音" => {:left=>"B_M", :right=>"B_V"} ,
-        # "半濁音" => {:left=>"B_COMM", :right=>"B_C"} ,
-        "う" => {"濁音"=>"B_F", "半濁音"=>"B_V"},  
-        "て" => {"濁音"=>"B_G", "半濁音"=>"B_V"},
-        "しぇ" => {"濁音"=>"B_G", "半濁音"=>"B_B"},
+        # "shift"  => THUMB ? {:left=>"B_SHFT", :right=>"B_SHFT"} : {:left=>"B_J", :right=>"B_F"},
+        # "濁音"   => {:left=>"B_K", :right=>"B_D"} ,
+        # "半濁音" => {:left=>"B_N", :right=>"B_B"} ,
+        "う" => {"濁音"=>"B_F", "半濁音"=>"B_G"},  
+        "て" => {"濁音"=>"B_G", "半濁音"=>"B_R"},
+        "しぇ" => {"濁音"=>"B_T", "半濁音"=>"B_G"},
         "ちぇ" => {"濁音"=>nil, "半濁音"=>nil},
     }
     if chr=~/ゔ.?/
@@ -635,13 +624,13 @@ rklist.each {|chr|
     words.push(mod) if mod
     words.pop if words.size == 3 && mod == "小"
     shift_type = :none
-    shift_type = mod==nil ? :must : :verbose if first_pos[:shift] #シフト面の清音ならシフト必須
+    shift_type = (mod==nil) ? :must : :verbose if first_pos[:shift] #シフト面の清音ならシフト必須
     shift_type = :verbose if shift_type == :none && first_pos[:other] == nil #シフト面が空ならシフトしてもよい
     shift_type = :verbose if mod == "濁音" || mod == "半濁音" #濁音・半濁音はシフトしてもよい
     #words.push("shift") if first_pos[:shift] && mod==nil
     cols=Hash.new{|h,k|h[k]=0} #同列チェック
     # puts [words, shift_type,side].inspect
-    # puts mod_key(chr,'shift',side) if shift_type != :none
+    #puts mod_key(chr,'shift',side) if shift_type != :none
     words.map! {|w|
         p=LAYOUT_MAP[w] 
         if p 
@@ -649,7 +638,9 @@ rklist.each {|chr|
             cols[c]+=1
             kbd_map[r][c]
         else
+            # puts [chr, w, side].inspect
             k=mod_key(chr,w,side)
+            # puts cols.inspect
             cols[col_map[k]]+=1
             k
         end
@@ -668,9 +659,9 @@ rklist.each {|chr|
         .map{|s| (shift_type == :verbose ? "(冗長)" : "")+ s }
         m = THUMB ? 0 : (chr=="ん" ? 0 : 1)
         (0..m).each do |n|
-            # unless verbose_comments[n].include?("同手")
+            unless verbose_comments[n].include?("同手")
                 codes.push("#{comment}  {.key = #{[words,SHIFT_KEYS[n]].join("|")}, .kana = \"#{info[:keys]}\"}, //#{chr}#{verbose_comments[n]}")
-            # end
+            end
         end
         words.push(shift) if shift_type == :must
     end

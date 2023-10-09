@@ -1,7 +1,8 @@
 #include QMK_KEYBOARD_H
 #include "keymap_japanese.h"
 #include "secrets.h"
-#include "naginata.h"
+//#include "naginata.h"
+#include "honjin.h"
 
 #ifdef PROTOCOL_LUFA
   #include "lufa.h"
@@ -45,31 +46,31 @@ enum custom_keycodes {
 //Tap Dance:キーの二度押し
 //TAP_DANCE_ENABLE = yes
 
-enum {
-    TDD_DQUO_QUOT = 0,
-    TDD_LBRC_RBRC,
-    TDD_LCBR_RCBR,
-    TDD_LPRN_RPRN,
-    TDD_CIRC_GRV,
-    TDD_COLN_SCLN,
-    TDD_YEN_DLR,
-    TDD_PERC_HASH,
-    TDD_AT_TILD,
-    TDD_MINS_UNDS,
-};
+// enum {
+//     TDD_DQUO_QUOT = 0,
+//     TDD_LBRC_RBRC,
+//     TDD_LCBR_RCBR,
+//     TDD_LPRN_RPRN,
+//     TDD_CIRC_GRV,
+//     TDD_COLN_SCLN,
+//     TDD_YEN_DLR,
+//     TDD_PERC_HASH,
+//     TDD_AT_TILD,
+//     TDD_MINS_UNDS,
+// };
 
-qk_tap_dance_action_t tap_dance_actions[] = {
-    [TDD_DQUO_QUOT] = ACTION_TAP_DANCE_DOUBLE(JP_DQUO, JP_QUOT),
-    [TDD_LBRC_RBRC] = ACTION_TAP_DANCE_DOUBLE(JP_LBRC, JP_RBRC),
-    [TDD_LCBR_RCBR] = ACTION_TAP_DANCE_DOUBLE(JP_LCBR, JP_RCBR),
-    [TDD_LPRN_RPRN] = ACTION_TAP_DANCE_DOUBLE(JP_LPRN, JP_RPRN),
-    [TDD_CIRC_GRV]  = ACTION_TAP_DANCE_DOUBLE(JP_CIRC, JP_GRV),
-    [TDD_COLN_SCLN] = ACTION_TAP_DANCE_DOUBLE(JP_COLN, JP_SCLN),
-    [TDD_YEN_DLR]   = ACTION_TAP_DANCE_DOUBLE(JP_YEN,  JP_DLR),
-    [TDD_MINS_UNDS] = ACTION_TAP_DANCE_DOUBLE(JP_MINS, JP_UNDS),
-    [TDD_AT_TILD]   = ACTION_TAP_DANCE_DOUBLE(JP_AT,   JP_TILD),
-    [TDD_PERC_HASH] = ACTION_TAP_DANCE_DOUBLE(JP_HASH, JP_PERC),
-};
+// qk_tap_dance_action_t tap_dance_actions[] = {
+//     [TDD_DQUO_QUOT] = ACTION_TAP_DANCE_DOUBLE(JP_DQUO, JP_QUOT),
+//     [TDD_LBRC_RBRC] = ACTION_TAP_DANCE_DOUBLE(JP_LBRC, JP_RBRC),
+//     [TDD_LCBR_RCBR] = ACTION_TAP_DANCE_DOUBLE(JP_LCBR, JP_RCBR),
+//     [TDD_LPRN_RPRN] = ACTION_TAP_DANCE_DOUBLE(JP_LPRN, JP_RPRN),
+//     [TDD_CIRC_GRV]  = ACTION_TAP_DANCE_DOUBLE(JP_CIRC, JP_GRV),
+//     [TDD_COLN_SCLN] = ACTION_TAP_DANCE_DOUBLE(JP_COLN, JP_SCLN),
+//     [TDD_YEN_DLR]   = ACTION_TAP_DANCE_DOUBLE(JP_YEN,  JP_DLR),
+//     [TDD_MINS_UNDS] = ACTION_TAP_DANCE_DOUBLE(JP_MINS, JP_UNDS),
+//     [TDD_AT_TILD]   = ACTION_TAP_DANCE_DOUBLE(JP_AT,   JP_TILD),
+//     [TDD_PERC_HASH] = ACTION_TAP_DANCE_DOUBLE(JP_HASH, JP_PERC),
+// };
 
 
 
@@ -221,7 +222,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      _______,  KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,         KC_N,     KC_M,     KC_COMM, KC_DOT,   JP_SLSH, _______,
   //`--------+---------+---------+---------+---------+---------/   \---------+---------+--------+---------+--------+--------'
                       // LGUI_TAB,  LOWER,     KC_SPC,   CT_BS,        SF_DEL,   KC_ENTER, RAISE,   LALT_ESC
-                       LGUI_TAB,  LOWER,     SF_SPACE, CT_BS,        CT_DEL,   SF_ENTER, RAISE,   LALT_ESC
+                       LGUI_TAB,  LOWER,     SF_SPACE , CT_BS,        SF_DEL,   SF_ENTER, RAISE,   LALT_ESC
    //                  `----------+---------+---------+---------'   `---------+---------+--------+---------'
   ),
 
@@ -234,18 +235,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+---------+--------+---------+--------|   |--------+---------+--------+---------+--------+--------|
      _______,  NG_Z,    NG_X    , NG_C   , NG_V    , NG_B   ,     NG_N   , NG_M    , NG_COMM, NG_DOT  , NG_SLSH, _______,
   //`--------+--------+--------+--------+----------+--------/   \---------+---------+--------+---------+--------+--------'
-                        _______,  _______, _______,  _______,     _______, _______,  _______, _______
-                        //  _______,  _______, NG_SHFT, _______,  _______, NG_SHFT2, _______, _______
+                        // _______,  _______, _______,  _______,     _______, _______,  _______, _______
+                         _______,  _______, NG_SHFT, _______,    _______, NG_SHFT2, _______, _______
   //                 `----------+--------+---------,+--------'   `--------+---------+--------+---------'
   ),
 
   [_LOWER] = LAYOUT( \
   //,--------+--------+--------+--------+--------+--------.   ,--------+--------+--------+--------+--------+--------.
-     _______, JP_SLSH, JP_MINS, JP_ASTR, JP_PLUS, JP_EQL,      JP_PIPE, JP_AMPR, TD_BRC,  TD_CBR,  TD_CI_GR, _______,
+     _______, JP_SLSH, JP_MINS, JP_EQL, JP_PLUS, JP_ASTR,      JP_EXLM,  JP_AMPR, JP_PIPE, JP_DLR, JP_CIRC, _______,
   //|--------+--------+--------+--------+--------+--------|   |--------+--------+--------+--------+--------+--------|
-     JP_SLSH,  KC_1   , KC_2   , KC_3   , KC_4   , KC_5   ,    TD_COLN, TD_AT_TL,TD_PRN,  TD_PE_HS, JP_EXLM, TD_CI_GR,
+     JP_SLSH,  KC_1   , KC_2   , KC_3   , KC_4   , KC_5   ,    JP_TILD,  JP_AT,  JP_COLN, JP_SCLN, JP_PERC, _______,
   //|--------+--------+--------+--------+--------+--------|   |--------+--------+--------+--------+--------+--------|
-     NG_OFF,   KC_6   , KC_7   , KC_8   , KC_9   , KC_0   ,     TD_YE_DL,TD_DQUO, JP_LABK, JP_RABK, JP_QUES, _______,
+     NG_OFF,   KC_6   , KC_7   , KC_8   , KC_9   , KC_0   ,    JP_YEN,  JP_QUES, JP_LABK, JP_RABK, JP_HASH, _______,
   //`--------+--------+--------+--------+--------+--------/   \--------+--------+--------+--------+--------+--------'
                         _______,  _______, _______,  _______,     _______, _______,  _______, _______
   //                  `--------+--------+--------+--------'   `--------+--------+--------+--------'
@@ -253,11 +254,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_RAISE] = LAYOUT( \
   //,--------+--------+--------+--------+--------+--------.   ,--------+--------+--------+--------+--------+--------.
-     _______, _______, _______, _______, KC_F11,  KC_F12,      KC_APP,  KC_BSPC, KC_DEL,  SCOPY,   _______, _______,
+     _______, _______, _______, KC_F4,   KC_F2,   KC_F12,       KC_APP,  KC_BSPC, KC_DEL,  SCOPY,   _______, _______,
   //|--------+--------+--------+--------+--------+--------|   |--------+--------+--------+--------+--------+--------|
-     _______, CTL_1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,       KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_RSFT, _______,
+     _______, JP_GRV,  JP_LCBR, JP_LBRC, JP_LPRN, JP_DQUO,      KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_RSFT, _______,
   //|--------+--------+--------+--------+--------+--------|   |--------+--------+--------+--------+--------+--------|
-     _______, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,      KC_HOME, KC_PGDN, KC_PGUP, KC_END,  JP_KANA, NG_ON,
+     _______, JP_UNDS, JP_RCBR, JP_RBRC, JP_RPRN, JP_QUOT,      KC_HOME, KC_PGDN, KC_PGUP, KC_END,  JP_KANA, NG_ON,
   //`--------+--------+--------+--------+--------+--------/   \--------+--------+--------+--------+--------+--------'
                         _______, _______, _______,_______,     _______, _______,  _______, _______
   //                  `--------+--------+--------+--------'   `--------+--------+--------+--------'
@@ -265,11 +266,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_ADJUST] = LAYOUT( \
   //,--------+--------+--------+--------+--------+--------.   ,--------+--------+--------+--------+--------+--------.
-     _______, RESET,   KC_INS,  _______, LDAP_ID, MAIL_AD,     PASS_1,  PASS_2,  _______, _______, RESET,   _______,
+     _______, RESET,   KC_F11,  KC_F12,  LDAP_ID, MAIL_AD,     PASS_1,  KC_VOLD, KC_VOLU, KC_MUTE, RESET,   _______,
   //|--------+--------+--------+--------+--------+--------|   |--------+--------+--------+--------+--------+--------|
-     _______, _______, _______, KC_VOLD, KC_VOLU, _______,     SF_LEFT, SF_DOWN, SF_UP,   SF_RGHT, _______, _______,
+     _______, KC_INS,  KC_F2,   KC_F3,   KC_F4,   KC_F5,       SF_LEFT, SF_DOWN, SF_UP,   SF_RGHT, _______, _______,
   //|--------+--------+--------+--------+--------+--------|   |--------+--------+--------+--------+--------+--------|
-     _______, _______, _______, _______, _______, _______,     SF_HOME, SF_PGDN, SF_PGUP, SF_END,  _______, _______,
+     _______, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,      SF_HOME, SF_PGDN, SF_PGUP, SF_END,  _______, _______,
   //`--------+--------+--------+--------+--------+--------/   \--------+--------+--------+--------+--------+--------'
                        _______, _______, _______, _______,     _______, _______, _______, _______
   //                  `--------+--------+--------+--------'   `--------+--------+--------+--------'
@@ -301,8 +302,8 @@ void matrix_init_user(void) {
   #endif
 
   // 薙刀式
-  uint16_t ngonkeys[]  = {KC_H, KC_J};
-  uint16_t ngoffkeys[] = {KC_F, KC_G};
+  uint16_t ngonkeys[]  = {KC_F1, KC_F2};
+  uint16_t ngoffkeys[] = {KC_F3, KC_F4};
   set_naginata(_NAGINATA, ngonkeys, ngoffkeys);
 }
 
@@ -424,7 +425,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         layer_off(_LOWER);
         update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
 
-        //一瞬だけ押したとき:IMEオフ
+        // //一瞬だけ押したとき:IMEオフ
         if (lower_pressed && (TIMER_DIFF_16(record->event.time, lower_pressed_time) < TAPPING_TERM)) {
           uint8_t code_for_tap = JP_MHEN;
           register_code(code_for_tap);
@@ -495,7 +496,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     default:
         if (shift_pressed || exceptional_shift_pressed){
             switch(keycode){
-                case TD_MI_UD:
                 case JP_MINS:
                   if(record->event.pressed) {
                      register_code(KC_LSFT);

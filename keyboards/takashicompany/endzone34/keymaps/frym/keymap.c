@@ -52,13 +52,14 @@ enum {
   TDD_MINS_UNDS,
   TDD_QUES_EXLM,
   TDD_AMPR_PIPE,
-  TDD_QUOT_DQUO,
-  TDD_LBRC_LCBR,
-  TDD_RBRC_RCBR,
+  TDD_DQUO_QUOT,
+  TDD_LPRN_RPRN,
+  TDD_LBRC_RBRC,
+  TDD_LCBR_RCBR,
   TDD_CIRC_GRV,
   TDD_COLN_SCLN,
   TDD_YEN_DLR,
-  TDD_HASH_PERC,
+  TDD_PERC_HASH,
   TDD_AT_TILD,
 };
 
@@ -73,13 +74,14 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     [TDD_MINS_UNDS] = ACTION_TAP_DANCE_DOUBLE(JP_MINS, JP_UNDS),
     [TDD_QUES_EXLM] = ACTION_TAP_DANCE_DOUBLE(JP_QUES, JP_EXLM),
     [TDD_AMPR_PIPE] = ACTION_TAP_DANCE_DOUBLE(JP_AMPR, JP_PIPE),
-    [TDD_QUOT_DQUO] = ACTION_TAP_DANCE_DOUBLE(JP_QUOT, JP_DQUO),
-    [TDD_LBRC_LCBR] = ACTION_TAP_DANCE_DOUBLE(JP_LBRC, JP_LCBR),
-    [TDD_RBRC_RCBR] = ACTION_TAP_DANCE_DOUBLE(JP_RBRC, JP_RCBR),
+    [TDD_DQUO_QUOT] = ACTION_TAP_DANCE_DOUBLE(JP_DQUO, JP_QUOT),
+    [TDD_LPRN_RPRN] = ACTION_TAP_DANCE_DOUBLE(JP_LPRN, JP_RPRN),
+    [TDD_LBRC_RBRC] = ACTION_TAP_DANCE_DOUBLE(JP_LBRC, JP_RBRC),
+    [TDD_LCBR_RCBR] = ACTION_TAP_DANCE_DOUBLE(JP_LCBR, JP_RCBR),
     [TDD_CIRC_GRV]  = ACTION_TAP_DANCE_DOUBLE(JP_CIRC, JP_GRV),
     [TDD_COLN_SCLN] = ACTION_TAP_DANCE_DOUBLE(JP_COLN, JP_SCLN),
     [TDD_YEN_DLR]   = ACTION_TAP_DANCE_DOUBLE(JP_YEN,  JP_DLR),
-    [TDD_HASH_PERC] = ACTION_TAP_DANCE_DOUBLE(JP_HASH, JP_PERC),
+    [TDD_PERC_HASH] = ACTION_TAP_DANCE_DOUBLE(JP_PERC, JP_HASH),
     [TDD_AT_TILD]   = ACTION_TAP_DANCE_DOUBLE(JP_AT,   JP_TILD),
 };
 
@@ -94,13 +96,15 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #define TD_MI_UN     TD(TDD_MINS_UNDS)
 #define TD_QU_EX     TD(TDD_QUES_EXLM)
 #define TD_AM_PI     TD(TDD_AMPR_PIPE)
-#define TD_QUOT      TD(TDD_QUOT_DQUO)
-#define TD_LBRC      TD(TDD_LBRC_LCBR)
-#define TD_RBRC      TD(TDD_RBRC_RCBR)
+#define TD_DQUO      TD(TDD_DQUO_QUOT)
+#define TD_PRN       TD(TDD_LPRN_RPRN)
+#define TD_BRC       TD(TDD_LBRC_RBRC)
+#define TD_CBR       TD(TDD_LCBR_RCBR)
 #define TD_CI_GR     TD(TDD_CIRC_GRV)
 #define TD_COLN      TD(TDD_COLN_SCLN)
 #define TD_YE_DL     TD(TDD_YEN_DLR)
-#define TD_HS_PE     TD(TDD_HASH_PERC)
+#define TD_PE_HS     TD(TDD_PERC_HASH)
+#define TD_PE_HS     TD(TDD_PERC_HASH)
 #define TD_AT_TL     TD(TDD_AT_TILD)
 
 #define CT_SPC    CTL_T(KC_SPC)
@@ -120,6 +124,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #define ALT_SLSH  LALT_T(JP_SLSH)
 #define SF_A      SFT_T(KC_A)
 #define TH_B_GUI  LGUI_T(KC_B)
+#define NG_N_ALT  LALT_T(NG_N)
 #define TH_N_ALT  LALT_T(KC_N)
 #define LOWER LT(_LOWER,KC_SPC)
 #define RAISE LT(_RAISE,KC_ENT)
@@ -140,7 +145,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //,---------+---------+----------+---------+---------+.                        ,---------+----------+---------+---------+---------.
            KC_Q,     KC_W,     KC_E,      KC_R,     TD_T_TAB,                           TD_Y_ESC, KC_U,      KC_I,     KC_O,     KC_P,
         //,---------+---------+----------+---------+---------+.                        ,---------+----------+---------+---------+---------.
-           KC_A,     KC_S,     KC_D,      KC_F,     KC_G,                               KC_H,     KC_J,      KC_K,     KC_L,     JP_MINS,
+           KC_A,     KC_S,     KC_D,      KC_F,     KC_G,                               KC_H,     KC_J,      KC_K,     KC_L,     TD_MI_UN,
         //,---------+---------+----------+---------+---------+.                        ,---------+----------+---------+---------+---------.
            KC_Z,     KC_X,     KC_C,      KC_V,     TH_B_GUI,                           TH_N_ALT, KC_M,      KC_COMM,  KC_DOT,   JP_SLSH,
         //,---------+---------+----------+---------+---------+---------+.   ,----------+---------+----------+---------+---------+---------.
@@ -157,17 +162,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //,---------+---------+----------+---------+---------+.                        ,---------+----------+---------+---------+---------.
            NG_Z,     NG_X,     NG_C,      NG_V,     NG_B,                               NG_N,     NG_M,      NG_COMM,  NG_DOT,   NG_SLSH,
         //,---------+---------+----------+---------+---------+---------+.   ,----------+---------+----------+---------+---------+---------.
-                                                     _______, NG_SHFT,       NG_SHFT2,  _______
+                                                     _______, _______,        _______,  _______
+                                                   //   _______, NG_SHFT,       NG_SHFT2,  _______
         //                                         ,---------+---------+.   ,----------+----------.
     ),
 
    [_LOWER] =  LAYOUT( \
         //,---------+---------+----------+---------+---------+.                        ,---------+----------+---------+---------+---------.
-           JP_ASTR,  JP_PLUS,  TD_SL_UN,   JP_MINS,  JP_EQL,                            JP_PIPE,  JP_AMPR,   TD_LBRC,  TD_RBRC,  TD_CI_GR,
+           JP_SLSH,  JP_MINS,  JP_ASTR,   JP_PLUS,  JP_EQL,                             JP_PIPE,  JP_AMPR,   TD_BRC,   TD_CBR,   TD_CI_GR,
         //,---------+---------+----------+---------+---------+.                        ,---------+----------+---------+---------+---------.
-           KC_1,     KC_2,     KC_3,      KC_4,     KC_5,                               TD_COLN,  TD_AT_TL,  JP_LPRN,  JP_RPRN,  TD_YE_DL,
+           KC_1,     KC_2,     KC_3,      KC_4,     KC_5,                               TD_COLN,  TD_AT_TL,  TD_PRN,   TD_PE_HS, JP_EXLM,
         //,---------+---------+----------+---------+---------+.                        ,---------+----------+---------+---------+---------.
-           KC_6,     KC_7,     KC_8,      KC_9,     KC_0,                               TD_HS_PE, TD_QUOT,   JP_LABK,  JP_RABK,  TD_QU_EX,
+           KC_6,     KC_7,     KC_8,      KC_9,     KC_0,                               TD_YE_DL, TD_DQUO,   JP_LABK,  JP_RABK, JP_QUES, 
         //,---------+---------+----------+---------+---------+---------+.    ,---------+---------+----------+---------+---------+---------.
                                                     _______,   _______,       _______,  ADJUST
         //                                         ,---------+---------+.    ,---------+----------.

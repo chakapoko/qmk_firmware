@@ -33,12 +33,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define USE_SERIAL_PD2
 
 //#define COMBO_TERM 1
-#define TAPPING_TERM 160
+#define TAPPING_TERM 150
 //#define TAPPING_TERM_PER_KEY
 #define IGNORE_MOD_TAP_INTERRUPT
-//#define PERMISSIVE_HOLD
+// #define PERMISSIVE_HOLD
 #define TAPPING_FORCE_HOLD
-//#define RETRO_TAPPING
+#define RETRO_TAPPING
 
 
 // 薙刀式
@@ -48,7 +48,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#define NAGINATA_EDIT_WIN // JP106
 //#define UNICODE_SELECTED_MODES UC_WINC
 
-//#define NAGINATA_KOUCHI_SHIFT // シフトを後置でも有効にする
+#define NAGINATA_KOUCHI_SHIFT // シフトを後置でも有効にする
 // ここまで薙刀式
 
 

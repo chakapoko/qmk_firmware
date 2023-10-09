@@ -5,11 +5,12 @@ AUDIO_ENABLE = no
 EXTRAKEY_ENABLE = yes
 COMBO_ENABLE = no
 
-MOUSEKEY_ENABLE = yes
-TAP_DANCE_ENABLE = yes
+# MOUSEKEY_ENABLE = yes
+# TAP_DANCE_ENABLE = yes
 
 #薙刀式
 UNICODE_ENABLE = yes
-SRC +=    naginata_frym.c
+SRC +=    honjin.c
+# SRC +=    naginata_frym.c
 # SRC +=    naginata_v14.c
 EXTRAFLAGS += -flto
