@@ -137,34 +137,95 @@ enum custom_keycodes {
 //#define TH_F_NOF MT(NG_OFF, KC_F)
 //#define TH_J_NON MT(NG_ON,  KC_J)
 
-/*
+
 enum combo_events {
   PRN,
   BRC,
   CBR,
-  QUOT,
-  DQUOT,
-  MENTION,
+  QUOT2,
+  DQUOT2,
+  GRV,
+  //MENTION,
+  COLN,
+  SCOLN,
+  UNDS,
+  CMB_LT,
+  CMB_GT,
+  CMB_CIRC,
+  CMB_DLR,
+  CMB_MINS,
+  CMB_SLSH,
+  CMB_LPRN,
+  CMB_RPRN,
+  CMB_LBRC,
+  CMB_RBRC,
+  CMB_LCBR,
+  CMB_RCBR,
+  CMB_QUOT,
+  CMB_DQUO,
+  CMB_GRV,
+  CMB_DOT,
   COMBO_LENGTH
 };
 
 uint16_t COMBO_LEN = COMBO_LENGTH;
 
 
-const uint16_t PROGMEM combo_prn[]   = {KC_K, KC_L, COMBO_END};
-const uint16_t PROGMEM combo_brc[]   = {KC_I, KC_O, COMBO_END};
-const uint16_t PROGMEM combo_cbr[]   = {KC_COMM, KC_DOT, COMBO_END};
-const uint16_t PROGMEM combo_at[]    = {KC_J, KC_K, COMBO_END};
-const uint16_t PROGMEM combo_quot[]  = {KC_U, KC_I, COMBO_END};
-const uint16_t PROGMEM combo_dquot[] = {KC_M, KC_COMM, COMBO_END};
+const uint16_t PROGMEM combo_prn[]   = {JP_AT, JP_QUES, COMBO_END};  // ( )
+const uint16_t PROGMEM combo_brc[]   = {JP_PERC, JP_HASH, COMBO_END};  // [ ]
+const uint16_t PROGMEM combo_cbr[]   = {JP_AMPR, JP_PIPE, COMBO_END}; // { }
+const uint16_t PROGMEM combo_quot2[]  = {JP_YEN, JP_PERC, COMBO_END};  // ' '
+const uint16_t PROGMEM combo_dquot2[] = {JP_TILD, JP_AT, COMBO_END};  // " "
+const uint16_t PROGMEM combo_grv2[]   = {JP_EXLM, JP_AMPR, COMBO_END};  // ` `
+//const uint16_t PROGMEM combo_at[]    = {KC_J, KC_K, COMBO_END};  // @
+const uint16_t PROGMEM combo_coln[]  = {KC_3, JP_AT, COMBO_END};  // :
+const uint16_t PROGMEM combo_scoln[] = {KC_3, JP_QUES, COMBO_END};  // ;
+const uint16_t PROGMEM combo_unds[]  = {KC_3, JP_TILD,  COMBO_END};  // _
+const uint16_t PROGMEM combo_lt[]    = {KC_3, JP_PERC,   COMBO_END};  // <
+const uint16_t PROGMEM combo_gt[]    = {KC_3, JP_HASH, COMBO_END};  // >
+const uint16_t PROGMEM combo_circ[]  = {KC_3, JP_AMPR, COMBO_END};  // ^
+const uint16_t PROGMEM combo_dlr[]   = {KC_3, JP_PIPE, COMBO_END};  // $
+const uint16_t PROGMEM combo_mins[]  = {KC_3, KC_4, COMBO_END};  // -
+const uint16_t PROGMEM combo_slsh[]  = {KC_4, KC_5, COMBO_END};  // /
+const uint16_t PROGMEM combo_lprn[]  = {KC_4, JP_AT, COMBO_END};  // (
+const uint16_t PROGMEM combo_rprn[]  = {KC_4, JP_QUES, COMBO_END};  // )
+const uint16_t PROGMEM combo_lbrc[]  = {KC_4, JP_PERC, COMBO_END};  // [
+const uint16_t PROGMEM combo_rbrc[]  = {KC_4, JP_HASH, COMBO_END};  // ]
+const uint16_t PROGMEM combo_lcbrc[] = {KC_4, JP_AMPR, COMBO_END};  // {
+const uint16_t PROGMEM combo_rcbrc[] = {KC_4, JP_PIPE, COMBO_END};  // }
+const uint16_t PROGMEM combo_quot[]  = {KC_4, JP_YEN, COMBO_END};  // '
+const uint16_t PROGMEM combo_dquo[]  = {KC_4, JP_TILD, COMBO_END};  // "
+const uint16_t PROGMEM combo_grv[]   = {KC_4, JP_EXLM, COMBO_END};  // `
+const uint16_t PROGMEM combo_dot[]   = {KC_8, KC_9, COMBO_END};  // .
+
 
 combo_t key_combos[] = {
     [PRN]     = COMBO_ACTION(combo_prn),
     [BRC]     = COMBO_ACTION(combo_brc),
     [CBR]     = COMBO_ACTION(combo_cbr),
-    [QUOT]    = COMBO_ACTION(combo_quot),
-    [DQUOT]   = COMBO_ACTION(combo_dquot),
-    [MENTION] = COMBO(combo_at , JP_AT), 
+    [QUOT2]   = COMBO_ACTION(combo_quot2),
+    [DQUOT2]  = COMBO_ACTION(combo_dquot2),
+    [GRV]     = COMBO_ACTION(combo_grv2),
+//    [MENTION] = COMBO(combo_at , JP_AT), 
+    [COLN]    = COMBO(combo_coln , JP_COLN), 
+    [SCOLN]   = COMBO(combo_scoln , JP_SCLN), 
+    [UNDS]    = COMBO(combo_unds , JP_UNDS), 
+    [CMB_LT]  = COMBO(combo_lt , JP_LABK),
+    [CMB_GT]  = COMBO(combo_gt , JP_RABK),
+    [CMB_CIRC]= COMBO(combo_circ , JP_CIRC),
+    [CMB_DLR] = COMBO(combo_dlr , JP_DLR),
+    [CMB_MINS]= COMBO(combo_mins , JP_MINS),
+    [CMB_SLSH]= COMBO(combo_slsh , JP_SLSH),
+    [CMB_LPRN]= COMBO(combo_lprn , JP_LPRN),
+    [CMB_RPRN]= COMBO(combo_rprn , JP_RPRN),
+    [CMB_LBRC]= COMBO(combo_lbrc , JP_LBRC),
+    [CMB_RBRC]= COMBO(combo_rbrc , JP_RBRC),
+    [CMB_LCBR]= COMBO(combo_lcbrc , JP_LCBR),
+    [CMB_RCBR]= COMBO(combo_rcbrc , JP_RCBR),
+    [CMB_QUOT]= COMBO(combo_quot , JP_QUOT),
+    [CMB_DQUO]= COMBO(combo_dquo , JP_DQUO),
+    [CMB_GRV] = COMBO(combo_grv , JP_GRV),
+    [CMB_DOT] = COMBO(combo_dot , JP_DOT),
 };
 
 
@@ -191,24 +252,30 @@ combo_t key_combos[] = {
         tap_code16(KC_LEFT);
       }
       break;
-    case QUOT:
+    case QUOT2:
       if (pressed) {
         tap_code16(JP_QUOT);
         tap_code16(JP_QUOT);
         tap_code16(KC_LEFT);
       }
       break;
-    case DQUOT:
+    case DQUOT2:
       if (pressed) {
         tap_code16(JP_DQUO);
         tap_code16(JP_DQUO);
+        tap_code16(KC_LEFT);
+      }
+      break;
+    case GRV:
+      if (pressed) {
+        tap_code16(JP_GRV);
+        tap_code16(JP_GRV);
         tap_code16(KC_LEFT);
       }
       break;
   }
 }
 
- */
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -222,7 +289,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      _______,  KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,         KC_N,     KC_M,     KC_COMM, KC_DOT,   JP_SLSH, _______,
   //`--------+---------+---------+---------+---------+---------/   \---------+---------+--------+---------+--------+--------'
                       // LGUI_TAB,  LOWER,     KC_SPC,   CT_BS,        SF_DEL,   KC_ENTER, RAISE,   LALT_ESC
-                       LGUI_TAB,  LOWER,     SF_SPACE , CT_BS,        SF_DEL,   SF_ENTER, RAISE,   LALT_ESC
+                       LGUI_TAB,  LOWER,     SF_SPACE , CT_BS,        SF_DEL,   CT_ENTER, RAISE,   LALT_ESC
    //                  `----------+---------+---------+---------'   `---------+---------+--------+---------'
   ),
 
@@ -242,11 +309,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_LOWER] = LAYOUT( \
   //,--------+--------+--------+--------+--------+--------.   ,--------+--------+--------+--------+--------+--------.
-     _______, JP_SLSH, JP_MINS, JP_EQL, JP_PLUS, JP_ASTR,      JP_EXLM,  JP_AMPR, JP_PIPE, JP_DLR, JP_CIRC, _______,
+     _______, JP_SLSH, JP_MINS, JP_EQL,  JP_PLUS, JP_ASTR,     JP_EXLM, JP_AMPR, JP_PIPE, JP_CIRC, JP_DLR, _______,
   //|--------+--------+--------+--------+--------+--------|   |--------+--------+--------+--------+--------+--------|
-     JP_SLSH,  KC_1   , KC_2   , KC_3   , KC_4   , KC_5   ,    JP_TILD,  JP_AT,  JP_COLN, JP_SCLN, JP_PERC, _______,
+     _______, KC_1   , KC_2   , KC_3   , KC_4   , KC_5   ,     JP_TILD,  JP_AT,  JP_QUES, JP_COLN, JP_SCLN, _______,
   //|--------+--------+--------+--------+--------+--------|   |--------+--------+--------+--------+--------+--------|
-     NG_OFF,   KC_6   , KC_7   , KC_8   , KC_9   , KC_0   ,    JP_YEN,  JP_QUES, JP_LABK, JP_RABK, JP_HASH, _______,
+     NG_OFF,  KC_6   , KC_7   , KC_8   , KC_9   , KC_0   ,     JP_YEN,  JP_PERC, JP_HASH, JP_LABK, JP_RABK,  _______,
   //`--------+--------+--------+--------+--------+--------/   \--------+--------+--------+--------+--------+--------'
                         _______,  _______, _______,  _______,     _______, _______,  _______, _______
   //                  `--------+--------+--------+--------'   `--------+--------+--------+--------'
@@ -254,11 +321,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_RAISE] = LAYOUT( \
   //,--------+--------+--------+--------+--------+--------.   ,--------+--------+--------+--------+--------+--------.
-     _______, _______, _______, KC_F4,   KC_F2,   KC_F12,       KC_APP,  KC_BSPC, KC_DEL,  SCOPY,   _______, _______,
+     _______, JP_SLSH, KC_9,    KC_6,    KC_3,    JP_ASTR,       KC_APP,  KC_BSPC, KC_DEL,  SCOPY,   _______, _______,
   //|--------+--------+--------+--------+--------+--------|   |--------+--------+--------+--------+--------+--------|
-     _______, JP_GRV,  JP_LCBR, JP_LBRC, JP_LPRN, JP_DQUO,      KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_RSFT, _______,
+     _______, JP_EQL,  KC_8,    KC_5,    KC_2,    KC_0,         KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_RSFT, _______,
   //|--------+--------+--------+--------+--------+--------|   |--------+--------+--------+--------+--------+--------|
-     _______, JP_UNDS, JP_RCBR, JP_RBRC, JP_RPRN, JP_QUOT,      KC_HOME, KC_PGDN, KC_PGUP, KC_END,  JP_KANA, NG_ON,
+     _______, JP_MINS, KC_7,    KC_4,    KC_1,    JP_PLUS,      KC_HOME, KC_PGDN, KC_PGUP, KC_END,  JP_KANA, NG_ON,
   //`--------+--------+--------+--------+--------+--------/   \--------+--------+--------+--------+--------+--------'
                         _______, _______, _______,_______,     _______, _______,  _______, _______
   //                  `--------+--------+--------+--------'   `--------+--------+--------+--------'
@@ -266,11 +333,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_ADJUST] = LAYOUT( \
   //,--------+--------+--------+--------+--------+--------.   ,--------+--------+--------+--------+--------+--------.
-     _______, RESET,   KC_F11,  KC_F12,  LDAP_ID, MAIL_AD,     PASS_1,  KC_VOLD, KC_VOLU, KC_MUTE, RESET,   _______,
+     _______, KC_F12,  KC_F9,   KC_F6,   KC_F3,   MAIL_AD,     PASS_1,  KC_VOLD, KC_VOLU, KC_MUTE, RESET,   _______,
   //|--------+--------+--------+--------+--------+--------|   |--------+--------+--------+--------+--------+--------|
-     _______, KC_INS,  KC_F2,   KC_F3,   KC_F4,   KC_F5,       SF_LEFT, SF_DOWN, SF_UP,   SF_RGHT, _______, _______,
+     RESET,   KC_F11,  KC_F8,   KC_F5,   KC_F2,   LDAP_ID,     SF_LEFT, SF_DOWN, SF_UP,   SF_RGHT, _______, _______,
   //|--------+--------+--------+--------+--------+--------|   |--------+--------+--------+--------+--------+--------|
-     _______, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,      SF_HOME, SF_PGDN, SF_PGUP, SF_END,  _______, _______,
+     _______, KC_F10,  KC_F7,   KC_F4,   KC_F1,   KC_INS,      SF_HOME, SF_PGDN, SF_PGUP, SF_END,  _______, _______,
   //`--------+--------+--------+--------+--------+--------/   \--------+--------+--------+--------+--------+--------'
                        _______, _______, _______, _______,     _______, _______, _______, _______
   //                  `--------+--------+--------+--------'   `--------+--------+--------+--------'
