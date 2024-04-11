@@ -281,8 +281,8 @@ const PROGMEM naginata_keymap ngmap[] = {
   {.key = B_E|B_H|B_SHFT2, .kana = "tyu"}, //ちゅ
   {.key = B_E|B_J, .kana = "tyo"}, //ちょ (シフト省略)
   {.key = B_E|B_J|B_SHFT2, .kana = "tyo"}, //ちょ
-  {.key = B_E|B_N|B_K, .kana = "dya"}, //ぢゃ (シフト省略)
-  {.key = B_E|B_N|B_K|B_SHFT2, .kana = "dya"}, //ぢゃ
+//  {.key = B_E|B_N|B_K, .kana = "dya"}, //ぢゃ (シフト省略)
+//  {.key = B_E|B_N|B_K|B_SHFT2, .kana = "dya"}, //ぢゃ
 //  {.key = B_E|B_H|B_K, .kana = "dyu"}, //ぢゅ (シフト省略)
 //  {.key = B_E|B_H|B_K|B_SHFT2, .kana = "dyu"}, //ぢゅ
 //  {.key = B_E|B_J|B_K, .kana = "dyo"}, //ぢょ (シフト省略)
@@ -329,8 +329,8 @@ const PROGMEM naginata_keymap ngmap[] = {
   {.key = B_C|B_J|B_K, .kana = "dhi"}, //でぃ
   {.key = B_C|B_H|B_K, .kana = "dhu"}, //でゅ (シフト省略)
   {.key = B_C|B_H|B_K, .kana = "dhu"}, //でゅ
-  {.key = B_E|B_K|B_I, .kana = "toxu"}, //とぅ
-//  {.key = B_E|B_K, .kana = "doxu"}, //どぅ
+  {.key = B_E|B_K|B_N, .kana = "toxu"}, //とぅ
+  {.key = B_E|B_K|B_H, .kana = "doxu"}, //どぅ
   {.key = B_V|B_U|B_I, .kana = "sye"}, //しぇ
   {.key = B_E|B_U, .kana = "tye"}, //ちぇ (シフト省略)
   {.key = B_E|B_U|B_SHFT2, .kana = "tye"}, //ちぇ
@@ -909,17 +909,19 @@ bool naginata_lookup(int nt, bool shifted) {
 
   // NG_SHFT2はスペースの代わりにエンターを入力する
   if (keycomb_buf == B_SHFT && ninputs[0] == NG_SHFT) {
-    // if (!s1_only) tap_code(KC_COM);
     if (!s1_only) tap_code(KC_SPACE);
     compress_buffer(nt);
     return true;
   }
   if (keycomb_buf == B_SHFT2 && ninputs[0] == NG_SHFT2) {
-    // if (!s2_only) tap_code(KC_DOT);
     if (!s2_only) tap_code(KC_ENT);
+    // if (!s2_only) tap_code(KC_BSPC);
     compress_buffer(nt);
     return true;
   }
+
+
+
 
   if (shifted) {
     // 連続シフトを有効にする

@@ -25,14 +25,15 @@ LAYOUT = [
         "★★★★★★★★★★",
         "★★★★★★★★★★",
     ]
-                            
+        
 ]
+
 
 
 INACTIVE = [
     # "くぃ",
     # "くゎ",
-    "ぐぁ","どぅ", "ふゅ", "ゔゅ", "ぢゅ","ぢょ","ぢぇ",
+    "ぐぁ", "ふゅ", "ゔゅ", "ぢゃ", "ぢゅ","ぢょ","ぢぇ",
 ]
 
 CUT_RATE=0.5
@@ -45,11 +46,20 @@ SHIFT_ORDER = [[],["B_SHFT"],["B_SHFT2"],["B_SHFT","B_SHFT2"]]
 #修飾キー
 def mod_key(w,side)
     mod_keys = {
-        "濁音"   => {:left=>"B_K", :right=>"B_D"} ,
-        "半濁音" => {:left=>"B_I", :right=>"B_E"} ,
+        # "濁音"   => {:left=>"B_K", :right=>"B_D"} ,
+        # "半濁音" => {:left=>"B_I", :right=>"B_E"} ,
+        "濁音"   => {:left=>"B_SLSH", :right=>"B_SLSH"} ,
+        "半濁音" => {:left=>"B_DOT", :right=>"B_DOT"} ,
     }
     mod_keys[w] ? mod_keys[w][side] : nil
 end
+
+#特殊なキーの組み合わせ
+EXCEPTIONAL_KEY_SETS = {
+    "どぅ" => ["B_E","B_K","B_H"],
+    "とぅ" => ["B_E","B_K","B_N"]
+}
+
 
 #ソース
 SRC=[
@@ -651,6 +661,9 @@ rklist.each {|chr|
     # if SHIFT_KEYS.include?(words[0]) && words.size == 1
     #     shift_type = first_pos[:shift] ? :must : :none 
     # end
+
+    #特殊なケース
+    words = EXCEPTIONAL_KEY_SETS[chr] if EXCEPTIONAL_KEY_SETS.include?(chr)
 
     comment = INACTIVE.include?(chr) ? "//" : ""
     if is_verbose

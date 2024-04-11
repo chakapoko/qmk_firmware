@@ -112,6 +112,7 @@ enum custom_keycodes {
 #define LALT_ESC LALT_T(KC_ESC)
 #define LGUI_BS  LGUI_T(KC_BSPC)
 #define LALT_DEL LALT_T(KC_DEL)
+#define DESKTOP  LGUI(KC_TAB)
 
 #define SF_LEFT  S(KC_LEFT)
 #define SF_RGHT  S(KC_RIGHT)
@@ -138,6 +139,7 @@ enum custom_keycodes {
 //#define TH_J_NON MT(NG_ON,  KC_J)
 
 
+/*
 enum combo_events {
   PRN,
   BRC,
@@ -275,7 +277,7 @@ combo_t key_combos[] = {
       break;
   }
 }
-
+*/
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -309,33 +311,33 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_LOWER] = LAYOUT( \
   //,--------+--------+--------+--------+--------+--------.   ,--------+--------+--------+--------+--------+--------.
-     _______, JP_SLSH, JP_MINS, JP_EQL,  JP_PLUS, JP_ASTR,     JP_EXLM, JP_AMPR, JP_PIPE, JP_CIRC, JP_DLR, _______,
+     _______, JP_SLSH, KC_9,    KC_6,    KC_3,    JP_ASTR,     JP_DLR,  JP_COLN, JP_SCLN, JP_PIPE, JP_CIRC, _______,
   //|--------+--------+--------+--------+--------+--------|   |--------+--------+--------+--------+--------+--------|
-     _______, KC_1   , KC_2   , KC_3   , KC_4   , KC_5   ,     JP_TILD,  JP_AT,  JP_QUES, JP_COLN, JP_SCLN, _______,
+     JP_SLSH, JP_EQL,  KC_8,    KC_5,    KC_2,    JP_PLUS,     JP_TILD, JP_AT,   JP_QUES, JP_AMPR, JP_EXLM, JP_CIRC,
   //|--------+--------+--------+--------+--------+--------|   |--------+--------+--------+--------+--------+--------|
-     NG_OFF,  KC_6   , KC_7   , KC_8   , KC_9   , KC_0   ,     JP_YEN,  JP_PERC, JP_HASH, JP_LABK, JP_RABK,  _______,
+     NG_OFF,  JP_MINS, KC_7,    KC_4,    KC_1,    KC_0,        JP_YEN,  JP_LABK, JP_RABK, JP_PERC, JP_HASH, _______,
   //`--------+--------+--------+--------+--------+--------/   \--------+--------+--------+--------+--------+--------'
-                        _______,  _______, _______,  _______,     _______, _______,  _______, _______
+                       _______, _______, _______, _______,     _______, _______, _______, _______
   //                  `--------+--------+--------+--------'   `--------+--------+--------+--------'
   ),
 
   [_RAISE] = LAYOUT( \
   //,--------+--------+--------+--------+--------+--------.   ,--------+--------+--------+--------+--------+--------.
-     _______, JP_SLSH, KC_9,    KC_6,    KC_3,    JP_ASTR,       KC_APP,  KC_BSPC, KC_DEL,  SCOPY,   _______, _______,
+     _______, _______, _______, JP_LCBR, JP_RCBR, JP_GRV,      KC_APP,  KC_BSPC, KC_DEL,  SCOPY,  _______, _______,
   //|--------+--------+--------+--------+--------+--------|   |--------+--------+--------+--------+--------+--------|
-     _______, JP_EQL,  KC_8,    KC_5,    KC_2,    KC_0,         KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_RSFT, _______,
+     _______, JP_UNDS, _______, JP_LPRN, JP_RPRN, JP_DQUO,     KC_LEFT, KC_DOWN, KC_UP,  KC_RGHT, KC_RSFT, _______,
   //|--------+--------+--------+--------+--------+--------|   |--------+--------+--------+--------+--------+--------|
-     _______, JP_MINS, KC_7,    KC_4,    KC_1,    JP_PLUS,      KC_HOME, KC_PGDN, KC_PGUP, KC_END,  JP_KANA, NG_ON,
+     _______, _______, _______, JP_LBRC, JP_RBRC, JP_QUOT,     KC_HOME, KC_PGDN, KC_PGUP, KC_END, JP_KANA, NG_ON,
   //`--------+--------+--------+--------+--------+--------/   \--------+--------+--------+--------+--------+--------'
-                        _______, _______, _______,_______,     _______, _______,  _______, _______
+                        DESKTOP, _______, _______,_______,     _______, _______,  _______, _______
   //                  `--------+--------+--------+--------'   `--------+--------+--------+--------'
   ),
 
   [_ADJUST] = LAYOUT( \
   //,--------+--------+--------+--------+--------+--------.   ,--------+--------+--------+--------+--------+--------.
-     _______, KC_F12,  KC_F9,   KC_F6,   KC_F3,   MAIL_AD,     PASS_1,  KC_VOLD, KC_VOLU, KC_MUTE, RESET,   _______,
+     RESET  , KC_F12,  KC_F9,   KC_F6,   KC_F3,   MAIL_AD,     PASS_1,  KC_VOLD, KC_VOLU, KC_MUTE, RESET,   _______,
   //|--------+--------+--------+--------+--------+--------|   |--------+--------+--------+--------+--------+--------|
-     RESET,   KC_F11,  KC_F8,   KC_F5,   KC_F2,   LDAP_ID,     SF_LEFT, SF_DOWN, SF_UP,   SF_RGHT, _______, _______,
+     KC_F12,  KC_F11,  KC_F8,   KC_F5,   KC_F2,   LDAP_ID,     SF_LEFT, SF_DOWN, SF_UP,   SF_RGHT, _______, _______,
   //|--------+--------+--------+--------+--------+--------|   |--------+--------+--------+--------+--------+--------|
      _______, KC_F10,  KC_F7,   KC_F4,   KC_F1,   KC_INS,      SF_HOME, SF_PGDN, SF_PGUP, SF_END,  _______, _______,
   //`--------+--------+--------+--------+--------+--------/   \--------+--------+--------+--------+--------+--------'
