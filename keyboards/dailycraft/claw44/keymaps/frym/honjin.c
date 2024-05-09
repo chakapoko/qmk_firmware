@@ -171,206 +171,206 @@ const PROGMEM naginata_keymap ngmap[] = {
   {.key = B_H, .kana = "a"}, //あ
   {.key = B_J, .kana = "i"}, //い
   {.key = B_K, .kana = "u"}, //う
-  {.key = B_U|B_SHFT2, .kana = "e"}, //え
-  {.key = B_M|B_SHFT2, .kana = "o"}, //お
+  {.key = B_U|B_K, .kana = "e"}, //え
+  {.key = B_M|B_K, .kana = "o"}, //お
   {.key = B_F, .kana = "ka"}, //か
-  {.key = B_F|B_SHFT, .kana = "ki"}, //き
-  {.key = B_H|B_SHFT, .kana = "ku"}, //く
-  {.key = B_E|B_SHFT, .kana = "ke"}, //け
+  {.key = B_B, .kana = "ki"}, //き
+  {.key = B_G, .kana = "ku"}, //く
+  {.key = B_S, .kana = "ke"}, //け
   {.key = B_R, .kana = "ko"}, //こ
-  {.key = B_I|B_SHFT, .kana = "sa"}, //さ
+  {.key = B_D|B_K, .kana = "sa"}, //さ
   {.key = B_V, .kana = "si"}, //し
   {.key = B_U, .kana = "su"}, //す
-  {.key = B_U|B_SHFT, .kana = "se"}, //せ
-  {.key = B_J|B_SHFT2, .kana = "so"}, //そ
+  {.key = B_S|B_K, .kana = "se"}, //せ
+  {.key = B_Z, .kana = "so"}, //そ
   {.key = B_COMM, .kana = "ta"}, //た
-  {.key = B_E|B_SHFT2, .kana = "ti"}, //ち
-  {.key = B_K|B_SHFT, .kana = "tu"}, //つ
+  {.key = B_X, .kana = "ti"}, //ち
+  {.key = B_G|B_K, .kana = "tu"}, //つ
   {.key = B_C, .kana = "te"}, //て
   {.key = B_E, .kana = "to"}, //と
   {.key = B_N, .kana = "na"}, //な
-  {.key = B_D|B_SHFT, .kana = "ni"}, //に
-  {.key = B_R|B_SHFT2, .kana = "nu"}, //ぬ
-  {.key = B_COMM|B_SHFT2, .kana = "ne"}, //ね
-  {.key = B_G, .kana = "no"}, //の
-  {.key = B_G|B_SHFT, .kana = "ha"}, //は
-  {.key = B_R|B_SHFT, .kana = "hi"}, //ひ
-  {.key = B_B|B_SHFT, .kana = "hu"}, //ふ
-  {.key = B_I|B_SHFT2, .kana = "he"}, //へ
-  {.key = B_V|B_SHFT2, .kana = "ho"}, //ほ
-  {.key = B_D|B_SHFT2, .kana = "ma"}, //ま
-  {.key = B_G|B_SHFT2, .kana = "mi"}, //み
-  {.key = B_K|B_SHFT2, .kana = "mu"}, //む
-  {.key = B_B|B_SHFT2, .kana = "me"}, //め
-  {.key = B_B, .kana = "mo"}, //も
-  {.key = B_N|B_SHFT2, .kana = "ya"}, //や
-  {.key = B_H|B_SHFT2, .kana = "yu"}, //ゆ
-  {.key = B_J|B_SHFT, .kana = "yo"}, //よ
-  {.key = B_N|B_SHFT, .kana = "ra"}, //ら
-  {.key = B_C|B_SHFT, .kana = "ri"}, //り
+  {.key = B_B|B_K, .kana = "ni"}, //に
+  {.key = B_Z|B_J, .kana = "nu"}, //ぬ
+  {.key = B_Z|B_K, .kana = "ne"}, //ね
+  {.key = B_F|B_J, .kana = "no"}, //の
+  {.key = B_F|B_K, .kana = "ha"}, //は
+  {.key = B_W, .kana = "hi"}, //ひ
+  {.key = B_R|B_K, .kana = "hu"}, //ふ
+  {.key = B_Q, .kana = "he"}, //へ
+  {.key = B_T, .kana = "ho"}, //ほ
+  {.key = B_A|B_K, .kana = "ma"}, //ま
+  {.key = B_Q|B_K, .kana = "mi"}, //み
+  {.key = B_A|B_J, .kana = "mu"}, //む
+  {.key = B_X|B_K, .kana = "me"}, //め
+  {.key = B_D|B_J, .kana = "mo"}, //も
+  {.key = B_N|B_K, .kana = "ya"}, //や
+  {.key = B_H|B_K, .kana = "yu"}, //ゆ
+  {.key = B_J|B_K, .kana = "yo"}, //よ
+  {.key = B_C|B_K, .kana = "ra"}, //ら
+  {.key = B_E|B_K, .kana = "ri"}, //り
   {.key = B_I, .kana = "ru"}, //る
-  {.key = B_M, .kana = "re"}, //れ
-  {.key = B_COMM|B_SHFT, .kana = "ro"}, //ろ
-  {.key = B_C|B_SHFT2, .kana = "wa"}, //わ
-  {.key = B_F|B_SHFT2, .kana = "wo"}, //を
+  {.key = B_V|B_K, .kana = "re"}, //れ
+  {.key = B_C|B_J, .kana = "ro"}, //ろ
+  {.key = B_W|B_K, .kana = "wa"}, //わ
+  {.key = B_G|B_J, .kana = "wo"}, //を
   {.key = B_D, .kana = "nn"}, //ん
-  {.key = B_V|B_SHFT, .kana = "-"}, //ー
-  {.key = B_F|B_K, .kana = "ga"}, //が
-  {.key = B_F|B_K|B_SHFT, .kana = "gi"}, //ぎ
-  {.key = B_H|B_D|B_SHFT, .kana = "gu"}, //ぐ
-  {.key = B_E|B_K|B_SHFT, .kana = "ge"}, //げ
-  {.key = B_R|B_K, .kana = "go"}, //ご
-  {.key = B_I|B_D|B_SHFT, .kana = "za"}, //ざ
-  {.key = B_V|B_K, .kana = "zi"}, //じ
-  {.key = B_U|B_D, .kana = "zu"}, //ず
-  {.key = B_U|B_D|B_SHFT, .kana = "ze"}, //ぜ
-  {.key = B_J|B_D|B_SHFT2, .kana = "zo"}, //ぞ
-  {.key = B_COMM|B_D, .kana = "da"}, //だ
-  {.key = B_E|B_K|B_SHFT2, .kana = "di"}, //ぢ
-  {.key = B_K|B_D|B_SHFT, .kana = "du"}, //づ
-  {.key = B_C|B_K, .kana = "de"}, //で
-  {.key = B_E|B_K, .kana = "do"}, //ど
-  {.key = B_G|B_K|B_SHFT, .kana = "ba"}, //ば
-  {.key = B_R|B_K|B_SHFT, .kana = "bi"}, //び
-  {.key = B_B|B_K|B_SHFT, .kana = "bu"}, //ぶ
-  {.key = B_I|B_D|B_SHFT2, .kana = "be"}, //べ
-  {.key = B_V|B_K|B_SHFT2, .kana = "bo"}, //ぼ
-  {.key = B_K|B_D, .kana = "vu"}, //ゔ
-  {.key = B_G|B_I|B_SHFT, .kana = "pa"}, //ぱ
-  {.key = B_R|B_I|B_SHFT, .kana = "pi"}, //ぴ
-  {.key = B_B|B_I|B_SHFT, .kana = "pu"}, //ぷ
-  {.key = B_I|B_E|B_SHFT2, .kana = "pe"}, //ぺ
-  {.key = B_V|B_I|B_SHFT2, .kana = "po"}, //ぽ
-  {.key = B_N|B_T|B_SHFT2, .kana = "lya"}, //ゃ
-  {.key = B_H|B_T|B_SHFT2, .kana = "lyu"}, //ゅ
-  {.key = B_J|B_T|B_SHFT, .kana = "lyo"}, //ょ
+  {.key = B_A, .kana = "-"}, //ー
+  {.key = B_F|B_SHFT, .kana = "ga"}, //が
+  {.key = B_B|B_SHFT, .kana = "gi"}, //ぎ
+  {.key = B_G|B_SHFT, .kana = "gu"}, //ぐ
+  {.key = B_S|B_SHFT, .kana = "ge"}, //げ
+  {.key = B_R|B_SHFT, .kana = "go"}, //ご
+  {.key = B_D|B_SHFT|B_K, .kana = "za"}, //ざ
+  {.key = B_V|B_SHFT, .kana = "zi"}, //じ
+  {.key = B_U|B_SHFT, .kana = "zu"}, //ず
+  {.key = B_S|B_SHFT|B_K, .kana = "ze"}, //ぜ
+  {.key = B_Z|B_SHFT, .kana = "zo"}, //ぞ
+  {.key = B_COMM|B_SHFT, .kana = "da"}, //だ
+  {.key = B_X|B_SHFT, .kana = "di"}, //ぢ
+  {.key = B_G|B_SHFT|B_K, .kana = "du"}, //づ
+  {.key = B_C|B_SHFT, .kana = "de"}, //で
+  {.key = B_E|B_SHFT, .kana = "do"}, //ど
+  {.key = B_F|B_SHFT|B_K, .kana = "ba"}, //ば
+  {.key = B_W|B_SHFT, .kana = "bi"}, //び
+  {.key = B_R|B_SHFT|B_K, .kana = "bu"}, //ぶ
+  {.key = B_Q|B_SHFT, .kana = "be"}, //べ
+  {.key = B_T|B_SHFT, .kana = "bo"}, //ぼ
+  {.key = B_K|B_SHFT, .kana = "vu"}, //ゔ
+  {.key = B_F|B_SHFT2|B_K, .kana = "pa"}, //ぱ
+  {.key = B_W|B_SHFT2, .kana = "pi"}, //ぴ
+  {.key = B_R|B_SHFT2|B_K, .kana = "pu"}, //ぷ
+  {.key = B_Q|B_SHFT2, .kana = "pe"}, //ぺ
+  {.key = B_T|B_SHFT2, .kana = "po"}, //ぽ
+  {.key = B_N|B_T|B_K, .kana = "lya"}, //ゃ
+  {.key = B_H|B_T|B_K, .kana = "lyu"}, //ゅ
+  {.key = B_J|B_T|B_K, .kana = "lyo"}, //ょ
   {.key = B_H|B_T, .kana = "la"}, //ぁ
   {.key = B_J|B_T, .kana = "li"}, //ぃ
   {.key = B_K|B_T, .kana = "lu"}, //ぅ
-  {.key = B_U|B_T|B_SHFT2, .kana = "le"}, //ぇ
-  {.key = B_M|B_T|B_SHFT2, .kana = "lo"}, //ぉ
-  {.key = B_C|B_T|B_SHFT2, .kana = "lwa"}, //ゎ
-  {.key = B_M|B_SHFT, .kana = "ltu"}, //っ
+  {.key = B_U|B_T|B_K, .kana = "le"}, //ぇ
+  {.key = B_M|B_T|B_K, .kana = "lo"}, //ぉ
+  {.key = B_W|B_T|B_K, .kana = "lwa"}, //ゎ
+  {.key = B_M, .kana = "ltu"}, //っ
   {.key = B_V|B_N, .kana = "sya"}, //しゃ (シフト省略)
   {.key = B_V|B_N, .kana = "sya"}, //しゃ
   {.key = B_V|B_H, .kana = "syu"}, //しゅ (シフト省略)
   {.key = B_V|B_H, .kana = "syu"}, //しゅ
   {.key = B_V|B_J, .kana = "syo"}, //しょ (シフト省略)
   {.key = B_V|B_J, .kana = "syo"}, //しょ
-  {.key = B_V|B_N|B_K, .kana = "zya"}, //じゃ (シフト省略)
-  {.key = B_V|B_N|B_K, .kana = "zya"}, //じゃ
-  {.key = B_V|B_H|B_K, .kana = "zyu"}, //じゅ (シフト省略)
-  {.key = B_V|B_H|B_K, .kana = "zyu"}, //じゅ
-  {.key = B_V|B_J|B_K, .kana = "zyo"}, //じょ (シフト省略)
-  {.key = B_V|B_J|B_K, .kana = "zyo"}, //じょ
-  {.key = B_F|B_N, .kana = "kya"}, //きゃ (シフト省略)
-  {.key = B_F|B_N|B_SHFT, .kana = "kya"}, //きゃ
-  {.key = B_F|B_H, .kana = "kyu"}, //きゅ (シフト省略)
-  {.key = B_F|B_H|B_SHFT, .kana = "kyu"}, //きゅ
-  {.key = B_F|B_J, .kana = "kyo"}, //きょ (シフト省略)
-  {.key = B_F|B_J|B_SHFT, .kana = "kyo"}, //きょ
-  {.key = B_F|B_N|B_K, .kana = "gya"}, //ぎゃ (シフト省略)
-  {.key = B_F|B_N|B_K|B_SHFT, .kana = "gya"}, //ぎゃ
-  {.key = B_F|B_H|B_K, .kana = "gyu"}, //ぎゅ (シフト省略)
-  {.key = B_F|B_H|B_K|B_SHFT, .kana = "gyu"}, //ぎゅ
-  {.key = B_F|B_J|B_K, .kana = "gyo"}, //ぎょ (シフト省略)
-  {.key = B_F|B_J|B_K|B_SHFT, .kana = "gyo"}, //ぎょ
-  {.key = B_E|B_N, .kana = "tya"}, //ちゃ (シフト省略)
-  {.key = B_E|B_N|B_SHFT2, .kana = "tya"}, //ちゃ
-  {.key = B_E|B_H, .kana = "tyu"}, //ちゅ (シフト省略)
-  {.key = B_E|B_H|B_SHFT2, .kana = "tyu"}, //ちゅ
-  {.key = B_E|B_J, .kana = "tyo"}, //ちょ (シフト省略)
-  {.key = B_E|B_J|B_SHFT2, .kana = "tyo"}, //ちょ
-//  {.key = B_E|B_N|B_K, .kana = "dya"}, //ぢゃ (シフト省略)
-//  {.key = B_E|B_N|B_K|B_SHFT2, .kana = "dya"}, //ぢゃ
-//  {.key = B_E|B_H|B_K, .kana = "dyu"}, //ぢゅ (シフト省略)
-//  {.key = B_E|B_H|B_K|B_SHFT2, .kana = "dyu"}, //ぢゅ
-//  {.key = B_E|B_J|B_K, .kana = "dyo"}, //ぢょ (シフト省略)
-//  {.key = B_E|B_J|B_K|B_SHFT2, .kana = "dyo"}, //ぢょ
-  {.key = B_D|B_N, .kana = "nya"}, //にゃ (シフト省略)
-  {.key = B_D|B_N|B_SHFT, .kana = "nya"}, //にゃ
-  {.key = B_D|B_H, .kana = "nyu"}, //にゅ (シフト省略)
-  {.key = B_D|B_H|B_SHFT, .kana = "nyu"}, //にゅ
-  {.key = B_D|B_J, .kana = "nyo"}, //にょ (シフト省略)
-  {.key = B_D|B_J|B_SHFT, .kana = "nyo"}, //にょ
-  {.key = B_R|B_N, .kana = "hya"}, //ひゃ (シフト省略)
-  {.key = B_R|B_N|B_SHFT, .kana = "hya"}, //ひゃ
-  {.key = B_R|B_H, .kana = "hyu"}, //ひゅ (シフト省略)
-  {.key = B_R|B_H|B_SHFT, .kana = "hyu"}, //ひゅ
-  {.key = B_R|B_J, .kana = "hyo"}, //ひょ (シフト省略)
-  {.key = B_R|B_J|B_SHFT, .kana = "hyo"}, //ひょ
-  {.key = B_R|B_N|B_K, .kana = "bya"}, //びゃ (シフト省略)
-  {.key = B_R|B_N|B_K|B_SHFT, .kana = "bya"}, //びゃ
-  {.key = B_R|B_H|B_K, .kana = "byu"}, //びゅ (シフト省略)
-  {.key = B_R|B_H|B_K|B_SHFT, .kana = "byu"}, //びゅ
-  {.key = B_R|B_J|B_K, .kana = "byo"}, //びょ (シフト省略)
-  {.key = B_R|B_J|B_K|B_SHFT, .kana = "byo"}, //びょ
-  {.key = B_R|B_N|B_I, .kana = "pya"}, //ぴゃ (シフト省略)
-  {.key = B_R|B_N|B_I|B_SHFT, .kana = "pya"}, //ぴゃ
-  {.key = B_R|B_H|B_I, .kana = "pyu"}, //ぴゅ (シフト省略)
-  {.key = B_R|B_H|B_I|B_SHFT, .kana = "pyu"}, //ぴゅ
-  {.key = B_R|B_J|B_I, .kana = "pyo"}, //ぴょ (シフト省略)
-  {.key = B_R|B_J|B_I|B_SHFT, .kana = "pyo"}, //ぴょ
-  {.key = B_G|B_N, .kana = "mya"}, //みゃ (シフト省略)
-  {.key = B_G|B_N|B_SHFT2, .kana = "mya"}, //みゃ
-  {.key = B_G|B_H, .kana = "myu"}, //みゅ (シフト省略)
-  {.key = B_G|B_H|B_SHFT2, .kana = "myu"}, //みゅ
-  {.key = B_G|B_J, .kana = "myo"}, //みょ (シフト省略)
-  {.key = B_G|B_J|B_SHFT2, .kana = "myo"}, //みょ
-  {.key = B_C|B_N, .kana = "rya"}, //りゃ (シフト省略)
-  {.key = B_C|B_N|B_SHFT, .kana = "rya"}, //りゃ
-  {.key = B_C|B_H, .kana = "ryu"}, //りゅ (シフト省略)
-  {.key = B_C|B_H|B_SHFT, .kana = "ryu"}, //りゅ
-  {.key = B_C|B_J, .kana = "ryo"}, //りょ (シフト省略)
-  {.key = B_C|B_J|B_SHFT, .kana = "ryo"}, //りょ
-  {.key = B_C|B_J|B_I, .kana = "thi"}, //てぃ
+  {.key = B_V|B_N|B_SHFT, .kana = "zya"}, //じゃ (シフト省略)
+  {.key = B_V|B_N|B_SHFT, .kana = "zya"}, //じゃ
+  {.key = B_V|B_H|B_SHFT, .kana = "zyu"}, //じゅ (シフト省略)
+  {.key = B_V|B_H|B_SHFT, .kana = "zyu"}, //じゅ
+  {.key = B_V|B_J|B_SHFT, .kana = "zyo"}, //じょ (シフト省略)
+  {.key = B_V|B_J|B_SHFT, .kana = "zyo"}, //じょ
+  {.key = B_B|B_N, .kana = "kya"}, //きゃ (シフト省略)
+  {.key = B_B|B_N, .kana = "kya"}, //きゃ
+  {.key = B_B|B_H, .kana = "kyu"}, //きゅ (シフト省略)
+  {.key = B_B|B_H, .kana = "kyu"}, //きゅ
+  {.key = B_B|B_J, .kana = "kyo"}, //きょ (シフト省略)
+  {.key = B_B|B_J, .kana = "kyo"}, //きょ
+  {.key = B_B|B_N|B_SHFT, .kana = "gya"}, //ぎゃ (シフト省略)
+  {.key = B_B|B_N|B_SHFT, .kana = "gya"}, //ぎゃ
+  {.key = B_B|B_H|B_SHFT, .kana = "gyu"}, //ぎゅ (シフト省略)
+  {.key = B_B|B_H|B_SHFT, .kana = "gyu"}, //ぎゅ
+  {.key = B_B|B_J|B_SHFT, .kana = "gyo"}, //ぎょ (シフト省略)
+  {.key = B_B|B_J|B_SHFT, .kana = "gyo"}, //ぎょ
+  {.key = B_X|B_N, .kana = "tya"}, //ちゃ (シフト省略)
+  {.key = B_X|B_N, .kana = "tya"}, //ちゃ
+  {.key = B_X|B_H, .kana = "tyu"}, //ちゅ (シフト省略)
+  {.key = B_X|B_H, .kana = "tyu"}, //ちゅ
+  {.key = B_X|B_J, .kana = "tyo"}, //ちょ (シフト省略)
+  {.key = B_X|B_J, .kana = "tyo"}, //ちょ
+  {.key = B_X|B_N|B_SHFT, .kana = "dya"}, //ぢゃ (シフト省略)
+  {.key = B_X|B_N|B_SHFT, .kana = "dya"}, //ぢゃ
+  {.key = B_X|B_H|B_SHFT, .kana = "dyu"}, //ぢゅ (シフト省略)
+  {.key = B_X|B_H|B_SHFT, .kana = "dyu"}, //ぢゅ
+  {.key = B_X|B_J|B_SHFT, .kana = "dyo"}, //ぢょ (シフト省略)
+  {.key = B_X|B_J|B_SHFT, .kana = "dyo"}, //ぢょ
+  {.key = B_B|B_N, .kana = "nya"}, //にゃ (シフト省略)
+  {.key = B_B|B_N|B_K, .kana = "nya"}, //にゃ
+  {.key = B_B|B_H, .kana = "nyu"}, //にゅ (シフト省略)
+  {.key = B_B|B_H|B_K, .kana = "nyu"}, //にゅ
+  {.key = B_B|B_J, .kana = "nyo"}, //にょ (シフト省略)
+  {.key = B_B|B_J|B_K, .kana = "nyo"}, //にょ
+  {.key = B_W|B_N, .kana = "hya"}, //ひゃ (シフト省略)
+  {.key = B_W|B_N, .kana = "hya"}, //ひゃ
+  {.key = B_W|B_H, .kana = "hyu"}, //ひゅ (シフト省略)
+  {.key = B_W|B_H, .kana = "hyu"}, //ひゅ
+  {.key = B_W|B_J, .kana = "hyo"}, //ひょ (シフト省略)
+  {.key = B_W|B_J, .kana = "hyo"}, //ひょ
+  {.key = B_W|B_N|B_SHFT, .kana = "bya"}, //びゃ (シフト省略)
+  {.key = B_W|B_N|B_SHFT, .kana = "bya"}, //びゃ
+  {.key = B_W|B_H|B_SHFT, .kana = "byu"}, //びゅ (シフト省略)
+  {.key = B_W|B_H|B_SHFT, .kana = "byu"}, //びゅ
+  {.key = B_W|B_J|B_SHFT, .kana = "byo"}, //びょ (シフト省略)
+  {.key = B_W|B_J|B_SHFT, .kana = "byo"}, //びょ
+  {.key = B_W|B_N|B_SHFT2, .kana = "pya"}, //ぴゃ (シフト省略)
+  {.key = B_W|B_N|B_SHFT2, .kana = "pya"}, //ぴゃ
+  {.key = B_W|B_H|B_SHFT2, .kana = "pyu"}, //ぴゅ (シフト省略)
+  {.key = B_W|B_H|B_SHFT2, .kana = "pyu"}, //ぴゅ
+  {.key = B_W|B_J|B_SHFT2, .kana = "pyo"}, //ぴょ (シフト省略)
+  {.key = B_W|B_J|B_SHFT2, .kana = "pyo"}, //ぴょ
+  {.key = B_Q|B_N, .kana = "mya"}, //みゃ (シフト省略)
+  {.key = B_Q|B_N|B_K, .kana = "mya"}, //みゃ
+  {.key = B_Q|B_H, .kana = "myu"}, //みゅ (シフト省略)
+  {.key = B_Q|B_H|B_K, .kana = "myu"}, //みゅ
+  {.key = B_Q|B_J, .kana = "myo"}, //みょ (シフト省略)
+  {.key = B_Q|B_J|B_K, .kana = "myo"}, //みょ
+  {.key = B_E|B_N, .kana = "rya"}, //りゃ (シフト省略)
+  {.key = B_E|B_N|B_K, .kana = "rya"}, //りゃ
+  {.key = B_E|B_H, .kana = "ryu"}, //りゅ (シフト省略)
+  {.key = B_E|B_H|B_K, .kana = "ryu"}, //りゅ
+  {.key = B_E|B_J, .kana = "ryo"}, //りょ (シフト省略)
+  {.key = B_E|B_J|B_K, .kana = "ryo"}, //りょ
+  {.key = B_C|B_J|B_SHFT2, .kana = "thi"}, //てぃ
   {.key = B_C|B_H, .kana = "thu"}, //てゅ (シフト省略)
   {.key = B_C|B_H, .kana = "thu"}, //てゅ
-  {.key = B_C|B_J|B_K, .kana = "dhi"}, //でぃ
-  {.key = B_C|B_H|B_K, .kana = "dhu"}, //でゅ (シフト省略)
-  {.key = B_C|B_H|B_K, .kana = "dhu"}, //でゅ
-  {.key = B_E|B_K|B_N, .kana = "toxu"}, //とぅ
-  {.key = B_E|B_K|B_H, .kana = "doxu"}, //どぅ
-  {.key = B_V|B_U|B_I, .kana = "sye"}, //しぇ
-  {.key = B_E|B_U, .kana = "tye"}, //ちぇ (シフト省略)
-  {.key = B_E|B_U|B_SHFT2, .kana = "tye"}, //ちぇ
-  {.key = B_V|B_U|B_K, .kana = "zye"}, //じぇ
-//  {.key = B_E|B_U|B_K, .kana = "dye"}, //ぢぇ (シフト省略)
-//  {.key = B_E|B_U|B_K|B_SHFT2, .kana = "dye"}, //ぢぇ
-  {.key = B_B|B_H, .kana = "fa"}, //ふぁ (シフト省略)
-  {.key = B_B|B_H|B_SHFT, .kana = "fa"}, //ふぁ
-  {.key = B_B|B_J, .kana = "fi"}, //ふぃ (シフト省略)
-  {.key = B_B|B_J|B_SHFT, .kana = "fi"}, //ふぃ
-  {.key = B_B|B_U, .kana = "fe"}, //ふぇ (シフト省略)
-  {.key = B_B|B_U|B_SHFT, .kana = "fe"}, //ふぇ
-  {.key = B_B|B_M, .kana = "fo"}, //ふぉ (シフト省略)
-  {.key = B_B|B_M|B_SHFT, .kana = "fo"}, //ふぉ
-//  {.key = B_B|B_H, .kana = "fyu"}, //ふゅ (シフト省略)
-//  {.key = B_B|B_H|B_SHFT, .kana = "fyu"}, //ふゅ
-  {.key = B_J|B_U|B_E, .kana = "ixe"}, //いぇ
-  {.key = B_K|B_J|B_E, .kana = "wi"}, //うぃ
-  {.key = B_K|B_U|B_E, .kana = "we"}, //うぇ
-  {.key = B_K|B_M|B_E, .kana = "uxo"}, //うぉ
-  {.key = B_K|B_H|B_D, .kana = "va"}, //ゔぁ
-  {.key = B_K|B_J|B_D, .kana = "vi"}, //ゔぃ
-  {.key = B_K|B_U|B_D, .kana = "ve"}, //ゔぇ
-  {.key = B_K|B_M|B_D, .kana = "vo"}, //ゔぉ
-//  {.key = B_K|B_H|B_D, .kana = "vuxyu"}, //ゔゅ (シフト省略)
-//  {.key = B_K|B_H|B_D, .kana = "vuxyu"}, //ゔゅ
-  {.key = B_H|B_E|B_SHFT, .kana = "kuxa"}, //くぁ
-  {.key = B_H|B_J|B_E|B_SHFT, .kana = "kuxi"}, //くぃ
-  {.key = B_H|B_U|B_E|B_SHFT, .kana = "kuxe"}, //くぇ
-  {.key = B_H|B_M|B_E|B_SHFT, .kana = "kuxo"}, //くぉ
-  {.key = B_H|B_C|B_E|B_SHFT, .kana = "kuxwa"}, //くゎ
-//  {.key = B_H|B_D|B_SHFT, .kana = "guxa"}, //ぐぁ
-  {.key = B_H|B_J|B_D|B_SHFT, .kana = "guxi"}, //ぐぃ
-  {.key = B_H|B_U|B_D|B_SHFT, .kana = "guxe"}, //ぐぇ
-  {.key = B_H|B_M|B_D|B_SHFT, .kana = "guxo"}, //ぐぉ
-  {.key = B_H|B_C|B_D|B_SHFT, .kana = "guxwa"}, //ぐゎ
-  {.key = B_K|B_H|B_E|B_SHFT, .kana = "tsa"}, //つぁ
-  {.key = B_K|B_J|B_E|B_SHFT, .kana = "tsi"}, //つぃ
-  {.key = B_K|B_U|B_E|B_SHFT, .kana = "tse"}, //つぇ
-  {.key = B_K|B_M|B_E|B_SHFT, .kana = "tso"}, //つぉ
+  {.key = B_C|B_J|B_SHFT, .kana = "dhi"}, //でぃ
+  {.key = B_C|B_H|B_SHFT, .kana = "dhu"}, //でゅ (シフト省略)
+  {.key = B_C|B_H|B_SHFT, .kana = "dhu"}, //でゅ
+  {.key = B_E|B_K|B_SHFT2, .kana = "toxu"}, //とぅ
+  {.key = B_E|B_K|B_SHFT, .kana = "doxu"}, //どぅ
+  {.key = B_V|B_U|B_SHFT2, .kana = "sye"}, //しぇ
+  {.key = B_X|B_U, .kana = "tye"}, //ちぇ (シフト省略)
+  {.key = B_X|B_U, .kana = "tye"}, //ちぇ
+  {.key = B_V|B_U|B_SHFT, .kana = "zye"}, //じぇ
+  {.key = B_X|B_U|B_SHFT, .kana = "dye"}, //ぢぇ (シフト省略)
+  {.key = B_X|B_U|B_SHFT, .kana = "dye"}, //ぢぇ
+  {.key = B_R|B_H, .kana = "fa"}, //ふぁ (シフト省略)
+  {.key = B_R|B_H|B_K, .kana = "fa"}, //ふぁ
+  {.key = B_R|B_J, .kana = "fi"}, //ふぃ (シフト省略)
+  {.key = B_R|B_J|B_K, .kana = "fi"}, //ふぃ
+  {.key = B_R|B_U, .kana = "fe"}, //ふぇ (シフト省略)
+  {.key = B_R|B_U|B_K, .kana = "fe"}, //ふぇ
+  {.key = B_R|B_M, .kana = "fo"}, //ふぉ (シフト省略)
+  {.key = B_R|B_M|B_K, .kana = "fo"}, //ふぉ
+//  {.key = B_R|B_H, .kana = "fyu"}, //ふゅ (シフト省略)
+//  {.key = B_R|B_H|B_K, .kana = "fyu"}, //ふゅ
+  {.key = B_J|B_U|B_SHFT2, .kana = "ixe"}, //いぇ
+  {.key = B_K|B_J|B_SHFT2, .kana = "wi"}, //うぃ
+  {.key = B_K|B_U|B_SHFT2, .kana = "we"}, //うぇ
+  {.key = B_K|B_M|B_SHFT2, .kana = "uxo"}, //うぉ
+  {.key = B_K|B_H|B_SHFT, .kana = "va"}, //ゔぁ
+  {.key = B_K|B_J|B_SHFT, .kana = "vi"}, //ゔぃ
+  {.key = B_K|B_U|B_SHFT, .kana = "ve"}, //ゔぇ
+  {.key = B_K|B_M|B_SHFT, .kana = "vo"}, //ゔぉ
+//  {.key = B_K|B_H|B_SHFT, .kana = "vuxyu"}, //ゔゅ (シフト省略)
+//  {.key = B_K|B_H|B_SHFT, .kana = "vuxyu"}, //ゔゅ
+  {.key = B_G|B_H|B_SHFT2, .kana = "kuxa"}, //くぁ
+  {.key = B_G|B_J|B_SHFT2, .kana = "kuxi"}, //くぃ
+  {.key = B_G|B_U|B_SHFT2, .kana = "kuxe"}, //くぇ
+  {.key = B_G|B_M|B_SHFT2, .kana = "kuxo"}, //くぉ
+  {.key = B_G|B_W|B_SHFT2, .kana = "kuxwa"}, //くゎ
+  {.key = B_G|B_H|B_SHFT, .kana = "guxa"}, //ぐぁ
+  {.key = B_G|B_J|B_SHFT, .kana = "guxi"}, //ぐぃ
+  {.key = B_G|B_U|B_SHFT, .kana = "guxe"}, //ぐぇ
+  {.key = B_G|B_M|B_SHFT, .kana = "guxo"}, //ぐぉ
+  {.key = B_G|B_W|B_SHFT, .kana = "guxwa"}, //ぐゎ
+  {.key = B_G|B_H|B_SHFT2|B_K, .kana = "tsa"}, //つぁ
+  {.key = B_G|B_J|B_SHFT2|B_K, .kana = "tsi"}, //つぃ
+  {.key = B_G|B_U|B_SHFT2|B_K, .kana = "tse"}, //つぇ
+  {.key = B_G|B_M|B_SHFT2|B_K, .kana = "tso"}, //つぉ
 // 追加
 //ここまで自動書き換え対象
 
@@ -393,6 +393,16 @@ const PROGMEM naginata_keymap_long ngmapl[] = {
 
   {.key = B_D|B_G  , .kana = SS_LSFT(SS_TAP(X_8))SS_LSFT(SS_TAP(X_9))SS_TAP(X_LEFT)}, //（）
   {.key = B_C|B_B  , .kana = "]\\"SS_TAP(X_LEFT)}, //「」
+
+  {.key = B_G|B_COMM, .kana = "gu"}, //ぐ
+  {.key = B_F|B_COMM, .kana = "ba"}, //ば
+  {.key = B_D|B_COMM, .kana = "za"}, //ざ
+  {.key = B_S|B_COMM, .kana = "ze"}, //ぜ
+  {.key = B_R|B_COMM, .kana = "bu"}, //ぶ
+  {.key = B_G|B_M,    .kana = "ge"}, //げ
+  {.key = B_D|B_M,    .kana = "du"}, //づ
+
+
 /*
   {.key = B_H|B_J, .kana = "ltu"}, //っ
   {.key = B_H|B_I, .kana = "sa"}, //さ
@@ -924,7 +934,7 @@ bool naginata_lookup(int nt, bool shifted) {
 
 
   if (shifted) {
-    // 連続シフトを有効にする
+    // 濁音・半濁音を連続する
     if ((keycomb & B_SHFT) == B_SHFT) keycomb_buf |= B_SHFT;
     if ((keycomb & B_SHFT2) == B_SHFT2) keycomb_buf |= B_SHFT2;
 
@@ -934,11 +944,9 @@ bool naginata_lookup(int nt, bool shifted) {
     //if ((keycomb & (B_J | B_K))    == (B_J | B_K))    keycomb_buf |= (B_J | B_K);
     // if ((keycomb & (B_M | B_COMM)) == (B_M | B_COMM)) keycomb_buf |= (B_M | B_COMM);
 
-    // 濁音、半濁音を連続する
-    if ((keycomb & B_D) == B_D) keycomb_buf |= B_D;
+    // シフトを連続する
+    if ((keycomb & B_J) == B_J) keycomb_buf |= B_J;
     if ((keycomb & B_K) == B_K) keycomb_buf |= B_K;
-    if ((keycomb & B_C) == B_C) keycomb_buf |= B_C;
-    if ((keycomb & B_COMM) == B_COMM) keycomb_buf |= B_COMM;
   }
 
   switch (keycomb_buf) {

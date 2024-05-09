@@ -1,63 +1,77 @@
 require 'victor'
 
 #シフトは親指か？
-THUMB = true
+THUMB = false
 
-
-#本陣 20231030版
-
+#本陣 20240428版
 LAYOUT = [
 
-    [
-        "★★とこ小★する★★",
-        "★★んかのあいう★★",
-        "★★てしもなれた★★",
-    ], [
-        "★★けひ★★せさ★★",
-        "★★にきはくよつ★★",
-        "★★りーふらっろ★★",
-    ], [
-        "★★ちぬ★★えへ★★",
-        "★★まをみゆそむ★★",
-        "★★わほめやおね★★",
-    ], [
-        "★★★★★★★★★★",
-        "★★★★★★★★★★",
-        "★★★★★★★★★★",
-    ]
-        
+# [
+#     "へひとこほ★する★★",
+#     "ーきんかのあいう★★",
+#     "そちてしもなった★★",
+# ], [
+#     "みわりふ小★え★★★",
+#     "ませさはけゆよ★★★",
+#     "ねめつくにやお★★★",
+# ], [
+#     "★★★★★★★★★★",
+#     "む★られを★★★★★",
+#     "ぬ★ろ★★★★★★★",
+# ]
+
+[
+    "へひとこほ★する★★",
+    "ーけんかくあいう★★",
+    "そちてしきなった★★",
+], [
+    "みわりふ小★え★★★",
+    "ませさはつゆよ★★★",
+    "ねめられにやお★★★",
+], [
+    "★★★★★★★★★★",
+    "む★ものを★★★★★",
+    "ぬ★ろ★★★★★★★",
+]
+
 ]
 
 
 
 INACTIVE = [
-    # "くぃ",
-    # "くゎ",
-    "ぐぁ", "ふゅ", "ゔゅ", "ぢゃ", "ぢゅ","ぢょ","ぢぇ",
+    # "くぃ", "くゎ","ぐぁ", 
+    "ふゅ", "ゔゅ"
 ]
 
 CUT_RATE=0.5
 
-SHIFT_KEYS = ["B_SHFT","B_SHFT2"]
+# SHIFT_KEYS = ["B_SHFT","B_SHFT2"]
+# SHIFT_ORDER = [[],["B_SHFT"],["B_SHFT2"],["B_SHFT","B_SHFT2"]]
 
-SHIFT_ORDER = [[],["B_SHFT"],["B_SHFT2"],["B_SHFT","B_SHFT2"]]
+# SHIFT_KEYS = ["B_D","B_K","B_C","B_COMM"]
+# SHIFT_ORDER = [[],["B_D"],["B_K"],["B_C"],["B_COMM"]]
+
+SHIFT_KEYS = ["B_K","B_J"]
+SHIFT_ORDER = [[],["B_K"],["B_J"]]
 
 
 #修飾キー
 def mod_key(w,side)
     mod_keys = {
+        "濁音"   => {:left=>"B_SHFT", :right=>"B_SHFT"} ,
+        "半濁音" => {:left=>"B_SHFT2", :right=>"B_SHFT2"} ,
         # "濁音"   => {:left=>"B_K", :right=>"B_D"} ,
         # "半濁音" => {:left=>"B_I", :right=>"B_E"} ,
-        "濁音"   => {:left=>"B_SLSH", :right=>"B_SLSH"} ,
-        "半濁音" => {:left=>"B_DOT", :right=>"B_DOT"} ,
+        # "濁音"   => {:left=>"B_SHFT2", :right=>"B_SHFT"} ,
+        # "半濁音" => {:left=>"B_SHFT", :right=>"B_SHFT2"} ,
     }
     mod_keys[w] ? mod_keys[w][side] : nil
 end
 
 #特殊なキーの組み合わせ
 EXCEPTIONAL_KEY_SETS = {
-    "どぅ" => ["B_E","B_K","B_H"],
-    "とぅ" => ["B_E","B_K","B_N"]
+    # "どぅ" => ["B_E","B_K","B_H"],
+    # "とぅ" => ["B_E","B_K","B_N"]
 }
 
 
@@ -658,9 +672,9 @@ rklist.each {|chr|
     }.uniq!
 
     #文字キーがシフトも兼ねている場合
-    # if SHIFT_KEYS.include?(words[0]) && words.size == 1
-    #     shift_type = first_pos[:shift] ? :must : :none 
-    # end
+    if SHIFT_KEYS.include?(words[0]) && words.size == 1
+        # shift_type = first_pos[:shift] ? :must : :none 
+    end
 
     #特殊なケース
     words = EXCEPTIONAL_KEY_SETS[chr] if EXCEPTIONAL_KEY_SETS.include?(chr)
@@ -669,6 +683,7 @@ rklist.each {|chr|
     if is_verbose
         codes.push("#{comment}  {.key = #{words.join("|")}, .kana = \"#{info[:keys]}\"}, //#{chr} (シフト省略)")
     end
+
     SHIFT_ORDER[shift_type].each{|k| words.push(k) }
     codes.push("#{comment}  {.key = #{words.join("|")}, .kana = \"#{info[:keys]}\"}, //#{chr}")
 

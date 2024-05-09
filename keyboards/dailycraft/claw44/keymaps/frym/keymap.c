@@ -139,6 +139,38 @@ enum custom_keycodes {
 //#define TH_J_NON MT(NG_ON,  KC_J)
 
 
+enum combo_events {
+  CMB_SCLN,
+  CMB_PIPE,
+  CMB_PERC,
+  CMB_EXLM,
+  CMB_DLR,
+  CMB_CIRC,
+  COMBO_LENGTH
+};
+
+uint16_t COMBO_LEN = COMBO_LENGTH;
+
+const uint16_t PROGMEM combo_scln[]   = {JP_HASH, JP_COLN, COMBO_END};  // ；
+const uint16_t PROGMEM combo_pipe[]   = {JP_COLN, JP_AMPR, COMBO_END};  // |
+const uint16_t PROGMEM combo_perc[]   = {JP_TILD, JP_AT,   COMBO_END};  // %
+const uint16_t PROGMEM combo_exlm[]   = {JP_AT,   JP_QUES, COMBO_END};  // !
+const uint16_t PROGMEM combo_dlr[]    = {JP_YEN,  JP_LABK, COMBO_END};  // $
+const uint16_t PROGMEM combo_circ[]   = {JP_LABK, JP_RABK, COMBO_END};  // ^
+
+combo_t key_combos[] = {
+    [CMB_SCLN]    = COMBO(combo_scln , JP_SCLN), 
+    [CMB_PIPE]    = COMBO(combo_pipe , JP_PIPE),
+    [CMB_PERC]    = COMBO(combo_perc , JP_PERC),
+    [CMB_EXLM]    = COMBO(combo_exlm , JP_EXLM),
+    [CMB_DLR]     = COMBO(combo_dlr , JP_DLR),
+    [CMB_CIRC]    = COMBO(combo_circ , JP_CIRC),
+};
+
+
+
+
+
 /*
 enum combo_events {
   PRN,
@@ -291,7 +323,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      _______,  KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,         KC_N,     KC_M,     KC_COMM, KC_DOT,   JP_SLSH, _______,
   //`--------+---------+---------+---------+---------+---------/   \---------+---------+--------+---------+--------+--------'
                       // LGUI_TAB,  LOWER,     KC_SPC,   CT_BS,        SF_DEL,   KC_ENTER, RAISE,   LALT_ESC
-                       LGUI_TAB,  LOWER,     SF_SPACE , CT_BS,        SF_DEL,   CT_ENTER, RAISE,   LALT_ESC
+                       LGUI_TAB,  LOWER,     SF_SPACE , CT_BS,       SF_DEL,   CT_ENTER, RAISE,   LALT_ESC
    //                  `----------+---------+---------+---------'   `---------+---------+--------+---------'
   ),
 
@@ -311,11 +343,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_LOWER] = LAYOUT( \
   //,--------+--------+--------+--------+--------+--------.   ,--------+--------+--------+--------+--------+--------.
-     _______, JP_SLSH, KC_9,    KC_6,    KC_3,    JP_ASTR,     JP_DLR,  JP_COLN, JP_SCLN, JP_PIPE, JP_CIRC, _______,
+     _______, JP_SLSH, KC_9,    KC_6,    KC_3,    JP_ASTR,     JP_HASH,  JP_COLN, JP_AMPR,_______, _______, _______,
   //|--------+--------+--------+--------+--------+--------|   |--------+--------+--------+--------+--------+--------|
-     JP_SLSH, JP_EQL,  KC_8,    KC_5,    KC_2,    JP_PLUS,     JP_TILD, JP_AT,   JP_QUES, JP_AMPR, JP_EXLM, JP_CIRC,
+     JP_SLSH, JP_MINS, KC_8,    KC_5,    KC_2,    JP_PLUS,     JP_TILD, JP_AT,   JP_QUES, _______, _______, _______,
   //|--------+--------+--------+--------+--------+--------|   |--------+--------+--------+--------+--------+--------|
-     NG_OFF,  JP_MINS, KC_7,    KC_4,    KC_1,    KC_0,        JP_YEN,  JP_LABK, JP_RABK, JP_PERC, JP_HASH, _______,
+     NG_OFF,  JP_EQL,  KC_7,    KC_4,    KC_1,    KC_0,        JP_YEN,  JP_LABK, JP_RABK, _______, _______, _______,
   //`--------+--------+--------+--------+--------+--------/   \--------+--------+--------+--------+--------+--------'
                        _______, _______, _______, _______,     _______, _______, _______, _______
   //                  `--------+--------+--------+--------'   `--------+--------+--------+--------'
