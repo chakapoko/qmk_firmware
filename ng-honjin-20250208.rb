@@ -1,42 +1,42 @@
 require 'victor'
 
+#シフトは親指か？
+THUMB = false
+
 #本陣 20240428版
-# LAYOUT = [
-
-# [
-#     "へひとこけ★する★★",
-#     "ーほんかくあいう★★",
-#     "そちてしきなった★★",
-# ], [
-#     "みわりふ小★え★★★",
-#     "ませさはにゆよ★★★",
-#     "ねめられつやお★★★",
-# ], [
-#     "★★★★★★★★★★",
-#     "むろもの★★★★★★",
-#     "ぬ★を★★★★★★★",
-# ]
-
-# ]
-
-#本陣 20250209版
 LAYOUT = [
-    [
-        "ろひとこけへする★★",
-        "ーれんかくあいう★★",
-        "らちてしきなつた★★",
-    ], [
-        "ほねりみ小ぬやふ★★",
-        "そさはにまゆよわ★★",
-        "せめものっえおむ★★",
-    ]
+
+[
+    "へひとこけ★する★★",
+    "ーほんかくあいう★★",
+    "そちてしきなった★★",
+], [
+    "みわりふ小★え★★★",
+    "ませさはにゆよ★★★",
+    "ねめられつやお★★★",
+], [
+    "★★★★★★★★★★",
+    "むろもの★★★★★★",
+    "ぬ★を★★★★★★★",
 ]
 
-#シフトは親指か？
-THUMB = true
+]
 
-#濁音排他（同一キーに濁音をとりうるカナは一つだけ）
-DAK_EXCLUSIVE = true
+#本陣 20250209版
+# LAYOUT = [
+#     [
+#         "へひとこねほする★★",
+#         "ーれんかくあいう★★",
+#         "らめてしきなつた★★",
+#     ], [
+#         "みまりろ小ぬえふ★★",
+#         "ちさはにむゆよわ★★",
+#         "けせものっそおや★★",
+#     ]
+
+# ]
+
+
 
 
 INACTIVE = [
@@ -49,27 +49,27 @@ CUT_RATE=0.5
 # SHIFT_KEYS = ["B_SHFT","B_SHFT2"]
 # SHIFT_ORDER = [[],["B_SHFT"],["B_SHFT2"],["B_SHFT","B_SHFT2"]]
 
-SHIFT_KEYS = ["B_SHFT"]
-SHIFT_ORDER = [[],["B_SHFT"]]
+# SHIFT_KEYS = ["B_SHFT"]
+# SHIFT_ORDER = [[],["B_SHFT"]]
 
 # SHIFT_KEYS = ["B_D","B_K","B_C","B_COMM"]
 # SHIFT_ORDER = [[],["B_D"],["B_K"],["B_C"],["B_COMM"]]
 
 #本陣 20240428版
-# SHIFT_KEYS = ["B_K","B_J"]
-# SHIFT_ORDER = [[],["B_K"],["B_J"]]
+SHIFT_KEYS = ["B_K","B_J"]
+SHIFT_ORDER = [[],["B_K"],["B_J"]]
 
 
 #修飾キー
 def mod_key(w,side)
     mod_keys = {
         #本陣 20240428版
-        # "濁音"   => {:left=>"B_SHFT", :right=>"B_SHFT"} ,
-        # "半濁音" => {:left=>"B_SHFT2", :right=>"B_SHFT2"} ,
+        "濁音"   => {:left=>"B_SHFT", :right=>"B_SHFT"} ,
+        "半濁音" => {:left=>"B_SHFT2", :right=>"B_SHFT2"} ,
 
         #本陣改造版
-        "濁音"   => {:left=>"B_SHFT2", :right=>"B_SHFT2"} ,
-        "半濁音" => {:left=>"B_K", :right=>"B_D"} ,
+        # "濁音"   => {:left=>"B_SHFT2", :right=>"B_SHFT2"} ,
+        # "半濁音" => {:left=>"B_K", :right=>"B_D"} ,
 
         # "濁音"   => {:left=>"B_K", :right=>"B_D"} ,
         # "半濁音" => {:left=>"B_I", :right=>"B_E"} ,
@@ -696,17 +696,9 @@ rklist.each {|chr|
     if is_verbose
         # codes.push("#{comment}  {.key = #{words.join("|")}, .kana = \"#{info[:keys]}\"}, //#{chr} (シフト省略)")
     end
-
-    #シフト省略可？
-    shift_omit = DAK_EXCLUSIVE && (chr.size > 1 || mod =="濁音" || mod == "半濁音")
-
-    #シフトキー
-    SHIFT_ORDER[shift_type].each{|k| words.push(k) } unless shift_omit
-
-    puts info
     puts words.join(", ")
-    puts "[#{mod}]"
-
+    puts mod
+    SHIFT_ORDER[shift_type].each{|k| words.push(k) }
     codes.push("#{comment}  {.key = #{words.join("|")}, .kana = \"#{info[:keys]}\"}, //#{chr}")
 
     if comment == ""
